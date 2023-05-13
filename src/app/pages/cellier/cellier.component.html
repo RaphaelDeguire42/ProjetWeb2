@@ -1,0 +1,31 @@
+<mat-drawer-container
+[autosize]="true"
+class="min-h-full max-w7xl mx-auto border-x"
+>
+    <mat-drawer mode="side" opened class="p-6">
+        <app-filtres (showType)="onShowType($event)"></app-filtres>
+    </mat-drawer>
+    <mat-drawer-content class="p-6">
+        <app-celliers-entete
+        (columnsCountChange)="onColumnsCountChange($event)"
+        (itemsCountChange)="onItemsCountChange($event)"
+        (sortChange)="onSortChange($event)"
+        ></app-celliers-entete>
+        <app-nouveau-cellier>
+            
+        </app-nouveau-cellier>
+        <mat-grid-list
+            gutterSize="16"
+            [cols]="cols"
+            [rowHeight] = 'rowHeight'
+            >
+            <mat-grid-tile *ngFor="let cellier of celliers">
+                <app-un-cellier
+                [cellier]="cellier"
+                (addToCart)="onAddToCart($event)"
+                class="w-full"
+                [fullWidthMode]="cols === 1"></app-un-cellier>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-drawer-content>
+</mat-drawer-container>

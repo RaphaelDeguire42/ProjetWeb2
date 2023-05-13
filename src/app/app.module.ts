@@ -17,25 +17,40 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProductsHeaderComponent } from './pages/home/components/products-header/products-header.component';
-import { FiltersComponent } from './pages/home/components/filters/filters.component';
-import { ProductBoxComponent } from './pages/home/components/product-box/product-box.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { CartService } from './services/cart.service';
-import { StoreService } from './services/store.service';
+import { EnteteComponent } from './components/entete/entete.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
+import { BouteillesEnteteComponent } from './pages/accueil/components/bouteilles-entete/bouteilles-entete.component';
+import { FiltresComponent } from './pages/accueil/components/filtres/filtres.component';
+import { UneBouteilleComponent } from './pages/accueil/components/une-bouteille/une-bouteille.component';
+import { PanierComponent } from './pages/panier/panier.component';
+import { PanierService } from './services/panier.service';
+import { CellierComponent } from './pages/cellier/cellier.component';
+import { CellierService } from './services/cellier.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CelliersEnteteComponent } from './pages/cellier/components/celliers-entete/celliers-entete.component';
+import { UnCellierComponent } from './pages/cellier/components/un-cellier/un-cellier.component';
+import { NouveauCellierComponent } from './pages/cellier/components/nouveau-cellier/nouveau-cellier.component';
+import { NouveauCellierDialogComponent } from './pages/cellier/components/nouveau-cellier-dialog/nouveau-cellier-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { MatOption, MatOptionModule } from '@angular/material/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    ProductsHeaderComponent,
-    FiltersComponent,
-    ProductBoxComponent,
-    CartComponent
+    EnteteComponent,
+    AccueilComponent,
+    FiltresComponent,
+    UneBouteilleComponent,
+    BouteillesEnteteComponent,
+    PanierComponent,
+    CellierComponent,
+    UnCellierComponent,
+    CelliersEnteteComponent,
+    NouveauCellierComponent,
+    NouveauCellierDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -45,17 +60,23 @@ import { HttpClientModule } from '@angular/common/http';
     MatGridListModule,
     MatMenuModule,
     MatButtonModule,
+    MatDialogModule,
     MatCardModule,
     MatIconModule,
     MatExpansionModule,
     MatListModule,
+    MatOptionModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatTableModule,
     MatBadgeModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ],
-  providers: [CartService],
+  providers: [PanierService, CellierService, CellierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

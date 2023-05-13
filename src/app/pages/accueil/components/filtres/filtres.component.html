@@ -1,0 +1,10 @@
+<mat-expansion-panel *ngIf="types">
+<mat-expansion-panel-header>
+    <mat-panel-title>TYPES</mat-panel-title>
+</mat-expansion-panel-header>
+<mat-selection-list [multiple]="false">
+    <mat-list-option *ngFor="let type of types" [value]="type" (click)="onShowType(type)">
+        {{type}}
+    </mat-list-option>
+</mat-selection-list >
+</mat-expansion-panel>

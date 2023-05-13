@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from './models/cart.model';
-import { CartService } from './services/cart.service';
+import { Panier } from './models/models';
+import { PanierService } from './services/panier.service';
 
 @Component({
   selector: 'app-root',
   template: `
-    <app-header [cart]="cart"></app-header>
+    <app-entete [panier]="panier"></app-entete>
     <router-outlet></router-outlet>
   `,
   styles: []
 })
 export class AppComponent implements OnInit {
-  cart: Cart = { items: [] };
+  panier: Panier = { items: [] };
 
-  constructor(private cartService: CartService) {
+  constructor(private panierService: PanierService) {
   }
 
   ngOnInit(): void {
-    this.cartService.cart.subscribe((_cart) => {
-      this.cart = _cart;
+    this.panierService.panier.subscribe((_panier) => {
+      this.panier = _panier;
     })
   }
 }

@@ -1,0 +1,18 @@
+<mat-card *ngIf="cellier" [ngClass]="{'text-center': !fullWidthMode}">
+    <div [ngClass]="{'flex': fullWidthMode}" class="px-3">
+        <div class="w-full"
+        [ngClass]="{'px-8 py-3 flex flex-col justify-between': fullWidthMode}">
+            <div>
+                <h5>{{cellier.nom }}</h5>
+                <p class="truncate hover:whitespace-normal">{{cellier.id_couleur }}</p>
+                <p *ngIf="fullWidthMode">{{cellier.id_user }}</p>
+            </div>
+            <div class="flex justify-between px-3">
+                <button (click)="onAddToCart()">
+                    <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</mat-card>
+

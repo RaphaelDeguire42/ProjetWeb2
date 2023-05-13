@@ -1,0 +1,26 @@
+<p>Nouveau Cellier</p>
+<ng-container>
+    <form [formGroup]="formAjout" >
+      <mat-form-field appearance="fill">
+        <mat-label>Nom : </mat-label>
+        <input matInput formControlName="nom" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Couleur : </mat-label>
+        <mat-select formControlName="id_couleur">
+          <mat-option *ngFor="let color of getColors()" [value]="color.id">
+            <span class="color-circle" [style.background-color]="color.hex"></span>{{color.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <div class="action">
+          <div class="action__group">
+              <button mat-raised-button color="primary" (click)="ajouterCellier()" [disabled]="!formAjout.valid">Ajouter</button>
+              <button mat-button  (click)="annuler()" [disabled]="formAjout.pristine">Annuler</button>
+          </div>
+      </div>
+    </form>
+</ng-container>

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Cellier } from 'src/app/models/models';
 import { CellierService } from 'src/app/services/cellier.service';
 
-const ROWS_HEIGHT: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
+const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 
 @Component({
   selector: 'app-cellier',
@@ -11,11 +11,11 @@ const ROWS_HEIGHT: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 })
 export class CellierComponent implements OnInit, OnDestroy {
   cols = 3;
-  rowHeight = ROWS_HEIGHT[this.cols];
+  hauteurRangee = HAUTEUR_RANGEE[this.cols];
   type: string | undefined;
   celliers: Array<Cellier> | undefined;
-  sort = 'desc';
-  count = '12';
+  tri = 'desc';
+  nombreItems = '12';
   cellierSubscription: Subscription | undefined;
 
   constructor(private cellierService: CellierService) {}
@@ -28,23 +28,22 @@ export class CellierComponent implements OnInit, OnDestroy {
     this.cellierSubscription = this.cellierService.getCelliersUtilisateur()
       .subscribe((_celliers)=>{
         this.celliers = _celliers;
-
       })
   }
 
-  onColumnsCountChange(colsNum: number): void {
+  onColonneNombreChangement(colsNum: number): void {
     this.cols = colsNum;
-    this.rowHeight = ROWS_HEIGHT[this.cols];
+    this.hauteurRangee = HAUTEUR_RANGEE[this.cols];
   }
 
-  onShowType(newType:string):void {
-    this.type = newType;
+  onVoirType(nouveauType:string):void {
+    this.type = nouveauType;
     this.getCelliers();
   }
 
-  onAddToCart(product: any):void {
+  onAjouterAuPanier(product: any):void {
     /*
-    this.cartService.addToCart({
+    this.cartService.ajouterAuPanier({
       product: product.image,
       name: product.title,
       price: product.price,
@@ -54,13 +53,13 @@ export class CellierComponent implements OnInit, OnDestroy {
     */
   }
 
-  onItemsCountChange(newCount: number):void {
-    this.count = newCount.toString();
+  onItemsNombreChangement(nouveauNombre: number):void {
+    this.nombreItems = nouveauNombre.toString();
     this.getCelliers();
   }
 
-  onSortChange(newSort: string):void {
-    this.sort = newSort;
+  onTriChangement(nouveauTri: string):void {
+    this.tri = nouveauTri;
     this.getCelliers();
   }
 

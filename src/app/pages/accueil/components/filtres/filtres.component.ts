@@ -18,11 +18,10 @@ export class FiltresComponent implements OnInit, OnDestroy {
     this.typesSubscription = this.catalogueService.getAllTypes()
     .subscribe((response) => {
       this.types = response;
-      this.types = ['Vin Blanc', 'Vin rouge'];
     });
   }
 
-  onShowType(type: string):void {
+  onVoirType(type: string):void {
     this.showType.emit(type);
   }
 

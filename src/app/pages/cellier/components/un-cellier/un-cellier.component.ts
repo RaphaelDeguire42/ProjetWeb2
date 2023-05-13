@@ -6,12 +6,12 @@ import { Cellier } from 'src/app/models/models';
   templateUrl: './un-cellier.component.html'
 })
 export class UnCellierComponent {
-  @Input() fullWidthMode = false;
+  @Input() modePleinEcran = false;
   @Input() cellier: Cellier | undefined;
-  @Output() addToCart = new EventEmitter();
+  @Output() ajouterAuPanier = new EventEmitter();
 
-  onAddToCart(): void {
-    this.addToCart.emit(this.cellier);
+  onAjouterAuPanier(): void {
+    this.ajouterAuPanier.emit(this.cellier);
   }
 
 }

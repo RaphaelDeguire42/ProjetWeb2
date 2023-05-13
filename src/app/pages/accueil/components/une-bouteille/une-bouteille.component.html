@@ -1,19 +1,19 @@
-<mat-card *ngIf="bouteille" [ngClass]="{'text-center': !fullWidthMode}">
-    <div [ngClass]="{'flex': fullWidthMode}" class="px-3">
+<mat-card *ngIf="bouteille" [ngClass]="{'text-center': !modePleinEcran}">
+    <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
         <img class="mb-1 mt-3 mx-auto h-[200px]"
-        [ngClass] = "{'h-200': !fullWidthMode, 'h-[360px] ml-3 mb-3': fullWidthMode}"
+        [ngClass] = "{'h-200': !modePleinEcran, 'h-[360px] ml-3 mb-3': modePleinEcran}"
         [src]="bouteille.img_saq" alt=""
         >
         <div class="w-full"
-        [ngClass]="{'px-8 py-3 flex flex-col justify-between': fullWidthMode}">
+        [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
             <div>
                 <h5>{{bouteille.id_type }}</h5>
                 <p class="truncate hover:whitespace-normal">{{bouteille.nom }}</p>
-                <p *ngIf="fullWidthMode">{{bouteille.garde }}</p>
+                <p *ngIf="modePleinEcran">{{bouteille.garde }}</p>
             </div>
             <div class="flex justify-between px-3">
                 <span class="text-red-400">{{ bouteille.prix | currency }}</span>
-                <button (click)="onAddToCart()">
+                <button (click)="onAjouterAuPanier()">
                     <mat-icon class="text-gray-500">shopping_cart</mat-icon>
                 </button>
             </div>

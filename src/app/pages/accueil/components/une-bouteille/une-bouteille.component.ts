@@ -6,12 +6,12 @@ import { Bouteille } from 'src/app/models/models';
   templateUrl: './une-bouteille.component.html'
 })
 export class UneBouteilleComponent {
-  @Input() fullWidthMode = false;
+  @Input() modePleinEcran = false;
   @Input() bouteille: Bouteille | undefined;
 
-  @Output() addToCart = new EventEmitter();
-  onAddToCart(): void {
-    this.addToCart.emit(this.bouteille);
+  @Output() ajouterAuPanier = new EventEmitter();
+  onAjouterAuPanier(): void {
+    this.ajouterAuPanier.emit(this.bouteille);
   }
 
 }

@@ -5,24 +5,24 @@ import { Component, Output, EventEmitter } from '@angular/core';
   templateUrl: './celliers-entete.component.html'
 })
 export class CelliersEnteteComponent {
-  @Output() columnsCountChange = new EventEmitter<number>();
-  @Output() itemsCountChange = new EventEmitter<number>();
-  @Output() sortChange = new EventEmitter<string>();
+  @Output() colonneNombreChangement = new EventEmitter<number>();
+  @Output() itemsNombreChangement = new EventEmitter<number>();
+  @Output() triChangement = new EventEmitter<string>();
 
-  sort = 'desc';
-  itemsShowCount = 12;
+  tri = 'desc';
+  voirNombreItems = 12;
 
-  onSortUpdated(newSort: string):void {
-    this.sort = newSort;
-    this.sortChange.emit(newSort)
+  onModTri(nouveauTri: string):void {
+    this.tri = nouveauTri;
+    this.triChangement.emit(nouveauTri)
   }
 
-  onItemsUpdated(count:number):void {
-    this.itemsShowCount = count;
-    this.itemsCountChange.emit(count);
+  onModItems(count:number):void {
+    this.voirNombreItems = count;
+    this.itemsNombreChangement.emit(count);
   }
 
-  onColumnsUpdated(colsNum:number):void {
-    this.columnsCountChange.emit(colsNum);
+  onModColonne(colsNum:number):void {
+    this.colonneNombreChangement.emit(colsNum);
   }
 }

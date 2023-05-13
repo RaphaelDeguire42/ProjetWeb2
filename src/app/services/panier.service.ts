@@ -13,71 +13,71 @@ export class PanierService {
   panier = new BehaviorSubject<Panier>({ items: []});
   constructor(private _snackbar: MatSnackBar) { }
 
-  addToPanier(item: PanierItem): void {
+  ajouterAuPanier(item: PanierItem): void {
     const items = [...this.panier.value.items];
 
-    const itemInPanier = items.find((_item) => _item.id == item.id);
+    const itemPanier = items.find((_item) => _item.id == item.id);
 
-    if (itemInPanier) {
-      itemInPanier.quantity += 1;
+    if (itemPanier) {
+      itemPanier.quantite += 1;
     } else {
       items.push(item);
     }
 
     this.panier.next({ items });
-    this._snackbar.open('1 item added to panier.', 'Ok', { duration: 3000 });
+    this._snackbar.open('1 item ajouté au panier.', 'Ok', { duration: 3000 });
   }
 
   supprimerQuantite(item: PanierItem): void {
-    let itemForRemoval: PanierItem | undefined;
+    let itemASupprimer: PanierItem | undefined;
 
-    let filteredItems = this.panier.value.items.map((_item) => {
+    let itemFiltre = this.panier.value.items.map((_item) => {
       if(_item.id === item.id) {
-        _item.quantity--;
+        _item.quantite--;
 
-        if(_item.quantity === 0) {
-          itemForRemoval = _item;
+        if(_item.quantite === 0) {
+          itemASupprimer = _item;
         }
       }
       return _item;
     });
 
-    if (itemForRemoval) {
-      filteredItems = this.supprimerDuPanier(itemForRemoval, false);
+    if (itemASupprimer) {
+      itemFiltre = this.supprimerDuPanier(itemASupprimer, false);
     }
 
-    this.panier.next({ items: filteredItems })
+    this.panier.next({ items: itemFiltre })
 
-    this._snackbar.open('1 item remove from panier.', 'Ok', {
+    this._snackbar.open('1 item supprimé du panier.', 'Ok', {
       duration: 3000
     })
   }
 
   getTotal(items: Array<PanierItem>): number {
     return items.
-      map((item) => item.price * item.quantity)
+      map((item) => item.prix * item.quantite)
       .reduce((prev, current) => prev + current, 0);
   }
 
-  clearPanier(): void {
+  viderPanier(): void {
     this.panier.next({ items: [] });
-    this._snackbar.open('Panier is cleared.', 'OK', {
+    this._snackbar.open('Le panier a été supprimé.', 'OK', {
       duration: 3000
     });
   }
 
   supprimerDuPanier(item: PanierItem, update = true): Array<PanierItem> {
-    const filteredItems = this.panier.value.items.filter(
+    const itemFiltre = this.panier.value.items.filter(
       (_item) => _item.id !== item.id
     );
 
     if(update) {
-      this.panier.next({ items: filteredItems });
-      this._snackbar.open('1 item removed from panier.', 'Ok', {
+      this.panier.next({ items: itemFiltre });
+      this._snackbar.open('1item supprimé du panier.', 'Ok', {
         duration: 3000
       });
     }
-    return filteredItems;
+    return itemFiltre;
   }
 
 

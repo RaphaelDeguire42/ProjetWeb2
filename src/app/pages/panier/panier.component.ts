@@ -8,25 +8,25 @@ import { PanierService } from 'src/app/services/panier.service';
 })
 export class PanierComponent implements OnInit {
   panier: Panier = { items: [{
-    product: 'https://via.placeholder.com/150',
-    name: 'snickers',
-    price: 150,
-    quantity: 1,
+    bouteille: 'https://via.placeholder.com/150',
+    nom: 'snickers',
+    prix: 150,
+    quantite: 1,
     id: 1
   },
   {
-    product: 'https://via.placeholder.com/150',
-    name: 'snickers',
-    price: 150,
-    quantity: 3,
+    bouteille: 'https://via.placeholder.com/150',
+    nom: 'snickers',
+    prix: 150,
+    quantite: 3,
     id: 2
   }]};
-  dataSource: Array<PanierItem> = [];
-  displayedColumns: Array<string> = [
-    'product',
-    'name',
-    'price',
-    'quantity',
+  sourceDonnees: Array<PanierItem> = [];
+  colonneAffiche: Array<string> = [
+    'bouteille',
+    'nom',
+    'prix',
+    'quantite',
     'total',
     'action'
   ];
@@ -34,10 +34,10 @@ export class PanierComponent implements OnInit {
   constructor(private panierService: PanierService) {}
 
   ngOnInit(): void {
-    this.dataSource = this.panier.items;
+    this.sourceDonnees = this.panier.items;
     this.panierService.panier.subscribe((_panier: Panier) => {
       this.panier = _panier;
-      this.dataSource = this.panier.items;
+      this.sourceDonnees = this.panier.items;
     })
   }
 
@@ -45,8 +45,8 @@ export class PanierComponent implements OnInit {
     return this.panierService.getTotal(items);
   }
 
-  onClearPanier(): void {
-    this.panierService.clearPanier();
+  onViderPanier(): void {
+    this.panierService.viderPanier();
   }
 
   onSupprimerDuPanier(item: PanierItem): void {
@@ -54,7 +54,7 @@ export class PanierComponent implements OnInit {
   }
 
   onAjouterQuantite(item: PanierItem): void {
-    this.panierService.addToPanier(item);
+    this.panierService.ajouterAuPanier(item);
   }
 
   onSupprimerQuantite(item: PanierItem): void {

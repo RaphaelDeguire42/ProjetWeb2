@@ -2,23 +2,23 @@
     <a routerLink="accueil">Vino</a>
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon
-            [matBadge]="itemsQuantity"
-            [matBadgeHidden]="!itemsQuantity"
+            [matBadge]="itemsQuantite"
+            [matBadgeHidden]="!itemsQuantite"
             matBadgeColor="warn"
         >shopping_panier</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
         <div class="p-3 divide-y divide-solid">
             <div class="pb-3 flex justify-between">
-                <span class="mr-16">{{ itemsQuantity }} Items</span>
-                <a routerLink="panier">View Panier</a>
+                <span class="mr-16">{{ itemsQuantite }} Items</span>
+                <a routerLink="panier">Voir Panier</a>
             </div>
             <div *ngIf="panier.items.length" class="py-3">
                 <div
                 *ngFor="let item of panier.items"
                 class="flex justify-between font-light mb-2">
-                    {{ item.name }} x {{ item.quantity }}
-                    <span class="font-bold">{{ item.price | currency }}</span>
+                    {{ item.nom }} x {{ item.quantite }}
+                    <span class="font-bold">{{ item.prix | currency }}</span>
                 </div>
             </div>
             <div class="flex justify-between py-3 font-light">
@@ -27,7 +27,7 @@
             </div>
             <div class="pt-3 flex justify-between">
                 <button
-                (click)="onClearPanier()"
+                (click)="onViderPanier()"
                 class="bg-rose-600 text-white rounded-full w-9 h-9">
                     <mat-icon>remove_shopping_panier</mat-icon>
                 </button>

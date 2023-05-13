@@ -11,11 +11,11 @@ const ROWS_HEIGHT: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 })
 export class AccueilComponent implements OnInit, OnDestroy {
   cols = 3;
-  rowHeight = ROWS_HEIGHT[this.cols];
+  hauteurRangee = ROWS_HEIGHT[this.cols];
   type: string | undefined;
   bouteilles: Array<Bouteille> | undefined;
-  sort = 'desc';
-  count = '12';
+  tri = 'desc';
+  nombre = '12';
   bouteilleSubscription: Subscription | undefined;
 
   constructor(private catalogueService: CatalogueService) {}
@@ -25,25 +25,25 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   getBouteilles(): void {
-    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.count, this.sort, this.type)
+    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.nombre, this.tri, this.type)
       .subscribe((_bouteilles)=>{
         this.bouteilles = _bouteilles;
       })
   }
 
-  onColumnsCountChange(colsNum: number): void {
+  onColonneNombreChangement(colsNum: number): void {
     this.cols = colsNum;
-    this.rowHeight = ROWS_HEIGHT[this.cols];
+    this.hauteurRangee = ROWS_HEIGHT[this.cols];
   }
 
-  onShowType(newType:string):void {
-    this.type = newType;
+  onVoirType(nouveauType:string):void {
+    this.type = nouveauType;
     this.getBouteilles();
   }
 
-  onAddToCart(product: any):void {
+  onAjouterAuPanier(product: any):void {
     /*
-    this.cartService.addToCart({
+    this.cartService.ajouterAuPanier({
       product: product.image,
       name: product.title,
       price: product.price,
@@ -53,13 +53,13 @@ export class AccueilComponent implements OnInit, OnDestroy {
     */
   }
 
-  onItemsCountChange(newCount: number):void {
-    this.count = newCount.toString();
+  onItemsNombreChangement(nouveauNombre: number):void {
+    this.nombre = nouveauNombre.toString();
     this.getBouteilles();
   }
 
-  onSortChange(newSort: string):void {
-    this.sort = newSort;
+  onTriChangement(nouveauTri: string):void {
+    this.tri = nouveauTri;
     this.getBouteilles();
   }
 

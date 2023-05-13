@@ -3,25 +3,25 @@
 class="min-h-full max-w7xl mx-auto border-x"
 >
     <mat-drawer mode="side" opened class="p-6">
-        <app-filtres (showType)="onShowType($event)"></app-filtres>
+        <app-filtres (showType)="onVoirType($event)"></app-filtres>
     </mat-drawer>
     <mat-drawer-content class="p-6">
         <app-bouteilles-entete
-        (columnsCountChange)="onColumnsCountChange($event)"
-        (itemsCountChange)="onItemsCountChange($event)"
-        (sortChange)="onSortChange($event)"
+        (colonneNombreChangement)="onColonneNombreChangement($event)"
+        (itemsNombreChangement)="onItemsNombreChangement($event)"
+        (triChangement)="onTriChangement($event)"
         ></app-bouteilles-entete>
         <mat-grid-list
             gutterSize="16"
             [cols]="cols"
-            [rowHeight] = 'rowHeight'
+            [hauteurRangee] = 'hauteurRangee'
             >
             <mat-grid-tile *ngFor="let bouteille of bouteilles">
                 <app-une-bouteille
                 [bouteille]="bouteille"
-                (addToCart)="onAddToCart($event)"
+                (ajouterAuPanier)="onAjouterAuPanier($event)"
                 class="w-full"
-                [fullWidthMode]="cols === 1"></app-une-bouteille>
+                [modePleinEcran]="cols === 1"></app-une-bouteille>
             </mat-grid-tile>
         </mat-grid-list>
     </mat-drawer-content>

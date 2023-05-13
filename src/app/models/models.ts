@@ -78,9 +78,9 @@ export interface Panier {
 }
 
 export interface PanierItem {
-    product: string;
-    name: string;
-    price: number;
-    quantity: number;
     id: number;
+    bouteille: string;
+    nom: string;
+    prix: number;
+    quantite: number;
 }

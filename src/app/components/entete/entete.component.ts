@@ -8,7 +8,7 @@ import { PanierService } from 'src/app/services/panier.service';
 })
 export class EnteteComponent {
   private _panier: Panier = { items: [] };
-  itemsQuantity = 0;
+  itemsQuantite = 0;
 
   @Input()
   get panier(): Panier {
@@ -18,20 +18,18 @@ export class EnteteComponent {
   set panier(panier: Panier) {
     this._panier = panier;
 
-    this.itemsQuantity = panier.items
-      .map((item) => item.quantity)
+    this.itemsQuantite = panier.items
+      .map((item) => item.quantite)
       .reduce((prev, current) => prev + current, 0);
   }
 
-  constructor(private panierService: PanierService) {
-
-  }
+  constructor(private panierService: PanierService) {}
 
   getTotal(items: Array<PanierItem>): number {
     return this.panierService.getTotal(items);
   }
 
-  onClearPanier(): void {
-    this.panierService.clearPanier();
+  onViderPanier(): void {
+    this.panierService.viderPanier();
   }
 }

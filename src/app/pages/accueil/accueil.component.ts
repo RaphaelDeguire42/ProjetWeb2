@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Bouteille } from 'src/app/models/models';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 
-const ROWS_HEIGHT: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
+const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 
 @Component({
   selector: 'app-accueil',
@@ -11,7 +11,7 @@ const ROWS_HEIGHT: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 })
 export class AccueilComponent implements OnInit, OnDestroy {
   cols = 3;
-  hauteurRangee = ROWS_HEIGHT[this.cols];
+  hauteurRangee = HAUTEUR_RANGEE[this.cols];
   type: string | undefined;
   bouteilles: Array<Bouteille> | undefined;
   tri = 'desc';
@@ -33,7 +33,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   onColonneNombreChangement(colsNum: number): void {
     this.cols = colsNum;
-    this.hauteurRangee = ROWS_HEIGHT[this.cols];
+    this.hauteurRangee = HAUTEUR_RANGEE[this.cols];
   }
 
   onVoirType(nouveauType:string):void {

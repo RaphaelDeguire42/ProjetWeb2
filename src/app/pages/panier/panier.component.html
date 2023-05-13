@@ -1,5 +1,5 @@
 <mat-card class="max-w-7x1 mx-auto" *ngIf="panier.items.length">
-    <table mat-table [sourceDonnees]="sourceDonnees"
+    <table mat-table [dataSource]="sourceDonnees"
     class="mat-elevation-z8 w-full">
         <ng-container matColumnDef="bouteille">
             <th mat-header-cell *matHeaderCellDef>Bouteille</th>

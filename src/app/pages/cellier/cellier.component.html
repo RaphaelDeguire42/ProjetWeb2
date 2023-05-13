@@ -3,7 +3,9 @@
 class="min-h-full max-w7xl mx-auto border-x"
 >
     <mat-drawer mode="side" opened class="p-6">
-        <app-filtres (voirType)="onVoirType($event)"></app-filtres>
+        <!--
+            <app-filtres (voirType)="onVoirType($event)"></app-filtres>
+        -->
     </mat-drawer>
     <mat-drawer-content class="p-6">
         <app-celliers-entete
@@ -17,7 +19,7 @@ class="min-h-full max-w7xl mx-auto border-x"
         <mat-grid-list
             gutterSize="16"
             [cols]="cols"
-            [hauteurRangee] = 'hauteurRangee'
+            [rowHeight] = 'hauteurRangee'
             >
             <mat-grid-tile *ngFor="let cellier of celliers">
                 <app-un-cellier

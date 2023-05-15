@@ -47,7 +47,7 @@ export interface NoteCommentaire {
     id_bouteille: number;
 }
 
-export interface Type {
+export interface TypeBouteille {
     id: number;
     type: string;
 }
@@ -83,4 +83,21 @@ export interface PanierItem {
     nom: string;
     prix: number;
     quantite: number;
+}
+
+export interface BouteilleCellierData {
+    id_bouteille: number;
+    id_cellier: number;
+}
+
+export interface NouveauCellierData {
+    id_couleur: number;
+    nom: string;
+}
+
+
+export interface Couleur {
+    id: number;
+    couleur: string;
+    hex: string;
 }

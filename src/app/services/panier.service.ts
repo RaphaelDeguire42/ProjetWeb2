@@ -6,6 +6,7 @@ import { Panier, PanierItem } from '../models/models';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PanierService {
   // supprimerDuPanier(item: PanierItem) {
   //   throw new Error('Method not implemented.');

@@ -8,8 +8,8 @@
                 <p *ngIf="modePleinEcran">{{cellier.id_user }}</p>
             </div>
             <div class="flex justify-between px-3">
-                <button (click)="onAjouterAuPanier()">
-                    <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+                <button (click)="onSupprimerCellier(cellier.id)">
+                    <mat-icon class="text-gray-500">delete</mat-icon>
                 </button>
             </div>
         </div>

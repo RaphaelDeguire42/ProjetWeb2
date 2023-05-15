@@ -13,20 +13,12 @@ p{
     text-align: center;
     font-weight: bold;
 }
-mat-label{
-    display: block;
-    color: black;
-}
 
-.pastille {
+.color-circle {
     display: inline-block;
     width: 16px;
     height: 16px;
     border-radius: 50%;
     margin-right: 8px;
     border:1px gray solid;
-  }
-
-  .mat-focused .mat-form-field-outline {
-    outline: none;
   }

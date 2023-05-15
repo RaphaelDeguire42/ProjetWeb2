@@ -73,14 +73,19 @@ export class CellierService {
       }];
 
       return of(bouteilleCellier);
-      //return this.httpClient.get<Array<CellierBouteille>>(`${CELLIER_BASE_URL}/cellier-bouteille`)
+      //return this.httpClient.get<Array<CellierBouteille>>(`${CELLIER_BASE_URL}/bouteille-cellier`)
    }
 
    ajouterBouteilleCellier(data:BouteilleCellierData):Observable<any>{
-    return this.httpClient.post(CELLIER_BASE_URL, data);
+    return this.httpClient.post(CELLIER_BASE_URL+'bouteille-cellier', data);
    }
 
    nouveauCellier(data:NouveauCellierData):Observable<any>{
-    return this.httpClient.post(CELLIER_BASE_URL, data);
+    return this.httpClient.post(CELLIER_BASE_URL+'cellier', data);
+   }
+
+   supprimerCellier(id_cellier:number):Observable<any>{
+    this.httpClient.delete(CELLIER_BASE_URL+`cellier/${id_cellier}`);
+    return of(id_cellier);
    }
 }

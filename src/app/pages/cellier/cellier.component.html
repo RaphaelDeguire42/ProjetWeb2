@@ -19,7 +19,7 @@ class="min-h-full max-w7xl mx-auto border-x"
         <button mat-fab id="addCellier" color="warn" (click)="openNouveauCellierDialog()">
             <mat-icon>add</mat-icon>
         </button>
-        
+
         <mat-grid-list
             gutterSize="16"
             [cols]="cols"
@@ -30,6 +30,7 @@ class="min-h-full max-w7xl mx-auto border-x"
                 [cellier]="cellier"
                 (ajouterAuPanier)="onAjouterAuPanier($event)"
                 class="w-full"
+                (cellierSupprime)="supprimerCellier($event)"
                 [modePleinEcran]="cols === 1"></app-un-cellier>
             </mat-grid-tile>
         </mat-grid-list>

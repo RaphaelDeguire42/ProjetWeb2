@@ -38,6 +38,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajou
     UnCellierComponent,
     CelliersEnteteComponent,
     NouveauCellierDialogComponent,
-    AjouterBouteilleDialogComponent
+    AjouterBouteilleDialogComponent,
+    ConfirmationDialogComponent
 
   ],
   imports: [

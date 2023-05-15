@@ -78,4 +78,10 @@ export class CellierComponent implements OnInit, OnDestroy {
         this.cellierSubscription.unsubscribe();
       }
   }
+
+  supprimerCellier(id_cellier:number){
+    this.celliers = this.celliers!.filter(cellier => cellier.id !== id_cellier);
+  }
+
+
 }

@@ -29,12 +29,12 @@ import { CellierService } from './services/cellier.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CelliersEnteteComponent } from './pages/cellier/components/celliers-entete/celliers-entete.component';
 import { UnCellierComponent } from './pages/cellier/components/un-cellier/un-cellier.component';
-import { NouveauCellierComponent } from './pages/cellier/components/nouveau-cellier/nouveau-cellier.component';
 import { NouveauCellierDialogComponent } from './pages/cellier/components/nouveau-cellier-dialog/nouveau-cellier-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { MatOption, MatOptionModule } from '@angular/material/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
@@ -51,7 +51,6 @@ import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajou
     CellierComponent,
     UnCellierComponent,
     CelliersEnteteComponent,
-    NouveauCellierComponent,
     NouveauCellierDialogComponent,
     AjouterBouteilleDialogComponent
 
@@ -72,6 +71,7 @@ import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajou
     MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatInputModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatTableModule,

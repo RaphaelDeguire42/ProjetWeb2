@@ -33,12 +33,6 @@ export class AjouterBouteilleDialogComponent {
     .subscribe((response) => {
       this.celliers = response;
     });
-    /*
-    this.http.get<Cellier[]>('/api/celliers/'+this.id_bouteille).subscribe((celliers) => {
-      this.celliers = celliers;
-    });
-    */
-
 
     this.formAjout = this.fb.group({
       id_cellier: [this.celliers![0].id, [Validators.required]],
@@ -64,7 +58,6 @@ export class AjouterBouteilleDialogComponent {
   }
 
   getCelliers() {
-
     return this.celliers;
   }
 

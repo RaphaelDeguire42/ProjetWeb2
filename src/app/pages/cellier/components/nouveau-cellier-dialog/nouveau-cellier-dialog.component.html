@@ -1,16 +1,17 @@
 <p>Nouveau Cellier</p>
 <ng-container>
     <form [formGroup]="formAjout" >
-      <mat-form-field appearance="fill">
-        <mat-label>Nom : </mat-label>
-        <input matInput formControlName="nom" />
+      <mat-form-field floatLabel="always">
+        <mat-label>Nom</mat-label>
+        <input class="nom_cellier" matInput formControlName="nom" placeholder="Nom du cellier" autocomplete="off" autocorrect="off" autocapitalize="on" spellcheck="false">
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+
+      <mat-form-field appearance="fill" *ngIf="couleurs">
         <mat-label>Couleur : </mat-label>
         <mat-select formControlName="id_couleur">
-          <mat-option *ngFor="let color of getColors()" [value]="color.id">
-            <span class="color-circle" [style.background-color]="color.hex"></span>{{color.name}}
+          <mat-option *ngFor="let couleur of couleurs" [value]="couleur.id">
+            <span class="pastille" [style.background-color]="couleur.hex"></span>{{couleur.couleur}}
           </mat-option>
         </mat-select>
       </mat-form-field>

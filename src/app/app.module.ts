@@ -35,6 +35,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { MatOption, MatOptionModule } from '@angular/material/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+
+import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     UnCellierComponent,
     CelliersEnteteComponent,
     NouveauCellierComponent,
-    NouveauCellierDialogComponent
+    NouveauCellierDialogComponent,
+    AjouterBouteilleDialogComponent
 
   ],
   imports: [
@@ -66,6 +70,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatExpansionModule,
     MatListModule,
     MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatTableModule,

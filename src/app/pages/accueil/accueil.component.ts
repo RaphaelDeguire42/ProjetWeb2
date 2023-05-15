@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Bouteille } from 'src/app/models/models';
+import { Bouteille, Cellier } from 'src/app/models/models';
 import { CatalogueService } from 'src/app/services/catalogue.service';
+import { CellierService } from 'src/app/services/cellier.service';
 
 const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 
@@ -14,11 +15,14 @@ export class AccueilComponent implements OnInit, OnDestroy {
   hauteurRangee = HAUTEUR_RANGEE[this.cols];
   type: string | undefined;
   bouteilles: Array<Bouteille> | undefined;
+  celliers: Array<Cellier> | undefined;
   tri = 'desc';
   nombre = '12';
   bouteilleSubscription: Subscription | undefined;
+  cellierSubscription: Subscription | undefined;
 
-  constructor(private catalogueService: CatalogueService) {}
+
+  constructor(private catalogueService: CatalogueService, private cellierService: CellierService) {}
 
   ngOnInit(): void {
       this.getBouteilles();
@@ -28,6 +32,13 @@ export class AccueilComponent implements OnInit, OnDestroy {
     this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.nombre, this.tri, this.type)
       .subscribe((_bouteilles)=>{
         this.bouteilles = _bouteilles;
+      })
+  }
+
+  getCelliersUtilisateur(): void {
+    this.cellierSubscription = this.cellierService.getCelliersUtilisateur()
+      .subscribe((_celliers)=>{
+        this.celliers = _celliers;
       })
   }
 

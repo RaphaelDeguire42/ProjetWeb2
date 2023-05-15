@@ -16,6 +16,9 @@
                 <button (click)="onAjouterAuPanier()">
                     <mat-icon class="text-gray-500">shopping_cart</mat-icon>
                 </button>
+                <button mat-fab color="warn" (click)="openAjouterBouteilleDialog(bouteille.id)">
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>
         </div>
     </div>

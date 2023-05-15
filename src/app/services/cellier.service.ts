@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Bouteille, Cellier, CellierBouteille } from '../models/models';
+import { Bouteille, BouteilleCellierData, Cellier, CellierBouteille } from '../models/models';
 
 const CELLIER_BASE_URL = 'https://fakestoreapi.com';
 
@@ -60,5 +60,9 @@ export class CellierService {
       `${CATALOGUE_BASE_URL}/bouteilles/types`
     )
     */
+   }
+
+   ajouterBouteilleCellier(data:BouteilleCellierData):Observable<any>{
+    return this.httpClient.post(CELLIER_BASE_URL, data);
    }
 }

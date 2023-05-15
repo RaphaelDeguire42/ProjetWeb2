@@ -1,0 +1,20 @@
+<p>Ajouter au cellier</p>
+<ng-container>
+    <form [formGroup]="formAjout">
+
+      <mat-form-field appearance="fill">
+        <mat-select formControlName="id_cellier">
+          <mat-option *ngFor="let cellier of getCelliers()" [value]="cellier.id">
+            {{cellier.nom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="action">
+          <div class="action__group">
+              <button mat-raised-button color="primary" (click)="ajouterBouteilleCellier()">Ajouter</button>
+              <button mat-button (click)="annuler()" [disabled]="formAjout.pristine">Annuler</button>
+          </div>
+      </div>
+    </form>
+</ng-container>

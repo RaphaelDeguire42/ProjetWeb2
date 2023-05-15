@@ -1,0 +1,24 @@
+:host{
+    padding: 0 10px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5em;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+p{
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.color-circle {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border:1px gray solid;
+  }

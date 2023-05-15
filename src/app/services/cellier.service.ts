@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Bouteille, Cellier } from '../models/models';
+import { Bouteille, Cellier, CellierBouteille } from '../models/models';
 
 const CELLIER_BASE_URL = 'https://fakestoreapi.com';
 
@@ -27,6 +27,34 @@ export class CellierService {
       }];
 
       return of(celliers);
+    /*
+    return this.httpClient.get<Array<string>>(
+      `${CATALOGUE_BASE_URL}/bouteilles/types`
+    )
+    */
+   }
+
+   getBouteillesCellier(): Observable<Array<CellierBouteille>> {
+    const bouteilleCellier: Array<CellierBouteille> = [{
+        id: 1,
+        id_bouteille: 1,
+        id_cellier: 1,
+        quantite: 3,
+        date_achat: '2000-05-20',
+        garde: 2008,
+        millesime: 2007
+      },
+      {
+        id: 2,
+        id_bouteille: 2,
+        id_cellier: 1,
+        quantite: 3,
+        date_achat: '2000-05-25',
+        garde: 2010,
+        millesime: 2008
+      }];
+
+      return of(bouteilleCellier);
     /*
     return this.httpClient.get<Array<string>>(
       `${CATALOGUE_BASE_URL}/bouteilles/types`

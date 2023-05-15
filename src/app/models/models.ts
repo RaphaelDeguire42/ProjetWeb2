@@ -47,7 +47,7 @@ export interface NoteCommentaire {
     id_bouteille: number;
 }
 
-export interface Type {
+export interface TypeBouteille {
     id: number;
     type: string;
 }

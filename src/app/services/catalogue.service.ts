@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Bouteille } from '../models/models';
+import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
 
-const CATALOGUE_BASE_URL = 'https://fakestoreapi.com';
+const CATALOGUE_BASE_URL = '127.0.0.1:8000';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,18 @@ export class CatalogueService {
       id_format: 1,
       id_pays: 1,
       actif: true
+    },{
+      id: 2,
+      nom: 'Vin du millenaire',
+      code_saq: '202504',
+      url_saq: 'www.com',
+      img_saq: 'url.webp',
+      garde: 2001,
+      prix: 50,
+      id_type: 2,
+      id_format: 1,
+      id_pays: 2,
+      actif: true
     }];
 
     return of(bouteilles);
@@ -37,8 +49,35 @@ export class CatalogueService {
     */
   }
 
-  getAllTypes(): Observable<Array<string>> {
-    return of(['Vin Blanc', 'Vin rouge']);
+  getTypes(): Observable<Array<TypeBouteille>> {
+    return of([
+      {id:1, type: 'Vin Blanc'},
+      {id:2, type: 'Vin Rouge'}
+    ]);
+    /*
+    return this.httpClient.get<Array<string>>(
+      `${CATALOGUE_BASE_URL}/bouteilles/types`
+    )
+    */
+  }
+
+  getFormats(): Observable<Array<Format>> {
+    return of([
+      {id:1, format: '750 ml'},
+      {id:2, format: '1000 ml'}
+    ]);
+    /*
+    return this.httpClient.get<Array<string>>(
+      `${CATALOGUE_BASE_URL}/bouteilles/types`
+    )
+    */
+  }
+
+  getPays(): Observable<Array<Pays>> {
+    return of([
+      {id:1, pays: 'Argentine'},
+      {id:2, pays: 'France'}
+    ]);
     /*
     return this.httpClient.get<Array<string>>(
       `${CATALOGUE_BASE_URL}/bouteilles/types`

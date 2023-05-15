@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Bouteille, BouteilleCellierData, Cellier, CellierBouteille, Couleur, NouveauCellierData } from '../models/models';
 
-const CELLIER_BASE_URL = 'https://fakestoreapi.com';
+const CELLIER_BASE_URL = 'localhost:8000';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,7 @@ export class CellierService {
       { id: 15, couleur: 'grey', hex: '#808080' },
     ];
     return of(couleurs);
+   // return this.httpClient.get<Array<Couleur>>(`${CELLIER_BASE_URL}/couleur`)
   }
 
 
@@ -47,13 +48,8 @@ export class CellierService {
         id_user: 1,
         id_couleur: 1
       }];
-
       return of(celliers);
-    /*
-    return this.httpClient.get<Array<string>>(
-      `${CATALOGUE_BASE_URL}/bouteilles/types`
-    )
-    */
+      //return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/cellier-utilisateur`)
    }
 
    getBouteillesCellier(): Observable<Array<CellierBouteille>> {
@@ -77,7 +73,7 @@ export class CellierService {
       }];
 
       return of(bouteilleCellier);
-
+      //return this.httpClient.get<Array<CellierBouteille>>(`${CELLIER_BASE_URL}/cellier-bouteille`)
    }
 
    ajouterBouteilleCellier(data:BouteilleCellierData):Observable<any>{

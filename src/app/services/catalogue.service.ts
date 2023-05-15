@@ -3,7 +3,7 @@ import { Injectable, Type } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
 
-const CATALOGUE_BASE_URL = '127.0.0.1:8000';
+const CATALOGUE_BASE_URL = 'localhost:8000';
 
 @Injectable({
   providedIn: 'root'
@@ -40,13 +40,7 @@ export class CatalogueService {
     }];
 
     return of(bouteilles);
-    /*
-    return this.httpClient.get<Array<Bouteille>>(
-      `${CATALOGUE_BASE_URL}/bouteilles${
-        type ? '/type/' + type : ''
-      }?sort=${sort}&limit=${limit}`
-    )
-    */
+    //return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteille`)
   }
 
   getTypes(): Observable<Array<TypeBouteille>> {
@@ -54,11 +48,7 @@ export class CatalogueService {
       {id:1, type: 'Vin Blanc'},
       {id:2, type: 'Vin Rouge'}
     ]);
-    /*
-    return this.httpClient.get<Array<string>>(
-      `${CATALOGUE_BASE_URL}/bouteilles/types`
-    )
-    */
+    //return this.httpClient.get<Array<TypeBouteille>>(`${CATALOGUE_BASE_URL}/type`)
   }
 
   getFormats(): Observable<Array<Format>> {
@@ -66,11 +56,8 @@ export class CatalogueService {
       {id:1, format: '750 ml'},
       {id:2, format: '1000 ml'}
     ]);
-    /*
-    return this.httpClient.get<Array<string>>(
-      `${CATALOGUE_BASE_URL}/bouteilles/types`
-    )
-    */
+    //return this.httpClient.get<Array<Format>>(`${CATALOGUE_BASE_URL}/format`)
+
   }
 
   getPays(): Observable<Array<Pays>> {
@@ -78,11 +65,7 @@ export class CatalogueService {
       {id:1, pays: 'Argentine'},
       {id:2, pays: 'France'}
     ]);
-    /*
-    return this.httpClient.get<Array<string>>(
-      `${CATALOGUE_BASE_URL}/bouteilles/types`
-    )
-    */
+    //return this.httpClient.get<Array<Pays>>(`${CATALOGUE_BASE_URL}/pays`)
   }
 
   getNouvelleBouteilles(): Observable<Array<Bouteille>>{

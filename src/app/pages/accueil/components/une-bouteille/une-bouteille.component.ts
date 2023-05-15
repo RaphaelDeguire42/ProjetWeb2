@@ -15,8 +15,10 @@ export class UneBouteilleComponent {
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar){}
 
   @Output() ajouterAuPanier = new EventEmitter();
+
   onAjouterAuPanier(): void {
     this.ajouterAuPanier.emit(this.bouteille);
+    console.log(this.bouteille)
   }
 
   openAjouterBouteilleDialog(id_bouteille:number){

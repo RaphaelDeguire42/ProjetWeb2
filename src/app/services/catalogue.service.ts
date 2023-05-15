@@ -84,4 +84,8 @@ export class CatalogueService {
     )
     */
   }
+
+  getNouvelleBouteilles(): Observable<Array<Bouteille>>{
+    return this.httpClient.get<Array<Bouteille>>(CATALOGUE_BASE_URL+'crawl');
+  }
 }

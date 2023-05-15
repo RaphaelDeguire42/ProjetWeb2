@@ -35,6 +35,12 @@ export class AccueilComponent implements OnInit, OnDestroy {
       })
   }
 
+  getNouvelleBouteilles(): void{
+    this.catalogueService.getNouvelleBouteilles().subscribe(bouteilles =>{
+      this.bouteilles = this.bouteilles!.concat(bouteilles);
+    })
+  }
+
   getCelliersUtilisateur(): void {
     this.cellierSubscription = this.cellierService.getCelliersUtilisateur()
       .subscribe((_celliers)=>{

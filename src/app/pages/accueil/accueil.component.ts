@@ -20,7 +20,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   nombre = '12';
   bouteilleSubscription: Subscription | undefined;
   cellierSubscription: Subscription | undefined;
-
+  isChargement = false;
 
   constructor(private catalogueService: CatalogueService, private cellierService: CellierService) {}
 
@@ -36,8 +36,11 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   getNouvelleBouteilles(): void{
+    this.isChargement = true;
     this.catalogueService.getNouvelleBouteilles().subscribe(bouteilles =>{
-      this.bouteilles = this.bouteilles!.concat(bouteilles);
+      console.log(bouteilles)
+      this.bouteilles!.push(...bouteilles.nouvellesBouteilles);
+      this.isChargement = false;
     })
   }
 

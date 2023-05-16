@@ -39,6 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatGridListModule,
     MatMenuModule,

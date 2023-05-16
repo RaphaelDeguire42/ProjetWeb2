@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Bouteille, BouteilleCellierData, Cellier, CellierBouteille, Couleur, NouveauCellierData } from '../models/models';
 
-const CELLIER_BASE_URL = 'localhost:8000';
+const CELLIER_BASE_URL = 'localhost:8000/';
 
 @Injectable({
   providedIn: 'root'

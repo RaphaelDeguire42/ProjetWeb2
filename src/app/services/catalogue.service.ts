@@ -5,6 +5,39 @@ import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
 
 const CATALOGUE_BASE_URL = 'localhost:8000';
 
+// Reste de l'uri pour l'api pour toutes les bouteilles : api_vino/public/api/bouteilles
+// J'ai implémenté plusieurs mots clés pour les recherches et filtres dans le uri des bouteilles 
+// les mots clés permis pour chaques colonnes sont dans cet array ici : 
+//    'id' => ['eq', 'gt'],
+//    'nom' => ['eq', 'lk'],
+//    'prix' => ['eq', 'gt', 'lt', 'lte', 'gte'],
+//    'id_format' => ['eq'],
+//    'id_pays' => ['eq'],
+//    'id_type' => ['eq'],
+// la traduction est ici 
+//    'eq'    => '=',
+//    'lt'    => '<',
+//    'lte'   => '<=',
+//    'gt'    => '>',
+//    'gte'   => '>=',
+//    'lk'    => 'like',
+
+// Exemples
+
+// CATALOGUE_BASE_URL/api_vino/public/api/bouteilles?COLONNE[OPERATEURSQL]=VALEUR  
+
+// CATALOGUE_BASE_URL/api_vino/public/api/bouteilles?nom[lk]=the  
+// retourne un array qui contiens toutes les bouteilles dont le nom contiens le mot "the"
+
+// CATALOGUE_BASE_URL/api_vino/public/api/bouteilles?id_format[eq]=1
+// retourne un array de tous les bouteille de format 1
+
+
+
+
+
+
+
 @Injectable({
   providedIn: 'root'
 })

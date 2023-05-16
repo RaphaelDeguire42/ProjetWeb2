@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
@@ -7,7 +7,8 @@ import { CellierService } from 'src/app/services/cellier.service';
 
 @Component({
   selector: 'app-un-cellier',
-  templateUrl: './un-cellier.component.html'
+  templateUrl: './un-cellier.component.html',
+  styleUrls: ['./un-cellier.component.scss']
 })
 export class UnCellierComponent {
   @Input() modePleinEcran = false;
@@ -26,7 +27,6 @@ export class UnCellierComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'confirm') {
         this.supprimerCellier(id_cellier);
-
       }
     });
   }

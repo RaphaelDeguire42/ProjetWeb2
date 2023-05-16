@@ -1,4 +1,5 @@
 <mat-card *ngIf="cellier" [ngClass]="{'text-center': !modePleinEcran}">
+    <span class="pastille" [style.background-color]="cellier.hex_value"></span>
     <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
         <div class="w-full"
         [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">

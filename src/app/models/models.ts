@@ -98,6 +98,8 @@ export interface NouveauCellierData {
 
 export interface Couleur {
     id: number;
-    couleur: string;
-    hex: string;
+    nom: string;
+    hex_value: string;
+    created_at: string;
+    updated_at: string;
 }

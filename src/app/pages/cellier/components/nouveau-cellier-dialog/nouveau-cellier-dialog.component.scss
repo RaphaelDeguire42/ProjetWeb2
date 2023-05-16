@@ -30,3 +30,6 @@ mat-label{
   .mat-focused .mat-form-field-outline {
     outline: none;
   }
+  .pastilleSelector, mat-select{
+    width: 150px;
+  }

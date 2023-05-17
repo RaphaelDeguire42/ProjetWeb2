@@ -30,7 +30,6 @@ export class NouveauCellierDialogComponent {
 
   ngOnInit(): void {
     this.couleursSubscription = this.cellierService.getCouleurs().subscribe((data) => {
-      console.log(data);
       this.couleurs = data;
       if (this.couleurs.length > 0 && this.couleurs[0] != null) {
         this.formAjout.controls['id_couleur'].setValue(this.couleurs[0].id || 1);
@@ -42,7 +41,10 @@ export class NouveauCellierDialogComponent {
     if (this.formAjout.valid) {
       const formData = this.formAjout.value;
       formData.id_couleur = parseInt(formData.id_couleur, 10);
-      // Instead of subscribing here, emit the formData to the parent component
+      const selectedCouleur = this.couleurs.find(couleur => couleur.id === formData.id_couleur);
+      if (selectedCouleur) {
+        formData.hex_value = selectedCouleur.hex_value;
+      }
       this.dialogRef.close(formData);
     }
   }

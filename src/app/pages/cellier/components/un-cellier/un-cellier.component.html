@@ -6,8 +6,11 @@
           <h5>{{cellier.nom}}</h5>
         </div>
         <div class="flex justify-between px-3">
-          <button (click)="toggleCellierDetails()" class="arrow-button">
+          <button (click)="toggleCellierDetails(cellier.id)" class="arrow-button">
             <mat-icon>{{ showCellierDetails ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+          </button>
+          <button (click)="supprimerCellier(cellier.id)" class="">
+            <mat-icon>delete</mat-icon>
           </button>
         </div>
       </div>

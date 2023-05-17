@@ -87,6 +87,7 @@ export class CellierComponent implements OnInit, OnDestroy {
   }
 
   supprimerCellier(id_cellier: number): void {
+    console.log(id_cellier)
     this.cellierService.supprimerCellier(id_cellier).subscribe(() => {
       this.celliers = this.celliers?.filter(cellier => cellier.id !== id_cellier);
       this.snackBar.open(`Le cellier a été supprimé.`, 'Fermer', {
@@ -96,6 +97,12 @@ export class CellierComponent implements OnInit, OnDestroy {
   }
 
   ajouterCellier(cellier: Cellier): void {
-    this.celliers!.push(cellier);
+    this.cellierService.nouveauCellier(cellier).subscribe((id_cellier)=>{
+      cellier.id = id_cellier.id;
+      this.celliers!.push(cellier);
+      this.snackBar.open(`Le cellier a été ajouté.`, 'Fermer', {
+        duration: 5000,
+      });
+    })
   }
 }

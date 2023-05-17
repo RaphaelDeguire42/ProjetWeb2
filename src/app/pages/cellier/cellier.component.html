@@ -20,7 +20,7 @@
           <app-un-cellier
             [cellier]="cellier"
             class="w-full"
-            (cellierSupprime)="supprimerCellier(cellier.id)"
+            (cellierSupprime)="supprimerCellier($event)"
             [modePleinEcran]="cols === 1"
           ></app-un-cellier>
         </mat-grid-tile>

@@ -22,23 +22,26 @@ export class UnCellierComponent {
   cellierBouteilles: Array<CellierBouteille> | undefined;
   bouteillesSubscription: Subscription | undefined;
   showCellierDetails = false;
-
+  cellierId: number | undefined; // Add cellierId property
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
 
-
   ngOnInit(): void {
-    this.getBouteillesCellier();
+    if (this.cellier) {
+      this.cellierId = this.cellier.id;
+
+    }
   }
 
-  getBouteillesCellier(): void {
-    this.bouteillesSubscription = this.cellierService.getBouteillesCellier(this.cellier!.id)
-      .subscribe((_bouteilles)=>{
-        this.cellierBouteilles = _bouteilles;
-      })
+  getBouteillesCellier(id_cellier:number): void {
+      this.bouteillesSubscription = this.cellierService.getBouteillesCellier(id_cellier)
+        .subscribe((_bouteilles)=>{
+          this.cellierBouteilles = _bouteilles;
+        });
   }
 
-  onSupprimerCellier(id_cellier:number): void {
+  supprimerCellier(id_cellier: number): void {
+    console.log(id_cellier)
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: 'Êtes-vous certain de vouloir supprimer ce cellier?',
@@ -46,25 +49,16 @@ export class UnCellierComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'confirm') {
-        this.supprimerCellier(id_cellier);
+        this.cellierSupprime.emit(id_cellier);
       }
     });
   }
 
-  supprimerCellier(id_cellier: number): void {
-    this.cellierService.supprimerCellier(id_cellier).subscribe((id_cellier) => {
-      this.cellierSupprime.emit(id_cellier);
-      this.snackBar.open(`Le cellier a été supprimé.`, 'Fermer', {
-        duration: 5000,
-      });
-    });
-  }
-
-  toggleCellierDetails(): void {
+  toggleCellierDetails(id_cellier:number): void {
     this.showCellierDetails = !this.showCellierDetails;
     if (this.showCellierDetails) {
-      this.getBouteillesCellier();
+      this.getBouteillesCellier(id_cellier);
     }
   }
-
 }
+

@@ -3,7 +3,7 @@
   <form [formGroup]="formAjout">
 
     <mat-form-field appearance="fill">
-      <mat-select formControlName="id_cellier">
+      <mat-select formControlName="id_cellier" autocomplete="off">
         <mat-option *ngFor="let cellier of getCelliers()" [value]="cellier.id">
           {{ cellier.nom }}
         </mat-option>
@@ -11,27 +11,26 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <input matInput formControlName="quantite" placeholder="Quantité" type="number">
+      <input matInput formControlName="quantite" placeholder="Quantité" type="number" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <input matInput formControlName="date_achat" placeholder="Date d'achat" [matDatepicker]="picker">
+      <input matInput formControlName="date_achat" placeholder="Date d'achat" [matDatepicker]="picker" autocomplete="off">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <input matInput formControlName="garde" placeholder="Garde" type="number">
+      <input matInput formControlName="garde" placeholder="Garde" type="number" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <input matInput formControlName="millesime" placeholder="Millésime" type="number">
+      <input matInput formControlName="millesime" placeholder="Millésime" type="number" autocomplete="off">
     </mat-form-field>
-    
 
     <div class="action">
       <div class="action__group">
-        <button mat-raised-button color="primary" (click)="ajouterBouteilleCellier()">Ajouter</button>
+        <button mat-raised-button color="primary" (click)="ajouterBouteilleCellier()" [disabled]="!formAjout.valid">Ajouter</button>
         <button mat-button (click)="annuler()">Annuler</button>
       </div>
     </div>

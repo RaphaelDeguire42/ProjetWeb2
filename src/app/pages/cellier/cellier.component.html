@@ -1,38 +1,29 @@
-<mat-drawer-container
-[autosize]="true"
-class="min-h-full max-w7xl mx-auto border-x"
->
+<mat-drawer-container [autosize]="true" class="min-h-full max-w7xl mx-auto border-x">
     <mat-drawer mode="side" opened class="p-6">
-        <!--
-            <app-filtres (voirType)="onVoirType($event)"></app-filtres>
-        -->
+      <!--
+      <app-filtres (voirType)="onVoirType($event)"></app-filtres>
+      -->
     </mat-drawer>
     <mat-drawer-content class="p-6">
-
-
-        <app-celliers-entete
+      <app-celliers-entete
         (colonneNombreChangement)="onColonneNombreChangement($event)"
         (itemsNombreChangement)="onItemsNombreChangement($event)"
         (triChangement)="onTriChangement($event)"
-        ></app-celliers-entete>
+      ></app-celliers-entete>
 
-        <button mat-fab id="addCellier" color="warn" (click)="openNouveauCellierDialog()">
-            <mat-icon>add</mat-icon>
-        </button>
+      <button mat-fab id="addCellier" color="warn" (click)="openNouveauCellierDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
 
-        <mat-grid-list
-            gutterSize="16"
-            [cols]="cols"
-            [rowHeight] = 'hauteurRangee'
-            >
-            <mat-grid-tile *ngFor="let cellier of celliers">
-                <app-un-cellier
-                [cellier]="cellier"
-                (ajouterAuPanier)="onAjouterAuPanier($event)"
-                class="w-full"
-                (cellierSupprime)="supprimerCellier($event)"
-                [modePleinEcran]="cols === 1"></app-un-cellier>
-            </mat-grid-tile>
-        </mat-grid-list>
+      <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="hauteurRangee">
+        <mat-grid-tile *ngFor="let cellier of celliers">
+          <app-un-cellier
+            [cellier]="cellier"
+            class="w-full"
+            (cellierSupprime)="supprimerCellier(cellier.id)"
+            [modePleinEcran]="cols === 1"
+          ></app-un-cellier>
+        </mat-grid-tile>
+      </mat-grid-list>
     </mat-drawer-content>
-</mat-drawer-container>
+  </mat-drawer-container>

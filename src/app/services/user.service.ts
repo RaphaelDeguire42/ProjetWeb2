@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Utilisateur } from '../models/models';
+import { Role, Utilisateur } from '../models/models';
+import { HttpClient } from '@angular/common/http';
+
+const USER_BASE_URL = 'http://localhost:8000/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   utilisateur:Utilisateur = {
     id: 1 ,
     nom: "alex",
@@ -12,7 +16,7 @@ export class UserService {
   };
   estConnecter:boolean = false;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   getUtilisateur():Utilisateur{
     return this.utilisateur;
@@ -21,4 +25,5 @@ export class UserService {
   isConnecter():boolean{
     return this.estConnecter;
   }
+
 }

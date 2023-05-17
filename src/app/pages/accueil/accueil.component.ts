@@ -15,10 +15,10 @@ export class AccueilComponent implements OnInit, OnDestroy {
   hauteurRangee = HAUTEUR_RANGEE[this.cols];
   type: string | undefined;
   bouteilles: Array<Bouteille> | undefined;
+  bouteilleSubscription: Subscription | undefined;
   celliers: Array<Cellier> | undefined;
   tri = 'desc';
   nombre = '12';
-  bouteilleSubscription: Subscription | undefined;
   cellierSubscription: Subscription | undefined;
   isChargement = false;
 

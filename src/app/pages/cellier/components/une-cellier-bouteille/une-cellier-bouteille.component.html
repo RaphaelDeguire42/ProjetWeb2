@@ -11,13 +11,11 @@
                 <p *ngIf="modePleinEcran">{{bouteille.garde }}</p>
             </div>
             <div class="flex justify-between px-3">
-                <span class="text-red-400">{{ bouteille.prix | currency }}</span>
-                <button mat-mini-fab color="warn" (click)="openAjouterBouteilleDialog(bouteille.id)">
-                    <mat-icon>add</mat-icon>
-                </button>
-                <button (click)="onAjouterAuPanier()">
-                    <mat-icon class="text-gray-500">shopping_cart</mat-icon>
-                </button>
+                <!--
+                    <button mat-mini-fab color="warn" (click)="openSupprimerBouteilleDialog(bouteille.id)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                 -->
             </div>
         </div>
     </div>

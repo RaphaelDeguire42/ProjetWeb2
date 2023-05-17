@@ -13,7 +13,7 @@ export interface Bouteille {
     nom: string;
     code_saq: string;
     url_saq: string;
-    img_saq: string;
+    url_img: string;
     garde: number;
     prix: number;
     id_type: number;
@@ -30,15 +30,15 @@ export interface Cellier {
     hex_value: string;
 }
 
-export interface CellierBouteille {
+export interface CellierBouteille extends Bouteille {
     id: number;
     id_bouteille: number;
     id_cellier: number;
     quantite: number;
     date_achat: string;
-    garde: number;
     millesime: number;
 }
+
 
 export interface NoteCommentaire {
     id: number;
@@ -114,4 +114,9 @@ export interface Utilisateur {
     date_de_naissance?: string;
     image_profil?: string;
     id_role?: number;
+}
+
+export interface Role {
+    id: number;
+    role: string;
 }

@@ -2,12 +2,11 @@
     <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
         <img class="mb-1 mt-3 mx-auto h-[200px]"
         [ngClass] = "{'h-200': !modePleinEcran, 'h-[360px] ml-3 mb-3': modePleinEcran}"
-        [src]="bouteille.img_saq" alt=""
+        [src]="bouteille.url_img" alt=""
         >
         <div class="w-full"
         [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
             <div>
-                <h5>{{bouteille.id_type }}</h5>
                 <p class="truncate hover:whitespace-normal">{{bouteille.nom }}</p>
                 <p *ngIf="modePleinEcran">{{bouteille.garde }}</p>
             </div>

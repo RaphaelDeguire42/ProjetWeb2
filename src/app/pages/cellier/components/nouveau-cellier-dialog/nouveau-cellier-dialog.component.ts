@@ -1,5 +1,4 @@
-import { Component} from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,42 +13,41 @@ import { Subscription } from 'rxjs';
 })
 export class NouveauCellierDialogComponent {
   formAjout: FormGroup = new FormGroup({});
-  couleurs:Array<Couleur> = [];
+  couleurs: Array<Couleur> = [];
   couleursSubscription: Subscription | undefined;
 
-  constructor(private fb: FormBuilder, private http:HttpClient, public dialogRef: MatDialogRef<NouveauCellierDialogComponent>,private snackBar:MatSnackBar, private cellierService:CellierService) {
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<NouveauCellierDialogComponent>,
+    private snackBar: MatSnackBar,
+    private cellierService: CellierService
+  ) {
     this.formAjout = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(3)]],
       id_couleur: [null, Validators.required]
     });
   }
+
   ngOnInit(): void {
     this.couleursSubscription = this.cellierService.getCouleurs().subscribe((data) => {
-      console.log(data)
+      console.log(data);
       this.couleurs = data;
       if (this.couleurs.length > 0 && this.couleurs[0] != null) {
         this.formAjout.controls['id_couleur'].setValue(this.couleurs[0].id || 1);
       }
     });
-
   }
 
-  ajouterCellier() {
-    console.log(this.formAjout.errors)
+  ajouterCellier(): void {
     if (this.formAjout.valid) {
       const formData = this.formAjout.value;
       formData.id_couleur = parseInt(formData.id_couleur, 10);
-      this.cellierService.nouveauCellier(formData).subscribe(response => {
-        this.snackBar.open('Votre cellier a été crée.', 'Fermer', {
-          duration: 3000
-        });
-        this.dialogRef.close();
-      });
+      // Instead of subscribing here, emit the formData to the parent component
+      this.dialogRef.close(formData);
     }
   }
 
   annuler(): void {
     this.dialogRef.close();
   }
-
 }

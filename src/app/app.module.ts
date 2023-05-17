@@ -42,6 +42,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UneCellierBouteilleComponent } from './pages/cellier/components/une-cellier-bouteille/une-cellier-bouteille.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     CelliersEnteteComponent,
     NouveauCellierDialogComponent,
     AjouterBouteilleDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    UneCellierBouteilleComponent
 
   ],
   imports: [

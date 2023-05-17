@@ -22,28 +22,8 @@ export class CellierService {
       return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/celliers?id_user[eq]=${id_utilisateur}`)
    }
 
-   getBouteillesCellier(): Observable<Array<CellierBouteille>> {
-    const bouteilleCellier: Array<CellierBouteille> = [{
-        id: 1,
-        id_bouteille: 1,
-        id_cellier: 1,
-        quantite: 3,
-        date_achat: '2000-05-20',
-        garde: 2008,
-        millesime: 2007
-      },
-      {
-        id: 2,
-        id_bouteille: 2,
-        id_cellier: 1,
-        quantite: 3,
-        date_achat: '2000-05-25',
-        garde: 2010,
-        millesime: 2008
-      }];
-
-      return of(bouteilleCellier);
-      //return this.httpClient.get<Array<CellierBouteille>>(`${CELLIER_BASE_URL}/bouteille-cellier`)
+   getBouteillesCellier(id_cellier:number): Observable<Array<CellierBouteille>> {
+      return this.httpClient.get<Array<CellierBouteille>>(`${CELLIER_BASE_URL}/cellier-bouteilles?id_cellier[eq]=${id_cellier}`)
    }
 
    ajouterBouteilleCellier(data:BouteilleCellierData):Observable<any>{

@@ -39,10 +39,10 @@ export class AjouterBouteilleDialogComponent {
       this.formAjout = this.fb.group({
         id_cellier: [this.celliers![0].id, [Validators.required]],
         id_bouteille: [this.id_bouteille],
-        garde: [''],
-        millesime: [''],
-        date_achat: [''],
-        quantite: ['']
+        garde: ['',[Validators.required]],
+        millesime: ['',[Validators.required]],
+        date_achat: ['',[Validators.required]],
+        quantite: [1, [Validators.required]]
       });
     });
   }
@@ -52,7 +52,7 @@ export class AjouterBouteilleDialogComponent {
       let formData = this.formAjout.value;
       console.log(formData);
       this.cellierService.ajouterBouteilleCellier(formData).subscribe(response => {
-        this.snackBar.open('Votre cellier a été crée.', 'Fermer', {
+        this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {
           duration: 3000
         });
         this.dialogRef.close();

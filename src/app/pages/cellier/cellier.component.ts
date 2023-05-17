@@ -6,7 +6,7 @@ import { NouveauCellierDialogComponent } from './components/nouveau-cellier-dial
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
+const HAUTEUR_RANGEE: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
 
 @Component({
   selector: 'app-cellier',
@@ -66,12 +66,19 @@ export class CellierComponent implements OnInit, OnDestroy {
     this.getCelliers();
   }
 
-  openNouveauCellierDialog(){
+  openNouveauCellierDialog(): void {
     const dialogRef = this.dialog.open(NouveauCellierDialogComponent, {
       width: '450px',
       height: '600px'
     });
+
+    dialogRef.afterClosed().subscribe((cellier: Cellier | undefined) => {
+      if (cellier) {
+        this.ajouterCellier(cellier);
+      }
+    });
   }
+
 
   ngOnDestroy(): void {
       if(this.cellierSubscription) {
@@ -79,9 +86,16 @@ export class CellierComponent implements OnInit, OnDestroy {
       }
   }
 
-  supprimerCellier(id_cellier:number){
-    this.celliers = this.celliers!.filter(cellier => cellier.id !== id_cellier);
+  supprimerCellier(id_cellier: number): void {
+    this.cellierService.supprimerCellier(id_cellier).subscribe(() => {
+      this.celliers = this.celliers?.filter(cellier => cellier.id !== id_cellier);
+      this.snackBar.open(`Le cellier a été supprimé.`, 'Fermer', {
+        duration: 5000,
+      });
+    });
   }
 
-
+  ajouterCellier(cellier: Cellier): void {
+    this.celliers!.push(cellier);
+  }
 }

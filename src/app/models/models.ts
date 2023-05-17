@@ -27,6 +27,7 @@ export interface Cellier {
     nom: string;
     id_user: number;
     id_couleur: number;
+    hex_value: string;
 }
 
 export interface CellierBouteille {
@@ -98,6 +99,19 @@ export interface NouveauCellierData {
 
 export interface Couleur {
     id: number;
-    couleur: string;
-    hex: string;
+    nom: string;
+    hex_value: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Utilisateur {
+    // REMOVE ? WHEN REAL USERS
+    id: number;
+    nom: string;
+    email: string;
+    mot_de_passe?: string;
+    date_de_naissance?: string;
+    image_profil?: string;
+    id_role?: number;
 }

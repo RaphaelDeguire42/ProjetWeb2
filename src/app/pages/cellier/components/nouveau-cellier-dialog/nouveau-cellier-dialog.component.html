@@ -1,5 +1,5 @@
 <p>Nouveau Cellier</p>
-<ng-container>
+<ng-container *ngIf="formAjout">
     <form [formGroup]="formAjout" >
       <mat-form-field floatLabel="always">
         <mat-label>Nom</mat-label>
@@ -7,16 +7,14 @@
       </mat-form-field>
 
 
-      <mat-form-field appearance="fill" *ngIf="couleurs">
+      <mat-form-field appearance="fill" *ngIf="couleurs" class="pastilleSelector">
         <mat-label>Couleur : </mat-label>
-        <mat-select formControlName="id_couleur">
+        <mat-select formControlName="id_couleur"  [value]="couleurs.length ? couleurs[0].id : 1">
           <mat-option *ngFor="let couleur of couleurs" [value]="couleur.id">
-            <span class="pastille" [style.background-color]="couleur.hex"></span>{{couleur.couleur}}
+            <span class="pastille" [style.background-color]="couleur.hex_value"></span>{{couleur.nom}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-
-
       <div class="action">
           <div class="action__group">
               <button mat-raised-button color="primary" (click)="ajouterCellier()" [disabled]="!formAjout.valid">Ajouter</button>

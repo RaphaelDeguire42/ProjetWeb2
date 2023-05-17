@@ -17,19 +17,25 @@ export class NouveauCellierDialogComponent {
   couleurs:Array<Couleur> = [];
   couleursSubscription: Subscription | undefined;
 
-  constructor(private fb: FormBuilder, private http:HttpClient, public dialogRef: MatDialogRef<NouveauCellierDialogComponent>,private snackBar:MatSnackBar, private cellierService:CellierService) { }
-  ngOnInit(): void {
-    this.couleursSubscription = this.cellierService.getCouleurs().subscribe((data) => {
-      this.couleurs = data;
-    });
+  constructor(private fb: FormBuilder, private http:HttpClient, public dialogRef: MatDialogRef<NouveauCellierDialogComponent>,private snackBar:MatSnackBar, private cellierService:CellierService) {
     this.formAjout = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(3)]],
-      id_couleur: [this.couleurs![0].id, [Validators.required]]
+      id_couleur: [null, Validators.required]
+    });
+  }
+  ngOnInit(): void {
+    this.couleursSubscription = this.cellierService.getCouleurs().subscribe((data) => {
+      console.log(data)
+      this.couleurs = data;
+      if (this.couleurs.length > 0 && this.couleurs[0] != null) {
+        this.formAjout.controls['id_couleur'].setValue(this.couleurs[0].id || 1);
+      }
     });
 
   }
 
   ajouterCellier() {
+    console.log(this.formAjout.errors)
     if (this.formAjout.valid) {
       const formData = this.formAjout.value;
       formData.id_couleur = parseInt(formData.id_couleur, 10);

@@ -2,54 +2,24 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Bouteille, BouteilleCellierData, Cellier, CellierBouteille, Couleur, NouveauCellierData } from '../models/models';
+import { UserService } from './user.service';
 
-const CELLIER_BASE_URL = 'localhost:8000';
+const CELLIER_BASE_URL = 'http://localhost:8000/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CellierService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private userService: UserService) { }
 
   getCouleurs(): Observable<Array<Couleur>> {
-    const couleurs: Array<Couleur> = [
-      { id: 1, couleur: 'black', hex: '#000000' },
-      { id: 2, couleur: 'white', hex: '#ffffff' },
-      { id: 3, couleur: 'red', hex: '#ff0000' },
-      { id: 4, couleur: 'green', hex: '#00ff00' },
-      { id: 5, couleur: 'blue', hex: '#0000ff' },
-      { id: 6, couleur: 'yellow', hex: '#ffff00' },
-      { id: 7, couleur: 'magenta', hex: '#ff00ff' },
-      { id: 8, couleur: 'cyan', hex: '#00ffff' },
-      { id: 9, couleur: 'maroon', hex: '#800000' },
-      { id: 10, couleur: 'olive', hex: '#008000' },
-      { id: 11, couleur: 'navy', hex: '#000080' },
-      { id: 12, couleur: 'teal', hex: '#808000' },
-      { id: 13, couleur: 'purple', hex: '#800080' },
-      { id: 14, couleur: 'dark_cyan', hex: '#008080' },
-      { id: 15, couleur: 'grey', hex: '#808080' },
-    ];
-    return of(couleurs);
-   // return this.httpClient.get<Array<Couleur>>(`${CELLIER_BASE_URL}/couleur`)
+    return this.httpClient.get<Array<Couleur>>(`${CELLIER_BASE_URL}/couleurs`)
   }
 
-
   getCelliersUtilisateur(): Observable<Array<Cellier>> {
-    const celliers: Array<Cellier> = [{
-        id: 1,
-        nom: 'Cellier 1',
-        id_user: 1,
-        id_couleur: 2
-      },
-      {
-        id: 2,
-        nom: 'Cellier 2',
-        id_user: 1,
-        id_couleur: 1
-      }];
-      return of(celliers);
-      //return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/cellier-utilisateur`)
+      const id_utilisateur = this.userService.getUtilisateur().id;
+      return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/celliers?id_user[eq]=${id_utilisateur}`)
    }
 
    getBouteillesCellier(): Observable<Array<CellierBouteille>> {
@@ -77,15 +47,14 @@ export class CellierService {
    }
 
    ajouterBouteilleCellier(data:BouteilleCellierData):Observable<any>{
-    return this.httpClient.post(CELLIER_BASE_URL+'bouteille-cellier', data);
+    return this.httpClient.post(`${CELLIER_BASE_URL}/cellier-bouteilles`, data);
    }
 
    nouveauCellier(data:NouveauCellierData):Observable<any>{
-    return this.httpClient.post(CELLIER_BASE_URL+'cellier', data);
+    return this.httpClient.post(`${CELLIER_BASE_URL}/celliers`, data);
    }
 
    supprimerCellier(id_cellier:number):Observable<any>{
-    this.httpClient.delete(CELLIER_BASE_URL+`cellier/${id_cellier}`);
-    return of(id_cellier);
+    return this.httpClient.delete(`${CELLIER_BASE_URL}/celliers/${id_cellier}`);
    }
 }

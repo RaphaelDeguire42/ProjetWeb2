@@ -20,23 +20,30 @@ export class AjouterBouteilleDialogComponent {
   formAjout: FormGroup = new FormGroup({
     id_cellier: new FormControl('', [Validators.required]),
     id_bouteille: new FormControl(''),
+    garde: new FormControl(''),
+    millesime: new FormControl(''),
+    date_achat: new FormControl(''),
+    quantite: new FormControl('')
   });
 
 
   constructor(private fb: FormBuilder, private http:HttpClient, public dialogRef: MatDialogRef<AjouterBouteilleDialogComponent>,private snackBar:MatSnackBar, private cellierService: CellierService, @Inject(MAT_DIALOG_DATA) public data: { id_bouteille: number }
   ) {}
 
+
   ngOnInit(): void {
     this.id_bouteille = this.data.id_bouteille;
 
-    this.celliersSubscription = this.cellierService.getCelliersUtilisateur()
-    .subscribe((response) => {
+    this.celliersSubscription = this.cellierService.getCelliersUtilisateur().subscribe((response) => {
       this.celliers = response;
-    });
-
-    this.formAjout = this.fb.group({
-      id_cellier: [this.celliers![0].id, [Validators.required]],
-      id_bouteille: [this.id_bouteille]
+      this.formAjout = this.fb.group({
+        id_cellier: [this.celliers![0].id, [Validators.required]],
+        id_bouteille: [this.id_bouteille],
+        garde: [''],
+        millesime: [''],
+        date_achat: [''],
+        quantite: ['']
+      });
     });
   }
 

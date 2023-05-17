@@ -47,7 +47,7 @@ export class CellierService {
    }
 
    ajouterBouteilleCellier(data:BouteilleCellierData):Observable<any>{
-    return this.httpClient.post(CELLIER_BASE_URL+'bouteille-cellier', data);
+    return this.httpClient.post(`${CELLIER_BASE_URL}/cellier-bouteilles`, data);
    }
 
    nouveauCellier(data:NouveauCellierData):Observable<any>{

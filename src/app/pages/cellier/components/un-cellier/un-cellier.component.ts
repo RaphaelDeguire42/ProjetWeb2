@@ -6,14 +6,14 @@ import { Cellier, CellierBouteille } from 'src/app/models/models';
 import { CellierService } from 'src/app/services/cellier.service';
 import { Subscription } from 'rxjs';
 
-const HAUTEUR_RANGEE: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
+const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 
 @Component({
   selector: 'app-un-cellier',
   templateUrl: './un-cellier.component.html',
-  styleUrls: ['./un-cellier.component.scss'],
+  styleUrls: ['./un-cellier.component.scss']
 })
-export class UnCellierComponent implements OnInit {
+export class UnCellierComponent {
   cols = 3;
   hauteurRangee = HAUTEUR_RANGEE[this.cols];
   @Input() modePleinEcran = false;
@@ -23,25 +23,22 @@ export class UnCellierComponent implements OnInit {
   bouteillesSubscription: Subscription | undefined;
   showCellierDetails = false;
 
-  constructor(
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private cellierService: CellierService
-  ) {}
+
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
+
 
   ngOnInit(): void {
     this.getBouteillesCellier();
   }
 
   getBouteillesCellier(): void {
-    this.bouteillesSubscription = this.cellierService
-      .getBouteillesCellier(this.cellier!.id)
-      .subscribe((_bouteilles) => {
+    this.bouteillesSubscription = this.cellierService.getBouteillesCellier(this.cellier!.id)
+      .subscribe((_bouteilles)=>{
         this.cellierBouteilles = _bouteilles;
-      });
+      })
   }
 
-  onSupprimerCellier(): void {
+  onSupprimerCellier(id_cellier:number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: 'Êtes-vous certain de vouloir supprimer ce cellier?',
@@ -49,13 +46,13 @@ export class UnCellierComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'confirm') {
-        this.cellierSupprime.emit(this.cellier!.id);
+        this.supprimerCellier(id_cellier);
       }
     });
   }
 
   supprimerCellier(id_cellier: number): void {
-    this.cellierService.supprimerCellier(id_cellier).subscribe(() => {
+    this.cellierService.supprimerCellier(id_cellier).subscribe((id_cellier) => {
       this.cellierSupprime.emit(id_cellier);
       this.snackBar.open(`Le cellier a été supprimé.`, 'Fermer', {
         duration: 5000,
@@ -63,10 +60,12 @@ export class UnCellierComponent implements OnInit {
     });
   }
 
+
   toggleCellierDetails(): void {
-    if (!this.showCellierDetails) {
+    this.showCellierDetails = !this.showCellierDetails;
+    if (this.showCellierDetails) {
       this.getBouteillesCellier(); // Retrieve cellier-bouteille details when toggled
     }
-    this.showCellierDetails = !this.showCellierDetails;
   }
+
 }

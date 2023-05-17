@@ -1,23 +1,18 @@
 <mat-card *ngIf="bouteille" [ngClass]="{'text-center': !modePleinEcran}">
     <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
-        <img class="mb-1 mt-3 mx-auto h-[200px]"
-        [ngClass] = "{'h-200': !modePleinEcran, 'h-[360px] ml-3 mb-3': modePleinEcran}"
-        [src]="bouteille.url_img" alt=""
-        >
-        <div class="w-full"
+      <!-- Display the details of the bouteille object -->
+      <img class="mb-1 mt-3 mx-auto h-[200px]"
+        [ngClass]="{'h-200': !modePleinEcran, 'h-[360px] ml-3 mb-3': modePleinEcran}"
+        [src]="bouteille.url_img" alt="">
+      <div class="w-full"
         [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
-            <div>
-                <p class="truncate hover:whitespace-normal">{{bouteille.nom }}</p>
-                <p *ngIf="modePleinEcran">{{bouteille.garde }}</p>
-            </div>
-            <div class="flex justify-between px-3">
-                <!--
-                    <button mat-mini-fab color="warn" (click)="openSupprimerBouteilleDialog(bouteille.id)">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                 -->
-            </div>
+        <div>
+          <p class="truncate hover:whitespace-normal">{{bouteille.nom}}</p>
+          <p *ngIf="modePleinEcran">{{bouteille.garde}}</p>
         </div>
+        <div class="flex justify-between px-3">
+          <!-- Add any additional buttons or actions as needed -->
+        </div>
+      </div>
     </div>
-</mat-card>
-
+  </mat-card>

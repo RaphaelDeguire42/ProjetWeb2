@@ -11,14 +11,4 @@ export class UneCellierBouteilleComponent {
   @Input() bouteille: Bouteille | undefined;
   @Input() modePleinEcran = false;
 
-  /*
-  openConfirmationDialog(id_bouteille:number){
-    const dialogRef = this.dialog.open(AjouterBouteilleDialogComponent, {
-      width: '450px',
-      height: '600px',
-      data: { id_bouteille }
-    });
-  }
-  */
-
 }

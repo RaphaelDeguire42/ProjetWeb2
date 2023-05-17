@@ -1,4 +1,4 @@
-<mat-card *ngIf="cellier">
+<mat-card *ngIf="cellier" (click)="toggleCellierDetails()">
     <!-- Content of the un-cellier component -->
     <span class="pastille" [style.background-color]="cellier.hex_value"></span>
     <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
@@ -7,7 +7,7 @@
           <h5>{{cellier.nom}}</h5>
         </div>
         <div class="flex justify-between px-3">
-            <button (click)="onSupprimerCellier()">
+            <button (click)="onSupprimerCellier(cellier.id)">
                 <mat-icon class="text-gray-500">delete</mat-icon>
               </button>
         </div>

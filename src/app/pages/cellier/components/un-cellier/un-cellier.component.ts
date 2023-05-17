@@ -60,11 +60,10 @@ export class UnCellierComponent {
     });
   }
 
-
   toggleCellierDetails(): void {
     this.showCellierDetails = !this.showCellierDetails;
     if (this.showCellierDetails) {
-      this.getBouteillesCellier(); // Retrieve cellier-bouteille details when toggled
+      this.getBouteillesCellier();
     }
   }
 

@@ -1,5 +1,4 @@
-<mat-card *ngIf="cellier" (click)="toggleCellierDetails()">
-    <!-- Content of the un-cellier component -->
+<mat-card *ngIf="cellier">
     <span class="pastille" [style.background-color]="cellier.hex_value"></span>
     <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
       <div class="w-full" [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
@@ -7,15 +6,21 @@
           <h5>{{cellier.nom}}</h5>
         </div>
         <div class="flex justify-between px-3">
-            <button (click)="onSupprimerCellier(cellier.id)">
-                <mat-icon class="text-gray-500">delete</mat-icon>
-              </button>
+          <button (click)="toggleCellierDetails()" class="arrow-button">
+            <mat-icon>{{ showCellierDetails ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+          </button>
         </div>
       </div>
     </div>
-  </mat-card>
 
-  <div *ngIf="showCellierDetails">
-    <app-une-cellier-bouteille *ngFor="let bouteille of cellierBouteilles" [bouteille]="bouteille"
-      [modePleinEcran]="cols === 1"></app-une-cellier-bouteille>
-  </div>
+    <!-- Add the list of bouteilles here -->
+    <div *ngIf="showCellierDetails" class="p-3">
+      <div class="grid grid-cols-2 gap-4">
+        <app-une-cellier-bouteille
+          *ngFor="let bouteille of cellierBouteilles"
+          [bouteille]="bouteille"
+          [modePleinEcran]="modePleinEcran"
+        ></app-une-cellier-bouteille>
+      </div>
+    </div>
+  </mat-card>

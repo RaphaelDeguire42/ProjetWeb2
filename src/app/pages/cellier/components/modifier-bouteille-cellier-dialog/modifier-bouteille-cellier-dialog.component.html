@@ -1,0 +1,38 @@
+<p>Modifier une bouteille</p>
+<ng-container *ngIf="formModif">
+  <form [formGroup]="formModif">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom :</mat-label>
+      <input matInput formControlName="nom" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Quantité :</mat-label>
+      <input matInput formControlName="quantite" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date d'achat :</mat-label>
+      <input matInput formControlName="date_achat" placeholder="Date d'achat" [matDatepicker]="picker" autocomplete="off">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Millesime :</mat-label>
+      <input matInput formControlName="millesime" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Garde :</mat-label>
+      <input matInput formControlName="garde" type="number" />
+    </mat-form-field>
+
+    <div class="action">
+      <div class="action__group">
+        <button mat-raised-button color="primary" (click)="modifierBouteille()" [disabled]="!formModif.dirty || !formModif.valid">Modifier</button>
+        <button mat-button (click)="annuler()" [disabled]="formModif.pristine">Annuler</button>
+      </div>
+    </div>
+  </form>
+</ng-container>

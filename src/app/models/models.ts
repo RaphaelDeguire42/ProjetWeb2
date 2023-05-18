@@ -86,7 +86,7 @@ export interface PanierItem {
     quantite: number;
 }
 
-export interface BouteilleCellierData {
+export interface AjoutBouteilleCellierData {
     id_bouteille: number;
     id_cellier: number;
 }

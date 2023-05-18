@@ -11,6 +11,9 @@
           <p *ngIf="modePleinEcran">{{bouteille.garde}}</p>
         </div>
         <div class="flex justify-between px-3">
+          <button mat-mini-fab color="primary" (click)="modifierBouteille(bouteille.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
           <button mat-mini-fab color="warn" (click)="supprimerBouteille(bouteille.id)">
             <mat-icon>delete</mat-icon>
           </button>

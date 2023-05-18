@@ -64,6 +64,13 @@ export class UnCellierComponent {
     });
   }
 
+  modifierBouteille(bouteilleModifiee: CellierBouteille): void {
+    console.log(bouteilleModifiee);
+    const index = this.cellierBouteilles?.findIndex((bouteille) => bouteille.id === bouteilleModifiee.id);
+    if (index !== undefined && index !== -1) {
+      this.cellierBouteilles![index] = bouteilleModifiee;
+    }
+  }
 
   toggleCellierDetails(id_cellier:number): void {
     this.showCellierDetails = !this.showCellierDetails;

@@ -42,8 +42,9 @@ export class UneCellierBouteilleComponent {
     });
 
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
+        const url_img = this.bouteille!.url_img;
         this.bouteille = bouteilleModifiee;
-        console.log(bouteilleModifiee)
+        bouteilleModifiee.url_img = url_img;
         this.bouteilleModifiee.emit(bouteilleModifiee);
     });
   }

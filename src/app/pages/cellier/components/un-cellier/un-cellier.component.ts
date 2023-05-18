@@ -5,6 +5,7 @@ import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dia
 import { Cellier, CellierBouteille } from 'src/app/models/models';
 import { CellierService } from 'src/app/services/cellier.service';
 import { Subscription } from 'rxjs';
+import { AjouterBouteilleDialogComponent } from 'src/app/pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
 
 const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 
@@ -70,6 +71,22 @@ export class UnCellierComponent {
     if (index !== undefined && index !== -1) {
       this.cellierBouteilles![index] = bouteilleModifiee;
     }
+  }
+
+  ajouterBouteilleNonListee(){
+    const dialogRef = this.dialog.open(AjouterBouteilleDialogComponent, {
+      width: '450px',
+      height: '600px',
+      data: { id_cellier: this.cellier!.id }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.cellierService.ajouterBouteilleCellier(result).subscribe(response => {
+        this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {
+          duration: 3000
+        });
+      })
+    });
   }
 
   toggleCellierDetails(id_cellier:number): void {

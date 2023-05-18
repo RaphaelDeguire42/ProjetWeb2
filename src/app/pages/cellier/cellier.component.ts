@@ -6,7 +6,7 @@ import { NouveauCellierDialogComponent } from './components/nouveau-cellier-dial
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-const HAUTEUR_RANGEE: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
+const HAUTEUR_RANGEE: { [id: number]: number } = { 1: 400, 3: 428, 4: 350 };
 
 @Component({
   selector: 'app-cellier',

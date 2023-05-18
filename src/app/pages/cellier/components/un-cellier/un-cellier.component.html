@@ -1,31 +1,38 @@
 <mat-card *ngIf="cellier">
-    <span class="pastille" [style.background-color]="cellier.hex_value"></span>
-    <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
-      <div class="w-full" [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
-        <div>
-          <h5>{{cellier.nom}}</h5>
-        </div>
-        <div class="flex justify-between px-3">
-          <button (click)="toggleCellierDetails(cellier.id)" class="arrow-button">
-            <mat-icon>{{ showCellierDetails ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
-          </button>
+  <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
+    <div class="w-full" [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
+        <div class="cellier__titre flex justify-between">
+          <div class="flex">
+            <span class="pastille" [style.background-color]="cellier.hex_value"></span>
+            <h5>{{cellier.nom}}</h5>
+          </div>
           <button (click)="supprimerCellier(cellier.id)" class="">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
+        <div class="flex justify-between py-3">
+          <button (click)="toggleCellierDetails(cellier.id)" class="arrow-button">
+            <mat-icon>{{ showCellierDetails ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
 
-
-    <div *ngIf="showCellierDetails" class="p-3">
-      <div class="grid grid-cols-2 gap-4">
-        <app-une-cellier-bouteille
-          *ngFor="let bouteille of cellierBouteilles"
-          [bouteille]="bouteille"
-          (bouteilleSupprime)="supprimerBouteille($event)"
-          (bouteilleModifiee)="modifierBouteille($event)"
-          [modePleinEcran]="modePleinEcran"
-        ></app-une-cellier-bouteille>
-      </div>
+    <div *ngIf="showCellierDetails" class="p-4">
+      <ng-container *ngIf="cellierBouteilles && cellierBouteilles.length > 0">
+        <div class="grid grid-cols-3 gap-4">
+          <app-une-cellier-bouteille
+            *ngFor="let bouteille of cellierBouteilles"
+            [bouteille]="bouteille"
+            (bouteilleSupprime)="supprimerBouteille($event)"
+            (bouteilleModifiee)="modifierBouteille($event)"
+            [modePleinEcran]="modePleinEcran"
+          ></app-une-cellier-bouteille>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!(cellierBouteilles && cellierBouteilles.length > 0)">
+        <p>Aucune bouteilles pour le moment</p>
+      </ng-container>
     </div>
+
   </mat-card>

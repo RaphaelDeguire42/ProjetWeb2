@@ -11,6 +11,7 @@ class="min-h-full max-w7xl mx-auto border-x"
         (itemsNombreChangement)="onItemsNombreChangement($event)"
         (triChangement)="onTriChangement($event)"
         ></app-bouteilles-entete>
+        <button mat-raised-button color="primary" class="my-3" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
         <mat-grid-list
             gutterSize="16"
             [cols]="cols"
@@ -23,7 +24,6 @@ class="min-h-full max-w7xl mx-auto border-x"
                 class="w-full"
                 [modePleinEcran]="cols === 1"></app-une-bouteille>
             </mat-grid-tile>
-            <button mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
             <div *ngIf="isChargement">
                 <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
               </div>

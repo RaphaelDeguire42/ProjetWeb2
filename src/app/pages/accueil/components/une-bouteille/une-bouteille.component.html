@@ -10,7 +10,7 @@
                 <p class="truncate hover:whitespace-normal">{{bouteille.nom }}</p>
                 <p *ngIf="modePleinEcran">{{bouteille.garde }}</p>
             </div>
-            <div class="flex justify-between px-3">
+            <div class="flex justify-between items-center py-3">
                 <span class="text-red-400">{{ bouteille.prix | currency }}</span>
                 <button mat-mini-fab color="warn" (click)="openAjouterBouteilleDialog(bouteille.id)">
                     <mat-icon>add</mat-icon>

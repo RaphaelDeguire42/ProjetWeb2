@@ -9,8 +9,7 @@ import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-c
 @Component({
   selector: 'app-une-cellier-bouteille',
   templateUrl: './une-cellier-bouteille.component.html',
-  styles: [
-  ]
+  styleUrls: ['./une-cellier-bouteille.component.scss']
 })
 export class UneCellierBouteilleComponent {
   @Input() bouteille: Bouteille | undefined;

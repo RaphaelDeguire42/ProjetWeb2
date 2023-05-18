@@ -10,11 +10,9 @@
         (itemsNombreChangement)="onItemsNombreChangement($event)"
         (triChangement)="onTriChangement($event)"
       ></app-celliers-entete>
-
-      <button mat-fab id="addCellier" color="warn" (click)="openNouveauCellierDialog()">
-        <mat-icon>add</mat-icon>
-      </button>
-
+      <div class="my-6">
+        <button mat-raised-button color="primary" (click)="openNouveauCellierDialog()">Ajouter un cellier</button>
+      </div>
       <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="hauteurRangee">
         <mat-grid-tile *ngFor="let cellier of celliers">
           <app-un-cellier

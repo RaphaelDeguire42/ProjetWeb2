@@ -13,54 +13,66 @@ import { CellierService } from 'src/app/services/cellier.service';
   styleUrls: ['./ajouter-bouteille-dialog.component.scss']
 })
 export class AjouterBouteilleDialogComponent {
-  id_bouteille:number|string = '';
+  id_bouteille:number|string|null = '';
+  id_cellier:number|string|null = '';
   celliers: Array<Cellier> | undefined;
   celliersSubscription: Subscription | undefined;
+
+  id_cellier_placeholder:number|string|null = null;
 
   formAjout: FormGroup = new FormGroup({
     id_cellier: new FormControl('', [Validators.required]),
     id_bouteille: new FormControl(''),
     garde: new FormControl(''),
+    nom: new FormControl(''),
     millesime: new FormControl(''),
     date_achat: new FormControl(''),
-    quantite: new FormControl('')
+    quantite: new FormControl(''),
+    type: new FormControl(''),
+    format: new FormControl(''),
+    pays: new FormControl('')
   });
 
 
-  constructor(private fb: FormBuilder, private http:HttpClient, public dialogRef: MatDialogRef<AjouterBouteilleDialogComponent>,private snackBar:MatSnackBar, private cellierService: CellierService, @Inject(MAT_DIALOG_DATA) public data: { id_bouteille: number }
+  constructor(private fb: FormBuilder, private http:HttpClient, public dialogRef: MatDialogRef<AjouterBouteilleDialogComponent>,private snackBar:MatSnackBar, private cellierService: CellierService, @Inject(MAT_DIALOG_DATA) public data: { id_bouteille?: number, id_cellier?: number }
   ) {}
 
 
   ngOnInit(): void {
-    this.id_bouteille = this.data.id_bouteille;
+    this.id_bouteille = this.data.id_bouteille??null;
+    this.id_cellier = this.data.id_cellier??null;
 
     this.celliersSubscription = this.cellierService.getCelliersUtilisateur().subscribe((response) => {
       this.celliers = response;
-      this.formAjout = this.fb.group({
-        id_cellier: [this.celliers![0].id, [Validators.required]],
+      if(!this.id_bouteille){
+        this.id_cellier_placeholder = this.id_cellier;
+      } else {
+        this.id_cellier_placeholder = this.celliers![0].id;
+      }
+      let formOptions: { [key: string]: any } = {
+        id_cellier: [this.id_cellier_placeholder, [Validators.required]],
         id_bouteille: [this.id_bouteille],
-        garde: ['',[Validators.required]],
-        millesime: ['',[Validators.required]],
-        date_achat: ['',[Validators.required]],
-        quantite: [1, [Validators.required]]
-      });
+        nom: [''],
+        garde: ['', [Validators.required]],
+        millesime: ['', [Validators.required]],
+        date_achat: ['', [Validators.required]],
+        quantite: [1, [Validators.required]],
+        type: [''],
+        format: [''],
+        pays: [''],
+      };
+      this.formAjout = this.fb.group(formOptions);
+      // si bouteille non-listée
+      if (!this.id_bouteille && this.id_cellier !== null) {
+        this.formAjout.addControl('nom', new FormControl('', [Validators.required]));
+      }
     });
   }
 
   ajouterBouteilleCellier() {
-    if (this.formAjout.valid) {
+    if (this.formAjout.valid || !this.id_bouteille) {
       let formData = this.formAjout.value;
-      console.log(formData);
-      this.cellierService.ajouterBouteilleCellier(formData).subscribe(response => {
-        this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {
-          duration: 3000
-        });
-        this.dialogRef.close();
-      },
-        error => {
-        console.error(error);
-      })
-
+      this.dialogRef.close(formData);
     }
   }
 

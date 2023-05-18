@@ -2,13 +2,18 @@
 <ng-container>
   <form [formGroup]="formAjout">
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="!id_cellier">
       <mat-label>Sélectionner un cellier :</mat-label>
       <mat-select formControlName="id_cellier" autocomplete="off">
         <mat-option *ngFor="let cellier of getCelliers()" [value]="cellier.id">
           {{ cellier.nom }}
         </mat-option>
       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="!id_bouteille">
+      <mat-label>Nom :</mat-label>
+      <input matInput formControlName="nom" placeholder="Nom" type="text" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -33,9 +38,24 @@
       <input matInput formControlName="millesime" placeholder="Millésime" type="number" autocomplete="off">
     </mat-form-field>
 
+    <mat-form-field appearance="fill" *ngIf="!id_bouteille">
+      <mat-label>Type :</mat-label>
+      <input matInput formControlName="type" placeholder="Type" type="text" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="!id_bouteille">
+      <mat-label>Pays :</mat-label>
+      <input matInput formControlName="pays" placeholder="Pays" type="text" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="!id_bouteille">
+      <mat-label>Format :</mat-label>
+      <input matInput formControlName="format" placeholder="Format (--- ml)" type="text" autocomplete="off">
+    </mat-form-field>
+
     <div class="action">
       <div class="action__group">
-        <button mat-raised-button color="primary" (click)="ajouterBouteilleCellier()" [disabled]="!formAjout.valid">Ajouter</button>
+        <button mat-raised-button color="primary" (click)="ajouterBouteilleCellier()" [disabled]="!formAjout.valid && id_bouteille">Ajouter</button>
         <button mat-button (click)="annuler()">Annuler</button>
       </div>
     </div>

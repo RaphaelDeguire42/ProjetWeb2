@@ -18,7 +18,7 @@ class="min-h-full max-w7xl mx-auto border-x"
             [rowHeight] = 'hauteurRangee'
             >
             <mat-grid-tile *ngFor="let bouteille of bouteilles">
-                <app-une-bouteille
+                <app-une-bouteille *ngIf="bouteille.actif"
                 [bouteille]="bouteille"
                 (ajouterAuPanier)="onAjouterAuPanier($event)"
                 class="w-full"

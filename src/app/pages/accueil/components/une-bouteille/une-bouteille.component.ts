@@ -30,11 +30,13 @@ export class UneBouteilleComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      if(result){
         this.cellierService.ajouterBouteilleCellier(result).subscribe(response => {
         this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {
           duration: 3000
         });
       })
+      }
     });
   }
 

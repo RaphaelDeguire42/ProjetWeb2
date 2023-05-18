@@ -25,4 +25,5 @@ export class CelliersEnteteComponent {
   onModColonne(colsNum:number):void {
     this.colonneNombreChangement.emit(colsNum);
   }
+  
 }

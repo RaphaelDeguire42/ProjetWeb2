@@ -54,6 +54,24 @@ export class UnCellierComponent {
     });
   }
 
+  supprimerBouteille(id_bouteille_cellier: number): void {
+    console.log(id_bouteille_cellier);
+    this.cellierService.supprimerBouteilleCellier(id_bouteille_cellier).subscribe(() => {
+      this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== id_bouteille_cellier);
+      this.snackBar.open(`La bouteille a été supprimée du cellier.`, 'Fermer', {
+        duration: 5000,
+      });
+    });
+  }
+
+  modifierBouteille(bouteilleModifiee: CellierBouteille): void {
+    console.log(bouteilleModifiee);
+    const index = this.cellierBouteilles?.findIndex((bouteille) => bouteille.id === bouteilleModifiee.id);
+    if (index !== undefined && index !== -1) {
+      this.cellierBouteilles![index] = bouteilleModifiee;
+    }
+  }
+
   toggleCellierDetails(id_cellier:number): void {
     this.showCellierDetails = !this.showCellierDetails;
     if (this.showCellierDetails) {

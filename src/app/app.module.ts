@@ -43,6 +43,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UneCellierBouteilleComponent } from './pages/cellier/components/une-cellier-bouteille/une-cellier-bouteille.component';
+import { ModifierBouteilleCellierDialogComponent } from './pages/cellier/components/modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UneCellierBouteilleComponent } from './pages/cellier/components/une-cel
     NouveauCellierDialogComponent,
     AjouterBouteilleDialogComponent,
     ConfirmationDialogComponent,
-    UneCellierBouteilleComponent
+    UneCellierBouteilleComponent,
+    ModifierBouteilleCellierDialogComponent
 
   ],
   imports: [

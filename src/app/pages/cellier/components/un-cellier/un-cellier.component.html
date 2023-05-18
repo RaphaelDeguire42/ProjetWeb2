@@ -22,6 +22,7 @@
         <app-une-cellier-bouteille
           *ngFor="let bouteille of cellierBouteilles"
           [bouteille]="bouteille"
+          (bouteilleSupprime)="supprimerBouteille($event)"
           [modePleinEcran]="modePleinEcran"
         ></app-une-cellier-bouteille>
       </div>

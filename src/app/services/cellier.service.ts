@@ -30,6 +30,10 @@ export class CellierService {
     return this.httpClient.post(`${CELLIER_BASE_URL}/cellier-bouteilles`, data);
    }
 
+   supprimerBouteilleCellier(id_bouteille_cellier:number):Observable<any>{
+    return this.httpClient.delete(`${CELLIER_BASE_URL}/cellier-bouteilles/${id_bouteille_cellier}`);
+   }
+
    nouveauCellier(data:NouveauCellierData):Observable<any>{
     return this.httpClient.post(`${CELLIER_BASE_URL}/celliers`, data);
    }

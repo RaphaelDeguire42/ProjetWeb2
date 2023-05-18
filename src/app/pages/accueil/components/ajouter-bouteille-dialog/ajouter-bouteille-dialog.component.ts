@@ -62,10 +62,6 @@ export class AjouterBouteilleDialogComponent {
         pays: [''],
       };
       this.formAjout = this.fb.group(formOptions);
-      // si bouteille non-listée
-      if (!this.id_bouteille && this.id_cellier !== null) {
-        this.formAjout.addControl('nom', new FormControl('', [Validators.required]));
-      }
     });
   }
 

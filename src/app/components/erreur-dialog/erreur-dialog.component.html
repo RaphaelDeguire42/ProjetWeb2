@@ -1,0 +1,14 @@
+<ng-container>
+    <form [formGroup]="formErreur" >
+      <mat-form-field appearance="fill">
+        <mat-label>Écrivez votre erreur : </mat-label>
+        <textarea matInput formControlName="erreur" id="" cols="40" rows="5"></textarea>
+      </mat-form-field>
+      <div class="action">
+          <div class="action__group">
+              <button mat-raised-button color="primary" (click)="ajouterErreur()" [disabled]="!formErreur.valid">Envoyer</button>
+              <button mat-button (click)="annuler()">Annuler</button>
+          </div>
+      </div>
+    </form>
+</ng-container>

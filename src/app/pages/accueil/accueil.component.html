@@ -13,7 +13,7 @@ class="min-h-full max-w7xl mx-auto border-x"
         ></app-bouteilles-entete>
         <button mat-raised-button color="primary" class="my-3" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
         <mat-grid-list
-            gutterSize="16"
+        gutterSize="16"
             [cols]="cols"
             [rowHeight] = 'hauteurRangee'
             >
@@ -26,9 +26,10 @@ class="min-h-full max-w7xl mx-auto border-x"
             </mat-grid-tile>
             <div *ngIf="isChargement">
                 <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-              </div>
-              <div *ngIf="!isChargement">
-              </div>
+            </div>
+            <div *ngIf="!isChargement">
+            </div>
         </mat-grid-list>
+        <app-erreur></app-erreur>
     </mat-drawer-content>
 </mat-drawer-container>

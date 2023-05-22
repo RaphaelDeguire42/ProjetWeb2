@@ -44,6 +44,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UneCellierBouteilleComponent } from './pages/cellier/components/une-cellier-bouteille/une-cellier-bouteille.component';
 import { ModifierBouteilleCellierDialogComponent } from './pages/cellier/components/modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
+import { ErreurComponent } from './components/erreur/erreur.component';
+import { ErreurDialogComponent } from './components/erreur-dialog/erreur-dialog.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { ModifierBouteilleCellierDialogComponent } from './pages/cellier/compone
     AjouterBouteilleDialogComponent,
     ConfirmationDialogComponent,
     UneCellierBouteilleComponent,
-    ModifierBouteilleCellierDialogComponent
+    ModifierBouteilleCellierDialogComponent,
+    ErreurComponent,
+    ErreurDialogComponent
 
   ],
   imports: [

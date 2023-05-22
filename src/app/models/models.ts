@@ -69,8 +69,7 @@ export interface PastilleCouleur {
 }
 
 export interface Erreur {
-    id: number;
-    texte: string;
+    erreur: string;
     id_user: number;
 }
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Type } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
+import { Erreur } from '../models/models';
 
 const CATALOGUE_BASE_URL = 'http://localhost:8000/api';
 
@@ -58,5 +59,9 @@ export class CatalogueService {
 
   getNouvelleBouteilles(): Observable<any>{
     return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/crawl`);
+  }
+
+  ajouterNouvelleErreur(erreur:Erreur): Observable<any>{
+    return this.httpClient.post<Erreur>(`${CATALOGUE_BASE_URL}/erreur`, erreur);
   }
 }

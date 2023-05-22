@@ -1,0 +1,16 @@
+.signalerErreur{
+    background-color:#673ab7 ;
+    position: fixed;
+    bottom:30px;
+    right:30px;
+    color:White;
+    padding: 0.7em;
+    border-radius: 30px;
+    border-bottom-right-radius: 0;
+  transition: padding 0.3s;
+  z-index: 2;
+}
+.signalerErreur:hover{
+    padding: 1em;
+    cursor:pointer;
+}

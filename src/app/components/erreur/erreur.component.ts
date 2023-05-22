@@ -1,7 +1,10 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient} from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ErreurDialogComponent } from '../erreur-dialog/erreur-dialog.component';
+import { UserService } from 'src/app/services/user.service';
+import { CatalogueService } from 'src/app/services/catalogue.service';
 
 
 @Component({
@@ -11,30 +14,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class ErreurComponent {
-  @Output() annulerEvent = new EventEmitter<void>();
-  formErreur: FormGroup = new FormGroup({});
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private catalogueService: CatalogueService, private userService: UserService) {}
 
-  constructor(private fb: FormBuilder, private http:HttpClient, private snackBar:MatSnackBar) {}
+  openErreurDialog(){
 
-  ngOnInit(): void {
-    this.formErreur = this.fb.group({
-      erreur: ['', [Validators.required, Validators.minLength(3)]],
+
+    const dialogRef = this.dialog.open(ErreurDialogComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result){
+        this.catalogueService.ajouterNouvelleErreur(result).subscribe(response => {
+        this.snackBar.open(`Merci d'avoir signalé une erreur`, 'Fermer', {
+          duration: 3000
+        });
+      })
+      }
     });
-  }
-
-  ajouterErreur(){
-    const formValue = this.formErreur.value;
-    this.http.post('signaler-erreur', formValue).subscribe(response => {
-      this.annulerEvent.emit();
-      this.snackBar.open('Merci, votre erreur a été signalée.', 'Fermer', {
-        duration: 3000
-      });
-    });
-  }
-
-  annuler(){
-    document.querySelector('.signalerErreur')!.classList.remove('hide');
-    document.querySelector('.erreurBox')!.classList.add('hide')
   }
 }
 

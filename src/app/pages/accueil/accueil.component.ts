@@ -38,8 +38,11 @@ export class AccueilComponent implements OnInit, OnDestroy {
   getNouvelleBouteilles(): void{
     this.isChargement = true;
     this.catalogueService.getNouvelleBouteilles().subscribe(bouteilles =>{
-      console.log(bouteilles)
-      this.bouteilles!.push(...bouteilles.nouvellesBouteilles);
+      const aBouteille = bouteilles.nouvellesBouteilles;
+      console.log(this.bouteilles)
+      console.log(aBouteille)
+      this.bouteilles!.push(...aBouteille);
+      console.log(this.bouteilles)
       this.isChargement = false;
     })
   }
@@ -86,6 +89,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
       if(this.bouteilleSubscription) {
         this.bouteilleSubscription.unsubscribe();
+      }
+      if(this.cellierSubscription) {
+        this.cellierSubscription.unsubscribe();
       }
   }
 }

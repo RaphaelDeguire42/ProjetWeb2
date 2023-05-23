@@ -41,8 +41,31 @@ export class CatalogueService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBouteilles(limit = '12', sort = 'desc', type?: string, format?: string, pays?: string): Observable<Array<Bouteille>> {
-    return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles`)
+  getAllBouteilles(limit = '12', sort = 'desc', type?: number, format?: number, pays?: number): Observable<Array<Bouteille>> {
+    let premier = true,
+      queryString = '';
+    
+    if(type) {
+      if(!premier) queryString += '&';
+      queryString += `id_type[eq]=${type}`;
+      premier = false;
+    }
+    
+    if (format) {
+      if (!premier) queryString += '&';
+      queryString += `id_format[eq]=${format}`;
+      premier = false
+    }
+    
+    if (pays) {
+      if (!premier) queryString += '&';
+      queryString += `id_pays[eq]=${pays}`;
+      premier = false
+    }
+
+    return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles
+    ${'?' + queryString}`);
+    
   }
 
   getTypes(): Observable<Array<TypeBouteille>> {

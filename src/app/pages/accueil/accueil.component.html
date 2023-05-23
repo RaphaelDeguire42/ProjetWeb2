@@ -3,7 +3,7 @@
 class="min-h-full max-w7xl mx-auto border-x"
 >
     <mat-drawer mode="side" opened class="p-6">
-        <app-filtres (showType)="onVoirType($event)"></app-filtres>
+        <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
     </mat-drawer>
     <mat-drawer-content class="p-6">
         <app-bouteilles-entete

@@ -63,8 +63,8 @@ export class CatalogueService {
       premier = false
     }
 
-    return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles
-    ${'?' + queryString}`);
+    return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles?
+    ${queryString}`);
     
   }
 

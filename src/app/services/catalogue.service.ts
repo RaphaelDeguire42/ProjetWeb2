@@ -41,7 +41,7 @@ export class CatalogueService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBouteilles(limit = '12', sort = 'desc', type?: string): Observable<Array<Bouteille>> {
+  getAllBouteilles(limit = '12', sort = 'desc', type?: string, format?: string, pays?: string): Observable<Array<Bouteille>> {
     return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles`)
   }
 

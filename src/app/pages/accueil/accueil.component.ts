@@ -13,7 +13,9 @@ const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 export class AccueilComponent implements OnInit, OnDestroy {
   cols = 3;
   hauteurRangee = HAUTEUR_RANGEE[this.cols];
-  type: string | undefined;
+  type: number | undefined;
+  format: number | undefined;
+  pays: number | undefined;
   bouteilles: Array<Bouteille> | undefined;
   bouteilleSubscription: Subscription | undefined;
   celliers: Array<Cellier> | undefined;
@@ -29,7 +31,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   getBouteilles(): void {
-    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.nombre, this.tri, this.type)
+    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.nombre, this.tri, this.type, this.format, this.pays)
       .subscribe((_bouteilles)=>{
         this.bouteilles = _bouteilles;
       })
@@ -56,8 +58,18 @@ export class AccueilComponent implements OnInit, OnDestroy {
     this.hauteurRangee = HAUTEUR_RANGEE[this.cols];
   }
 
-  onVoirType(nouveauType:string):void {
+  onVoirType(nouveauType:number):void {
     this.type = nouveauType;
+    this.getBouteilles();
+  }
+
+  onVoirFormat(nouveauFormat:number):void {
+    this.format = nouveauFormat;
+    this.getBouteilles();
+  }
+
+  onVoirPays(nouveauPays: number): void {
+    this.pays = nouveauPays;
     this.getBouteilles();
   }
 

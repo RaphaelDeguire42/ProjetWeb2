@@ -8,9 +8,9 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   templateUrl: './filtres.component.html'
 })
 export class FiltresComponent implements OnInit, OnDestroy {
-  @Output() showType = new EventEmitter<string>();
-  @Output() showFormat = new EventEmitter<string>();
-  @Output() showPays = new EventEmitter<string>();
+  @Output() showType = new EventEmitter<number>();
+  @Output() showFormat = new EventEmitter<number>();
+  @Output() showPays = new EventEmitter<number>();
   typesSubscription: Subscription | undefined;
   formatsSubscription: Subscription | undefined;
   paysSubscription: Subscription | undefined;
@@ -36,14 +36,14 @@ export class FiltresComponent implements OnInit, OnDestroy {
     });
   }
 
-  onVoirType(type: TypeBouteille):void {
-    this.showType.emit(type.type);
+  onVoirType(type_id: number):void {
+    this.showType.emit(type_id);
   }
-  onVoirFormat(format: Format):void {
-    this.showFormat.emit(format.format);
+  onVoirFormat(format_id: number):void {
+    this.showFormat.emit(format_id);
   }
-  onVoirPays(pays: Pays):void {
-    this.showPays.emit(pays.pays);
+  onVoirPays(pays_id: number):void {
+    this.showPays.emit(pays_id);
   }
 
   ngOnDestroy(): void {

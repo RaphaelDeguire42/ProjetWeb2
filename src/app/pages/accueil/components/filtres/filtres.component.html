@@ -3,7 +3,7 @@
         <mat-panel-title>TYPES</mat-panel-title>
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let type of types" [value]="type" (click)="onVoirType(type)">
+        <mat-list-option *ngFor="let type of types" [value]="type.id" (click)="onVoirType(type.id)">
             {{type.type}}
         </mat-list-option>
     </mat-selection-list >
@@ -15,7 +15,7 @@
         <mat-panel-title>FORMATS</mat-panel-title>
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let format of formats" [value]="format" (click)="onVoirFormat(format)">
+        <mat-list-option *ngFor="let format of formats" [value]="format.id" (click)="onVoirFormat(format.id)">
             {{format.format}}
         </mat-list-option>
     </mat-selection-list >
@@ -26,7 +26,7 @@
         <mat-panel-title>PAYS</mat-panel-title>
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let pays of pays" [value]="pays" (click)="onVoirPays(pays)">
+        <mat-list-option *ngFor="let pays of pays" [value]="pays.id" (click)="onVoirPays(pays.id)">
             {{pays.pays}}
         </mat-list-option>
     </mat-selection-list >

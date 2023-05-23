@@ -17,10 +17,7 @@ export class ErreurComponent {
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private catalogueService: CatalogueService, private userService: UserService) {}
 
   openErreurDialog(){
-
-
     const dialogRef = this.dialog.open(ErreurDialogComponent, {});
-
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.catalogueService.ajouterNouvelleErreur(result).subscribe(response => {

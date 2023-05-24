@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
 import { Erreur } from '../models/models';
 
-const CATALOGUE_BASE_URL = 'http://localhost:8000/api';
+const CATALOGUE_BASE_URL = 'http://localhost:8001/api';
 
 // Reste de l'uri pour l'api pour toutes les bouteilles : api_vino/public/api/bouteilles
 // J'ai implémenté plusieurs mots clés pour les recherches et filtres dans le uri des bouteilles
@@ -41,31 +41,39 @@ export class CatalogueService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBouteilles(limit = '12', sort='desc'/*prix?*/, type?: number, format?: number, pays?: number): Observable<Array<Bouteille>> {
+
+  getAllBouteilles(limit = '12', sort = 'desc', types?: number[], formats?: number[], pays?: number[]): Observable<Array<Bouteille>> {
     let premier = true,
       queryString = '';
-    
-    if(type) {
-      if(!premier) queryString += '&';
-      queryString += `id_type[eq]=${type}`;
-      premier = false;
-    }
-    
-    if (format) {
-      if (!premier) queryString += '&';
-      queryString += `id_format[eq]=${format}`;
-      premier = false
-    }
-    
-    if (pays) {
-      if (!premier) queryString += '&';
-      queryString += `id_pays[eq]=${pays}`;
-      premier = false
+
+    if(types) {
+      for (const type in types) {
+        if(!premier) queryString += '&';
+        queryString += `id_type[eq]=${types[type]}`;
+        premier = false;
+        }
+      }
+
+
+    if (formats) {
+      for (const format in formats) {
+        if (!premier) queryString += '&';
+        queryString += `id_format[eq]=${formats[format]}`;
+        premier = false
+      }
     }
 
+    if (pays) {
+      for (const unPays in pays) {
+        if (!premier) queryString += '&';
+        queryString += `id_pays[eq]=${pays[unPays]}`;
+        premier = false
+      }
+    }
+    console.log(queryString)
     return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles?
     ${queryString}`);
-    
+
   }
 
   getTypes(): Observable<Array<TypeBouteille>> {

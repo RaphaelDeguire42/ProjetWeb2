@@ -39,12 +39,7 @@ export class ModifierBouteilleCellierDialogComponent {
     if (this.formModif.valid) {
       let formData = this.formModif.value;
       formData.id = this.data.id;
-      this.cellierService.modifierBouteilleCellier(formData).subscribe(response => {
-        this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
-          duration: 3000
-        });
-        this.dialogRef.close(formData);
-      })
+      this.dialogRef.close(formData);
     }
   }
 

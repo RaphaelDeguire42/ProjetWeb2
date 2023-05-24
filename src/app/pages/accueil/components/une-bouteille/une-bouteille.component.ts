@@ -52,7 +52,9 @@ export class UneBouteilleComponent {
     });
 
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
+      console.log('closed')
       this.catalogueService.modifierBouteille(bouteilleModifiee).subscribe(response => {
+        console.log(response)
         if(response){
           this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
             duration: 3000

@@ -41,7 +41,7 @@ export class CatalogueService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBouteilles(limit = '12', sort = 'desc', type?: number, format?: number, pays?: number): Observable<Array<Bouteille>> {
+  getAllBouteilles(limit = '12', sort='desc'/*prix?*/, type?: number, format?: number, pays?: number): Observable<Array<Bouteille>> {
     let premier = true,
       queryString = '';
     

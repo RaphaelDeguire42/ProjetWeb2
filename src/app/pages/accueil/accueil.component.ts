@@ -59,17 +59,29 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   onVoirType(nouveauType:number):void {
-    this.type = nouveauType;
+    if(this.type !== nouveauType) {
+      this.type = nouveauType;
+    } else {
+      this.type = undefined;
+    }
     this.getBouteilles();
   }
 
   onVoirFormat(nouveauFormat:number):void {
-    this.format = nouveauFormat;
+    if (this.format !== nouveauFormat) {
+      this.format = nouveauFormat;
+    } else {
+      this.format = undefined;
+    }
     this.getBouteilles();
   }
 
   onVoirPays(nouveauPays: number): void {
-    this.pays = nouveauPays;
+    if (this.pays !== nouveauPays) {
+      this.pays = nouveauPays;
+    } else {
+      this.pays = undefined;
+    }
     this.getBouteilles();
   }
 

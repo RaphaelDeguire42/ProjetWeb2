@@ -62,6 +62,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
     this.hauteurRangee = HAUTEUR_RANGEE[this.cols];
   }
 
+
   onVoirType(nouveauTypes:number[]):void {
     this.types = nouveauTypes;
     this.getBouteilles();

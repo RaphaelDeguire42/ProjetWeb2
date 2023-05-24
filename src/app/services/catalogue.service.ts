@@ -66,6 +66,7 @@ export class CatalogueService {
   }
 
   modifierBouteille(bouteille: Bouteille): Observable<any>{
-    return this.httpClient.put<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles`, bouteille)
+    const id_bouteille = bouteille.id;
+    return this.httpClient.put<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles/${id_bouteille}`, bouteille)
   }
 }

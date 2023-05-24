@@ -8,7 +8,7 @@
         [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
             <div>
                 <p class="truncate hover:whitespace-normal">{{bouteille.nom }}</p>
-                <p *ngIf="modePleinEcran">{{bouteille.garde }}</p>
+                <p *ngIf="modePleinEcran"></p>
             </div>
             <div class="flex justify-between items-center py-3">
                 <span class="text-red-400">{{ bouteille.prix | currency }}</span>

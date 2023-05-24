@@ -9,7 +9,8 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
   selector: 'app-une-bouteille',
-  templateUrl: './une-bouteille.component.html'
+  templateUrl: './une-bouteille.component.html',
+  styleUrls: ['./une-bouteille.component.scss']
 })
 export class UneBouteilleComponent {
   @Input() modePleinEcran = false;

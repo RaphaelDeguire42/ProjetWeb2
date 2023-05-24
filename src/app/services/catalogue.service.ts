@@ -87,4 +87,9 @@ export class CatalogueService {
   ajouterNouvelleErreur(erreur:Erreur): Observable<any>{
     return this.httpClient.post<Erreur>(`${CATALOGUE_BASE_URL}/erreur`, erreur);
   }
+
+  modifierBouteille(bouteille: Bouteille): Observable<any>{
+    const id_bouteille = bouteille.id;
+    return this.httpClient.put<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles/${id_bouteille}`, bouteille)
+  }
 }

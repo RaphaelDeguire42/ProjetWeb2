@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit,Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Bouteille, Cellier } from 'src/app/models/models';
 import { CatalogueService } from 'src/app/services/catalogue.service';
@@ -24,6 +24,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   cellierSubscription: Subscription | undefined;
   isChargement = false;
 
+
   constructor(private catalogueService: CatalogueService, private cellierService: CellierService) {}
 
   ngOnInit(): void {
@@ -40,8 +41,11 @@ export class AccueilComponent implements OnInit, OnDestroy {
   getNouvelleBouteilles(): void{
     this.isChargement = true;
     this.catalogueService.getNouvelleBouteilles().subscribe(bouteilles =>{
-      console.log(bouteilles)
-      this.bouteilles!.push(...bouteilles.nouvellesBouteilles);
+      const aBouteille = bouteilles.nouvellesBouteilles;
+      console.log(this.bouteilles)
+      console.log(aBouteille)
+      this.bouteilles!.push(...aBouteille);
+      console.log(this.bouteilles)
       this.isChargement = false;
     })
   }
@@ -111,5 +115,17 @@ export class AccueilComponent implements OnInit, OnDestroy {
       if(this.bouteilleSubscription) {
         this.bouteilleSubscription.unsubscribe();
       }
+      if(this.cellierSubscription) {
+        this.cellierSubscription.unsubscribe();
+      }
+  }
+
+  supprimerBouteille(id_bouteille:number){}
+
+  modifierBouteille(bouteilleModifiee: Bouteille) {
+    const index = this.bouteilles?.findIndex((bouteille) => bouteille.id === bouteilleModifiee.id);
+    if (index !== undefined && index !== -1) {
+      this.bouteilles![index] = bouteilleModifiee;
+    }
   }
 }

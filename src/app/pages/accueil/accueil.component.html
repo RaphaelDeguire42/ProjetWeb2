@@ -21,6 +21,8 @@ class="min-h-full max-w7xl mx-auto border-x"
                 <app-une-bouteille *ngIf="bouteille.actif"
                 [bouteille]="bouteille"
                 (ajouterAuPanier)="onAjouterAuPanier($event)"
+                (bouteilleSupprime)="supprimerBouteille($event)"
+                (bouteilleModifiee)="modifierBouteille($event)"
                 class="w-full"
                 [modePleinEcran]="cols === 1"></app-une-bouteille>
             </mat-grid-tile>

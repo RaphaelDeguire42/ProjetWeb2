@@ -25,12 +25,14 @@ export class CellierComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.getCelliers();
+
   }
 
   getCelliers(): void {
     this.cellierSubscription = this.cellierService.getCelliersUtilisateur()
       .subscribe((_celliers)=>{
         this.celliers = _celliers;
+        console.log(this.celliers)
       })
   }
 

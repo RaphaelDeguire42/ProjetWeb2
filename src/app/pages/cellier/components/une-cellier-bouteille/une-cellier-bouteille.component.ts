@@ -41,6 +41,11 @@ export class UneCellierBouteilleComponent {
     });
 
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
+      this.cellierService.modifierBouteilleCellier(bouteilleModifiee).subscribe(response => {
+        this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
+          duration: 3000
+        });
+      })
         const url_img = this.bouteille!.url_img;
         this.bouteille = bouteilleModifiee;
         bouteilleModifiee.url_img = url_img;

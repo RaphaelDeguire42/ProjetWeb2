@@ -1,0 +1,23 @@
+<p>Modifier une bouteille</p>
+<ng-container *ngIf="formModif">
+  <form [formGroup]="formModif">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom :</mat-label>
+      <input matInput formControlName="nom" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Prix :</mat-label>
+      <input matInput formControlName="prix" type="number" />
+    </mat-form-field>
+
+    <mat-checkbox formControlName="actif">Visible</mat-checkbox>
+    
+    <div class="action">
+      <div class="action__group">
+        <button mat-raised-button color="primary" (click)="modifierBouteille()" [disabled]="!formModif.dirty || !formModif.valid">Modifier</button>
+        <button mat-button (click)="annuler()" [disabled]="formModif.pristine">Annuler</button>
+      </div>
+    </div>
+  </form>
+</ng-container>

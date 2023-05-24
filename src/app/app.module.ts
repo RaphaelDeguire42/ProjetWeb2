@@ -46,6 +46,9 @@ import { UneCellierBouteilleComponent } from './pages/cellier/components/une-cel
 import { ModifierBouteilleCellierDialogComponent } from './pages/cellier/components/modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
 import { ErreurComponent } from './components/erreur/erreur.component';
 import { ErreurDialogComponent } from './components/erreur-dialog/erreur-dialog.component';
+import { ModifierBouteilleDialogComponent } from './pages/accueil/components/modifier-bouteille-dialog/modifier-bouteille-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import { ErreurDialogComponent } from './components/erreur-dialog/erreur-dialog.
     ConfirmationDialogComponent,
     UneCellierBouteilleComponent,
     ModifierBouteilleCellierDialogComponent,
+    ModifierBouteilleDialogComponent,
     ErreurComponent,
     ErreurDialogComponent
 
@@ -85,6 +89,7 @@ import { ErreurDialogComponent } from './components/erreur-dialog/erreur-dialog.
     MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatInputModule,
     MatFormFieldModule,
     MatToolbarModule,

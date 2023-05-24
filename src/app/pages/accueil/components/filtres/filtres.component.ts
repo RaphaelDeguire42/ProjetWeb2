@@ -9,8 +9,8 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
 })
 export class FiltresComponent implements OnInit, OnDestroy {
   @Output() showType = new EventEmitter<number[]>();
-  @Output() showFormat = new EventEmitter<number>();
-  @Output() showPays = new EventEmitter<number>();
+  @Output() showFormat = new EventEmitter<number[]>();
+  @Output() showPays = new EventEmitter<number[]>();
   typesSubscription: Subscription | undefined;
   formatsSubscription: Subscription | undefined;
   paysSubscription: Subscription | undefined;
@@ -18,6 +18,9 @@ export class FiltresComponent implements OnInit, OnDestroy {
   formats: Array<Format> | undefined;
   pays: Array<Pays> | undefined;
   idTypesSelectionner: number[] = [];
+  idFormatsSelectionner: number[] = [];
+  idPaysSelectionner: number[] = [];
+
   constructor(private catalogueService: CatalogueService) { }
 
 
@@ -52,11 +55,31 @@ export class FiltresComponent implements OnInit, OnDestroy {
     this.showType.emit(this.idTypesSelectionner);
   }
 
-  onVoirFormat(format_id: any):void {
-    this.showFormat.emit(format_id);
+  onVoirFormat(format: any):void {
+    format.selected = !format.selected;
+
+    if (format.selected) {
+      this.idFormatsSelectionner.push(format.id); // Add the selected format ID to the array
+    } else {
+      const index = this.idFormatsSelectionner.indexOf(format.id);
+      if (index > -1) {
+        this.idFormatsSelectionner.splice(index, 1); // Remove the deselected format ID from the array
+      }
+    }
+    this.showFormat.emit(this.idFormatsSelectionner);
   }
-  onVoirPays(pays_id: any):void {
-    this.showPays.emit(pays_id);
+  onVoirPays(pays: any):void {
+    pays.selected = !pays.selected;
+
+    if (pays.selected) {
+      this.idPaysSelectionner.push(pays.id); // Add the selected pays ID to the array
+    } else {
+      const index = this.idPaysSelectionner.indexOf(pays.id);
+      if (index > -1) {
+        this.idPaysSelectionner.splice(index, 1); // Remove the deselected pays ID from the array
+      }
+    }
+    this.showPays.emit(this.idPaysSelectionner);
   }
 
   ngOnDestroy(): void {

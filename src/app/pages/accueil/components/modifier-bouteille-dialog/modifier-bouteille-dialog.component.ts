@@ -43,12 +43,7 @@ export class ModifierBouteilleDialogComponent {
         nom: formData.nom,
         actif: formData.actif
       };
-      this.catalogueService.modifierBouteille(updatedData).subscribe(response => {
-        this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
-          duration: 3000
-        });
-        this.dialogRef.close(updatedData);
-      })
+      this.dialogRef.close(updatedData);
     }
   }
 

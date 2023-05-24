@@ -1,25 +1,25 @@
 import { Component, Inject, Output, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CellierBouteille } from 'src/app/models/models';
-import { CellierService } from 'src/app/services/cellier.service';
+import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
-  selector: 'app-modifier-bouteille-cellier-dialog',
-  templateUrl: './modifier-bouteille-cellier-dialog.component.html',
-  styleUrls: ['./modifier-bouteille-cellier-dialog.component.scss']
+  selector: 'app-modifier-bouteille-dialog',
+  templateUrl: './modifier-bouteille-dialog.component.html',
+  styleUrls: ['./modifier-bouteille-dialog.component.scss']
 
 })
-export class ModifierBouteilleCellierDialogComponent {
+export class ModifierBouteilleDialogComponent {
   formModif: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CellierBouteille>,
     private snackBar: MatSnackBar,
-    private cellierService: CellierService,
+    private catalogueService: CatalogueService,
     @Inject(MAT_DIALOG_DATA) public data: any
 
   ) {}
@@ -28,10 +28,8 @@ export class ModifierBouteilleCellierDialogComponent {
     console.log(this.data)
     this.formModif = this.fb.group({
       nom: [this.data.nom, [Validators.required, Validators.minLength(3)]],
-      quantite: [this.data.quantite, Validators.required],
-      date_achat: [new Date(this.data.date_achat), Validators.required],
-      millesime: [this.data.millesime, Validators.required],
-      garde: [this.data.garde, Validators.required],
+      prix: [this.data.prix, Validators.required],
+      actif: new FormControl(this.data.actif),
     });
   }
 
@@ -39,7 +37,13 @@ export class ModifierBouteilleCellierDialogComponent {
     if (this.formModif.valid) {
       let formData = this.formModif.value;
       formData.id = this.data.id;
-      this.dialogRef.close(formData);
+      const updatedData = {
+        ...this.data,
+        prix: formData.prix,
+        nom: formData.nom,
+        actif: formData.actif
+      };
+      this.dialogRef.close(updatedData);
     }
   }
 

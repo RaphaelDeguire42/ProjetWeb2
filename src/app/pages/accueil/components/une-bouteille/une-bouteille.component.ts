@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Bouteille } from 'src/app/models/models';
 import { AjouterBouteilleDialogComponent } from '../ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
 import { CellierService } from 'src/app/services/cellier.service';
+import { ModifierBouteilleDialogComponent } from '../modifier-bouteille-dialog/modifier-bouteille-dialog.component';
+import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
   selector: 'app-une-bouteille',
@@ -12,8 +14,11 @@ import { CellierService } from 'src/app/services/cellier.service';
 export class UneBouteilleComponent {
   @Input() modePleinEcran = false;
   @Input() bouteille: Bouteille | undefined;
+  @Output() bouteilleSupprime: EventEmitter<number> = new EventEmitter<number>();
+  @Output() bouteilleModifiee: EventEmitter<Bouteille> = new EventEmitter<Bouteille>();
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
+
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private catalogueService: CatalogueService){}
 
   @Output() ajouterAuPanier = new EventEmitter();
 
@@ -37,6 +42,27 @@ export class UneBouteilleComponent {
         });
       })
       }
+    });
+  }
+
+  openModifierBouteilleDialog(id_bouteille:number){
+    const dialogRef = this.dialog.open(ModifierBouteilleDialogComponent, {
+      width: '350px',
+      data: { id_bouteille, ...this.bouteille },
+    });
+
+    dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
+      console.log('closed')
+      this.catalogueService.modifierBouteille(bouteilleModifiee).subscribe(response => {
+        if(response){
+          this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
+            duration: 3000
+          });
+          this.bouteille = bouteilleModifiee;
+          console.log(bouteilleModifiee)
+          this.bouteilleModifiee.emit(bouteilleModifiee);
+        }
+      })
     });
   }
 

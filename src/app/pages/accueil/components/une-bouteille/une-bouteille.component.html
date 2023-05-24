@@ -8,12 +8,15 @@
         [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
             <div>
                 <p class="truncate hover:whitespace-normal">{{bouteille.nom }}</p>
-                <p *ngIf="modePleinEcran">{{bouteille.garde }}</p>
+                <p *ngIf="modePleinEcran"></p>
             </div>
             <div class="flex justify-between items-center py-3">
                 <span class="text-red-400">{{ bouteille.prix | currency }}</span>
                 <button mat-mini-fab color="warn" (click)="openAjouterBouteilleDialog(bouteille.id)">
                     <mat-icon>add</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" (click)="openModifierBouteilleDialog(bouteille.id)">
+                    <mat-icon>edit</mat-icon>
                 </button>
                 <button (click)="onAjouterAuPanier()">
                     <mat-icon class="text-gray-500">shopping_cart</mat-icon>

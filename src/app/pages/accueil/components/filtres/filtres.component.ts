@@ -8,7 +8,7 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   templateUrl: './filtres.component.html'
 })
 export class FiltresComponent implements OnInit, OnDestroy {
-  @Output() showType = new EventEmitter<number>();
+  @Output() showType = new EventEmitter<number[]>();
   @Output() showFormat = new EventEmitter<number>();
   @Output() showPays = new EventEmitter<number>();
   typesSubscription: Subscription | undefined;
@@ -17,6 +17,7 @@ export class FiltresComponent implements OnInit, OnDestroy {
   types: Array<TypeBouteille> | undefined;
   formats: Array<Format> | undefined;
   pays: Array<Pays> | undefined;
+  idTypesSelectionner: number[] = [];
   constructor(private catalogueService: CatalogueService) { }
 
 
@@ -36,13 +37,25 @@ export class FiltresComponent implements OnInit, OnDestroy {
     });
   }
 
-  onVoirType(type_id: number):void {
-    this.showType.emit(type_id);
+
+  onVoirType(type: any): void {
+    type.selected = !type.selected;
+
+    if (type.selected) {
+      this.idTypesSelectionner.push(type.id); // Add the selected type ID to the array
+    } else {
+      const index = this.idTypesSelectionner.indexOf(type.id);
+      if (index > -1) {
+        this.idTypesSelectionner.splice(index, 1); // Remove the deselected type ID from the array
+      }
+    }
+    this.showType.emit(this.idTypesSelectionner);
   }
-  onVoirFormat(format_id: number):void {
+
+  onVoirFormat(format_id: any):void {
     this.showFormat.emit(format_id);
   }
-  onVoirPays(pays_id: number):void {
+  onVoirPays(pays_id: any):void {
     this.showPays.emit(pays_id);
   }
 

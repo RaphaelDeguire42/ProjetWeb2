@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Role, Utilisateur } from '../models/models';
 import { HttpClient } from '@angular/common/http';
 
-const USER_BASE_URL = 'http://localhost:8000/api';
+const USER_BASE_URL = 'http://localhost:8001/api';
 
 @Injectable({
   providedIn: 'root'

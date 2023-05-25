@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { UneBouteille } from '../models/models';
 
 const BOUTEILLE_BASE_URL = 'http://localhost:8001/api/bouteilles';
+//const BOUTEILLE_BASE_URL = 'http://localhost:8000/api/bouteilles';
 
 @Injectable({
   providedIn: 'root'

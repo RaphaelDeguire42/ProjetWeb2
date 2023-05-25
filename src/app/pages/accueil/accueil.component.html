@@ -2,13 +2,14 @@
 [autosize]="true"
 class="min-h-full"
 >
-    <mat-drawer mode="over" opened class="p-6">
+    <mat-drawer mode="side" opened class="p-6">
         <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
     </mat-drawer>
     <mat-drawer-content class="p-6">
         <app-bouteilles-entete
         (colonneNombreChangement)="onColonneNombreChangement($event)"
         (itemsNombreChangement)="onItemsNombreChangement($event)"
+        (ajouterAuPanier)="onAjouterAuPanier($event)"
         (triChangement)="onTriChangement($event)"
         ></app-bouteilles-entete>
         <button mat-raised-button color="primary" class="my-3" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>

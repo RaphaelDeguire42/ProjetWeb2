@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
-import { Panier, PanierItem } from '../models/models';
+import { Bouteille, Panier, PanierItem } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class PanierService {
     const items = [...this.panier.value.items];
 
     const itemPanier = items.find((_item) => _item.id == item.id);
-
+    console.log(items)
     if (itemPanier) {
       itemPanier.quantite += 1;
     } else {

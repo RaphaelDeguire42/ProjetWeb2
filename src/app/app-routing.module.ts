@@ -5,14 +5,15 @@ import { PanierComponent } from './pages/panier/panier.component';
 import { CellierComponent } from './pages/cellier/cellier.component';
 import { BouteilleComponent } from './pages/bouteille/bouteille.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: 'accueil', component: AccueilComponent},
-  { path: 'cellier', component: CellierComponent},
-  { path: 'panier',  component: PanierComponent},
-  { path: 'connexion',  component: ConnexionComponent},
-  { path: 'bouteille/:id',  component: BouteilleComponent},
-  { path: '', redirectTo: 'accueil', pathMatch: 'full'},
+  { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuard] },
+  { path: 'cellier', component: CellierComponent, canActivate: [AuthGuard] },
+  { path: 'panier', component: PanierComponent, canActivate: [AuthGuard] },
+  { path: 'connexion', component: ConnexionComponent },
+  { path: 'bouteille/:id', component: BouteilleComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -15,7 +15,7 @@ import { CellierService } from 'src/app/services/cellier.service';
 export class AjouterBouteilleDialogComponent {
   id_bouteille:number|string|null = '';
   id_cellier:number|string|null = '';
-  celliers: Array<Cellier> | undefined;
+  celliers: any | undefined;
   celliersSubscription: Subscription | undefined;
 
   id_cellier_placeholder:number|string|null = null;
@@ -42,8 +42,8 @@ export class AjouterBouteilleDialogComponent {
     this.id_bouteille = this.data.id_bouteille??null;
     this.id_cellier = this.data.id_cellier??null;
 
-    this.celliersSubscription = this.cellierService.getCelliersUtilisateur().subscribe((response) => {
-      this.celliers = response;
+    this.celliersSubscription = this.cellierService.getCelliersUtilisateurSeulement().subscribe((celliersUser ) => {
+      this.celliers = celliersUser.data;
       if(!this.id_bouteille){
         this.id_cellier_placeholder = this.id_cellier;
       } else {

@@ -17,10 +17,15 @@ export class CellierService {
     return this.httpClient.get<Array<Couleur>>(`${CELLIER_BASE_URL}/couleurs`)
   }
 
-  getCelliersUtilisateur(): Observable<Array<Cellier>> {
+  getCelliersUtilisateur(): Observable<any> {
       const id_utilisateur = this.userService.getUtilisateur().id;
-      return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/celliers?id_user[eq]=${id_utilisateur}`)
+      return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/celliers?id_user[eq]=${id_utilisateur}&incluBouteilles=true`)
    }
+
+   getCelliersUtilisateurSeulement(): Observable<any> {
+    const id_utilisateur = this.userService.getUtilisateur().id;
+    return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/celliers?id_user[eq]=${id_utilisateur}`)
+ }
 
    getBouteillesCellier(id_cellier:number): Observable<Array<CellierBouteille>> {
       return this.httpClient.get<Array<CellierBouteille>>(`${CELLIER_BASE_URL}/cellier-bouteilles?id_cellier[eq]=${id_cellier}`)

@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
 import { Erreur } from '../models/models';
 
-const CATALOGUE_BASE_URL = 'http://localhost:8000/api';
+const CATALOGUE_BASE_URL = 'http://localhost:8001/api';
 
 // Reste de l'uri pour l'api pour toutes les bouteilles : api_vino/public/api/bouteilles
 // J'ai implémenté plusieurs mots clés pour les recherches et filtres dans le uri des bouteilles
@@ -44,33 +44,53 @@ export class CatalogueService {
 
   getAllBouteilles(limit = '12', sort = 'desc', types?: number[], formats?: number[], pays?: number[]): Observable<Array<Bouteille>> {
     let premier = true,
-      queryString = '';
+      queryString = '',
+      queries = [
+        Array(),
+        Array(),
+        Array()
+      ]
 
     if(types) {
+      let aType = queries[0];
       for (const type in types) {
-        if(!premier) queryString += '&';
-        queryString += `id_type[eq]=${types[type]}`;
-        premier = false;
-        }
+        if(types.length == 1 )
+          aType.push(`id_type[eq]=${types[type]}`);
+        else
+          aType.push(`id_type[]=${types[type]}`);
       }
+    }
 
 
     if (formats) {
+      let aFormat = queries[1];
       for (const format in formats) {
-        if (!premier) queryString += '&';
-        queryString += `id_format[eq]=${formats[format]}`;
-        premier = false
+        if(formats.length == 1 )
+          aFormat.push(`id_format[eq]=${formats[format]}`);
+        else
+          aFormat.push(`id_format[]=${formats[format]}`);
       }
     }
 
     if (pays) {
+      let aPays = queries[2];
       for (const unPays in pays) {
-        if (!premier) queryString += '&';
-        queryString += `id_pays[eq]=${pays[unPays]}`;
+        if(pays.length == 1 )
+          aPays.push(`id_pays[eq]=${pays[unPays]}`);
+        else
+          aPays.push(`id_pays[]=${pays[unPays]}`);
+      }
+    }
+
+    for (let i = 0; i < queries.length; i++) {
+      let filtre = queries[i];
+      for (let j = 0; j <  filtre.length; j++) {
+        if(!premier) queryString += '&';
+        queryString += filtre[j]
         premier = false
       }
     }
-    console.log(queryString)
+
     return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles?
     ${queryString}`);
 

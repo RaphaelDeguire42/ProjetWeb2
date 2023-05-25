@@ -4,7 +4,7 @@ import { Bouteille, Cellier } from 'src/app/models/models';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { CellierService } from 'src/app/services/cellier.service';
 
-const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
+const HAUTEUR_RANGEE: { [id:number]: number} = {1: 600, 3: 450, 4: 550 }
 
 @Component({
   selector: 'app-accueil',

@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Bouteille, AjoutBouteilleCellierData, Cellier, CellierBouteille, Couleur, NouveauCellierData } from '../models/models';
 import { UserService } from './user.service';
 
-const CELLIER_BASE_URL = 'http://localhost:8000/api';
+const CELLIER_BASE_URL = 'http://localhost:8001/api';
 
 @Injectable({
   providedIn: 'root'

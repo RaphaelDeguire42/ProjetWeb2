@@ -23,7 +23,7 @@ export class UnCellierComponent {
   cellierBouteilles: Array<CellierBouteille> | undefined;
   bouteillesSubscription: Subscription | undefined;
   showCellierDetails = false;
-  cellierId: number | undefined; // Add cellierId property
+  cellierId: number | undefined; 
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
 
@@ -35,10 +35,8 @@ export class UnCellierComponent {
   }
 
   getBouteillesCellier(id_cellier:number): void {
-      this.bouteillesSubscription = this.cellierService.getBouteillesCellier(id_cellier)
-        .subscribe((_bouteilles)=>{
-          this.cellierBouteilles = _bouteilles;
-        });
+    this.cellierBouteilles = this.cellier!.bouteillesDuCellier;
+    console.log(this.cellierBouteilles)
   }
 
   supprimerCellier(id_cellier: number): void {

@@ -2,7 +2,7 @@
 [autosize]="true"
 class="min-h-full"
 >
-    <mat-drawer mode="over" opened class="p-6">
+    <mat-drawer mode="side" opened class="p-6">
         <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
     </mat-drawer>
     <mat-drawer-content class="p-6">

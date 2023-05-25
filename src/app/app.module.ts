@@ -50,6 +50,8 @@ import { ModifierBouteilleDialogComponent } from './pages/accueil/components/mod
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BouteilleComponent } from './pages/bouteille/bouteille.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
+import { UserService } from './services/user.service';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -107,7 +109,7 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
     MatNativeDateModule,
 
   ],
-  providers: [PanierService, CellierService, CellierService],
+  providers: [PanierService, CellierService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

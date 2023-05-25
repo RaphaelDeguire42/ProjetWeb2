@@ -9,8 +9,12 @@
   mat-card-content{
     display: flex;
     justify-content: space-between;
-  :hover{
-    cursor: pointer;
-
+    :hover{
+      cursor: pointer;
+    }
   }
+}
+.link:hover{
+  color:rgb(5, 155, 97);
+  cursor: pointer;
 }

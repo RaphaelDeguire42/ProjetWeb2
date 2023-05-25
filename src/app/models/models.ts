@@ -42,6 +42,7 @@ export interface Cellier {
     id_user: number;
     id_couleur: number;
     hex_value: string;
+    bouteillesDuCellier?: []
 }
 
 export interface CellierBouteille extends Bouteille {
@@ -132,4 +133,9 @@ export interface Utilisateur {
 export interface Role {
     id: number;
     role: string;
+}
+
+export interface Login {
+    courriel: string;
+    mot_de_passe: string;
 }

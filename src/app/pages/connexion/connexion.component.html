@@ -1,1 +1,20 @@
-Login Page
+<p>Connexion</p>
+<ng-container *ngIf="formConnexion">
+  <form [formGroup]="formConnexion">
+    <mat-form-field appearance="fill">
+      <mat-label>Courriel :</mat-label>
+      <input matInput formControlName="courriel" type="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mot de passe :</mat-label>
+      <input matInput formControlName="mot_de_passe" type="password" />
+    </mat-form-field>
+
+    <div class="action">
+      <div class="action__group">
+        <button mat-raised-button color="primary" (click)="connexion()" [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
+      </div>
+    </div>
+  </form>
+</ng-container>

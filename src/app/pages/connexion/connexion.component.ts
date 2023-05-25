@@ -9,12 +9,12 @@ function passwordValidator(control: AbstractControl): ValidationErrors | null {
     return null;
   }
 
-  const hasUppercase = /[A-Z]/.test(value);
+  //const hasUppercase = /[A-Z]/.test(value);
   const hasLowercase = /[a-z]/.test(value);
   const hasNumber = /[0-9]/.test(value);
-  const hasSpecialChar = /[!@#$%^&*]/.test(value);
+  //const hasSpecialChar = /[!@#$%^&*]/.test(value);
 
-  const isValid = hasUppercase && hasLowercase && hasNumber && hasSpecialChar;
+  const isValid = /*hasUppercase && */hasLowercase && hasNumber /*&& hasSpecialChar*/;
 
   return isValid ? null : { invalidPassword: true };
 }
@@ -31,13 +31,13 @@ export class ConnexionComponent {
 
   ngOnInit() {
     this.formConnexion = this.fb.group({
-      courriel: ['', [Validators.required, Validators.email]],
-      mot_de_passe: ['', [Validators.required, passwordValidator]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, passwordValidator]],
     });
   }
 
   connexion() {
     const formData = this.formConnexion.value;
-    this.userService.connexion(formData)
+    this.userService.nouvelleConnexion(formData)
   }
 }

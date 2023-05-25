@@ -27,7 +27,6 @@ import { PanierService } from './services/panier.service';
 import { CellierComponent } from './pages/cellier/cellier.component';
 import { CellierService } from './services/cellier.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CelliersEnteteComponent } from './pages/cellier/components/celliers-entete/celliers-entete.component';
 import { UnCellierComponent } from './pages/cellier/components/un-cellier/un-cellier.component';
 import { NouveauCellierDialogComponent } from './pages/cellier/components/nouveau-cellier-dialog/nouveau-cellier-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -64,7 +63,6 @@ import { AuthGuard } from './auth.guard';
     PanierComponent,
     CellierComponent,
     UnCellierComponent,
-    CelliersEnteteComponent,
     NouveauCellierDialogComponent,
     AjouterBouteilleDialogComponent,
     ConfirmationDialogComponent,
@@ -74,7 +72,6 @@ import { AuthGuard } from './auth.guard';
     ErreurDialogComponent,
     BouteilleComponent,
     ConnexionComponent
-
   ],
   imports: [
     BrowserModule,

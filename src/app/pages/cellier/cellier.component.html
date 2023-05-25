@@ -5,11 +5,6 @@
       -->
     </mat-drawer>
     <mat-drawer-content class="p-6">
-      <app-celliers-entete
-        (colonneNombreChangement)="onColonneNombreChangement($event)"
-        (itemsNombreChangement)="onItemsNombreChangement($event)"
-        (triChangement)="onTriChangement($event)"
-      ></app-celliers-entete>
       <div class="my-6">
         <button mat-raised-button color="primary" (click)="openNouveauCellierDialog()">Ajouter un cellier</button>
       </div>

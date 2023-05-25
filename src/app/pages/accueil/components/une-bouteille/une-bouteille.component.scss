@@ -1,5 +1,16 @@
 :host{
+  position: relative;
+  .btnEdit{
+    height: 40px;
+    width: 40px;
+
+    box-shadow: none;
+  }
+  mat-card-content{
+    display: flex;
+    justify-content: space-between;
   :hover{
     cursor: pointer;
+
   }
 }

@@ -1,8 +1,8 @@
 <mat-drawer-container
 [autosize]="true"
-class="min-h-full max-w7xl mx-auto border-x"
+class="min-h-full"
 >
-    <mat-drawer mode="side" opened class="p-6">
+    <mat-drawer mode="over" opened class="p-6">
         <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
     </mat-drawer>
     <mat-drawer-content class="p-6">
@@ -17,15 +17,18 @@ class="min-h-full max-w7xl mx-auto border-x"
             [cols]="cols"
             [rowHeight] = 'hauteurRangee'
             >
-            <mat-grid-tile *ngFor="let bouteille of bouteilles">
-                <app-une-bouteille *ngIf="bouteille.actif"
-                [bouteille]="bouteille"
-                (ajouterAuPanier)="onAjouterAuPanier($event)"
-                (bouteilleSupprime)="supprimerBouteille($event)"
-                (bouteilleModifiee)="modifierBouteille($event)"
-                class="w-full"
-                [modePleinEcran]="cols === 1"></app-une-bouteille>
-            </mat-grid-tile>
+            <ng-container *ngFor="let bouteille of bouteilles">
+                <mat-grid-tile *ngIf="bouteille.actif">
+                    <app-une-bouteille
+                    [bouteille]="bouteille"
+                    (ajouterAuPanier)="onAjouterAuPanier($event)"
+                    (bouteilleSupprime)="supprimerBouteille($event)"
+                    (bouteilleModifiee)="modifierBouteille($event)"
+                    class="w-full"
+                    [modePleinEcran]="cols === 1"></app-une-bouteille>
+                </mat-grid-tile>
+            </ng-container>
+
             <div *ngIf="isChargement">
                 <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
             </div>

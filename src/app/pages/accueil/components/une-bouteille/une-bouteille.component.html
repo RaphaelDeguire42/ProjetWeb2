@@ -1,4 +1,4 @@
-<mat-card *ngIf="bouteille" [ngClass]="{'text-center': !modePleinEcran}">
+<mat-card *ngIf="bouteille" [ngClass]="{'text-center': !modePleinEcran}"  (click)="navigateToBouteille(bouteille.id)">
     <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
         <img class="mb-1 mt-3 mx-auto h-[200px]"
         [ngClass] = "{'h-200': !modePleinEcran, 'h-[360px] ml-3 mb-3': modePleinEcran}"

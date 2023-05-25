@@ -22,6 +22,20 @@ export interface Bouteille {
     actif: boolean;
 }
 
+export interface UneBouteille {
+    id: number;
+    nom: string;
+    code_saq: string;
+    url_saq: string;
+    url_img: string;
+    garde: number;
+    prix: number;
+    type: string;
+    format: string;
+    pays: string;
+    actif: boolean;
+}
+
 export interface Cellier {
     id: number;
     nom: string;

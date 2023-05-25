@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
 import { Erreur } from '../models/models';
 
-const CATALOGUE_BASE_URL = 'http://localhost:8001/api';
+const CATALOGUE_BASE_URL = 'http://localhost:8000/api';
 
 // Reste de l'uri pour l'api pour toutes les bouteilles : api_vino/public/api/bouteilles
 // J'ai implémenté plusieurs mots clés pour les recherches et filtres dans le uri des bouteilles

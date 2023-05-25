@@ -13,15 +13,26 @@
       <div class="my-6">
         <button mat-raised-button color="primary" (click)="openNouveauCellierDialog()">Ajouter un cellier</button>
       </div>
-      <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="hauteurRangee">
-        <mat-grid-tile *ngFor="let cellier of celliers">
-          <app-un-cellier
+      <!--
+        <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="hauteurRangee">
+          <mat-grid-tile *ngFor="let cellier of celliers">
+            <app-un-cellier
             [cellier]="cellier"
             class="w-full"
             (cellierSupprime)="supprimerCellier($event)"
             [modePleinEcran]="cols === 1"
-          ></app-un-cellier>
-        </mat-grid-tile>
-      </mat-grid-list>
+            ></app-un-cellier>
+          </mat-grid-tile>
+        </mat-grid-list>
+      -->
+
+        <app-un-cellier
+            *ngFor="let cellier of celliers"
+            [cellier]="cellier"
+            class="w-full"
+            (cellierSupprime)="supprimerCellier($event)"
+            >
+        </app-un-cellier>
+
     </mat-drawer-content>
   </mat-drawer-container>

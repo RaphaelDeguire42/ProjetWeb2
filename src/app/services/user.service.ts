@@ -13,15 +13,17 @@ export class UserService {
   token: string = '';
 
   httpOption = {};
+  role:number|undefined = 0;
 
-  utilisateur: Utilisateur = {} as Utilisateur;
-  estConnecter: boolean = false;
+  //utilisateur: Utilisateur = {} as Utilisateur;
+  utilisateur ={id:1,id_role:1};
+  estConnecter: boolean = true;
 
   constructor(private httpClient: HttpClient, private router: Router) {
     this.updateHttpOption();
   }
 
-  getUtilisateur(): Utilisateur {
+  getUtilisateur(): Utilisateur|any {
     return this.utilisateur;
   }
 
@@ -41,6 +43,10 @@ export class UserService {
       this.updateHttpOption();
       this.router.navigate(['/accueil']);
     });
+  }
+
+  getRole():number|undefined{
+    return this.utilisateur.id_role;
   }
 
   private updateHttpOption(): void {

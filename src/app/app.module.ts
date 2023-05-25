@@ -42,7 +42,6 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { UneCellierBouteilleComponent } from './pages/cellier/components/une-cellier-bouteille/une-cellier-bouteille.component';
 import { ModifierBouteilleCellierDialogComponent } from './pages/cellier/components/modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
 import { ErreurComponent } from './components/erreur/erreur.component';
 import { ErreurDialogComponent } from './components/erreur-dialog/erreur-dialog.component';
@@ -69,7 +68,6 @@ import { AuthGuard } from './auth.guard';
     NouveauCellierDialogComponent,
     AjouterBouteilleDialogComponent,
     ConfirmationDialogComponent,
-    UneCellierBouteilleComponent,
     ModifierBouteilleCellierDialogComponent,
     ModifierBouteilleDialogComponent,
     ErreurComponent,

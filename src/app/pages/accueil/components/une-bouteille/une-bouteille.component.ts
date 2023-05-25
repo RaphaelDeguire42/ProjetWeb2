@@ -6,6 +6,7 @@ import { AjouterBouteilleDialogComponent } from '../ajouter-bouteille-dialog/ajo
 import { CellierService } from 'src/app/services/cellier.service';
 import { ModifierBouteilleDialogComponent } from '../modifier-bouteille-dialog/modifier-bouteille-dialog.component';
 import { CatalogueService } from 'src/app/services/catalogue.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-une-bouteille',
@@ -19,7 +20,7 @@ export class UneBouteilleComponent {
   @Output() bouteilleModifiee: EventEmitter<Bouteille> = new EventEmitter<Bouteille>();
 
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private catalogueService: CatalogueService){}
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private catalogueService: CatalogueService,private router: Router){}
 
   @Output() ajouterAuPanier = new EventEmitter();
 
@@ -65,6 +66,10 @@ export class UneBouteilleComponent {
         }
       })
     });
+  }
+
+  navigateToBouteille(bouteilleId: number) {
+    this.router.navigate(['/bouteille', bouteilleId]);
   }
 
 }

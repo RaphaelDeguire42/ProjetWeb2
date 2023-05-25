@@ -49,6 +49,7 @@ import { ErreurDialogComponent } from './components/erreur-dialog/erreur-dialog.
 import { ModifierBouteilleDialogComponent } from './pages/accueil/components/modifier-bouteille-dialog/modifier-bouteille-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BouteilleComponent } from './pages/bouteille/bouteille.component';
+import { ConnexionComponent } from './pages/connexion/connexion.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { BouteilleComponent } from './pages/bouteille/bouteille.component';
     ModifierBouteilleDialogComponent,
     ErreurComponent,
     ErreurDialogComponent,
-    BouteilleComponent
+    BouteilleComponent,
+    ConnexionComponent
 
   ],
   imports: [

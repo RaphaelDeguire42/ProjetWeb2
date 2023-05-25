@@ -74,17 +74,15 @@ export class UnCellierComponent {
 
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
       if(bouteilleModifiee){
-
-        const modifiedBouteille: any = {
-          ...bouteille,
-          ...bouteilleModifiee
-        };
+        const modifiedBouteille: any = {...bouteille,...bouteilleModifiee};
 
         const index = this.cellierBouteilles?.findIndex((b) => b.id === modifiedBouteille.id);
+
         if (index !== undefined && index !== -1) {
           this.cellierBouteilles![index] = modifiedBouteille;
           this.cellierBouteilles = this.cellierBouteilles!.slice();
         }
+
         this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
           duration: 3000
         });

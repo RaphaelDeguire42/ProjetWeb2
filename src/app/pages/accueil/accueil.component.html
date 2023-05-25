@@ -9,6 +9,7 @@ class="min-h-full"
         <app-bouteilles-entete
         (colonneNombreChangement)="onColonneNombreChangement($event)"
         (itemsNombreChangement)="onItemsNombreChangement($event)"
+        (ajouterAuPanier)="onAjouterAuPanier($event)"
         (triChangement)="onTriChangement($event)"
         ></app-bouteilles-entete>
         <button mat-raised-button color="primary" class="my-3" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>

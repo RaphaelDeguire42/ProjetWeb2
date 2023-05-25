@@ -8,14 +8,12 @@ import { PanierService } from 'src/app/services/panier.service';
 })
 export class PanierComponent implements OnInit {
   panier: Panier = { items: [{
-    bouteille: 'https://via.placeholder.com/150',
     nom: 'snickers',
     prix: 150,
     quantite: 1,
     id: 1
   },
   {
-    bouteille: 'https://via.placeholder.com/150',
     nom: 'snickers',
     prix: 150,
     quantite: 3,

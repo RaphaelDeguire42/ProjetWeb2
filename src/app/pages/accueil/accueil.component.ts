@@ -17,7 +17,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   types: number[] | undefined;
   formats: number[] | undefined;
   pays: number[] | undefined;
-  bouteilles: Array<Bouteille> | undefined;
+  bouteilles: any;
   bouteilleSubscription: Subscription | undefined;
   celliers: Array<Cellier> | undefined;
   tri = 'desc';
@@ -35,7 +35,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   getBouteilles(): void {
     this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.nombre, this.tri, this.types, this.formats, this.pays)
       .subscribe((_bouteilles)=>{
-        this.bouteilles = _bouteilles;
+        this.bouteilles = _bouteilles.data;
       })
   }
 
@@ -113,7 +113,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   supprimerBouteille(id_bouteille:number){}
 
   modifierBouteille(bouteilleModifiee: Bouteille) {
-    const index = this.bouteilles?.findIndex((bouteille) => bouteille.id === bouteilleModifiee.id);
+    const index = this.bouteilles?.findIndex((bouteille:any) => bouteille.id === bouteilleModifiee.id);
     if (index !== undefined && index !== -1) {
       this.bouteilles![index] = bouteilleModifiee;
     }

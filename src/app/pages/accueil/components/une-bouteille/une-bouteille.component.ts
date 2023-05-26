@@ -7,6 +7,7 @@ import { CellierService } from 'src/app/services/cellier.service';
 import { ModifierBouteilleDialogComponent } from '../modifier-bouteille-dialog/modifier-bouteille-dialog.component';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { Router } from '@angular/router';
+import { PanierService } from 'src/app/services/panier.service';
 
 @Component({
   selector: 'app-une-bouteille',
@@ -18,15 +19,22 @@ export class UneBouteilleComponent {
   @Input() bouteille: Bouteille | undefined;
   @Output() bouteilleSupprime: EventEmitter<number> = new EventEmitter<number>();
   @Output() bouteilleModifiee: EventEmitter<Bouteille> = new EventEmitter<Bouteille>();
-
-
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private catalogueService: CatalogueService,private router: Router){}
-
   @Output() ajouterAuPanier = new EventEmitter();
+
+
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private panierService: PanierService, private catalogueService: CatalogueService,private router: Router){}
+
 
   onAjouterAuPanier(): void {
     this.ajouterAuPanier.emit(this.bouteille);
-    console.log(this.bouteille)
+    const item = {
+      id: this.bouteille!.id,
+      nom: this.bouteille!.nom,
+      prix: this.bouteille!.prix,
+      quantite: 1
+    }
+    this.panierService.ajouterAuPanier(item)
+
   }
 
   openAjouterBouteilleDialog(id_bouteille:number){

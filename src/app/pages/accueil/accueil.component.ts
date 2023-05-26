@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Bouteille, Cellier } from 'src/app/models/models';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { CellierService } from 'src/app/services/cellier.service';
+import { UserService } from 'src/app/services/user.service';
 
 const HAUTEUR_RANGEE: { [id:number]: number} = {1: 600, 3: 450, 4: 550 }
 

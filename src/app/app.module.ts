@@ -27,7 +27,6 @@ import { PanierService } from './services/panier.service';
 import { CellierComponent } from './pages/cellier/cellier.component';
 import { CellierService } from './services/cellier.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CelliersEnteteComponent } from './pages/cellier/components/celliers-entete/celliers-entete.component';
 import { UnCellierComponent } from './pages/cellier/components/un-cellier/un-cellier.component';
 import { NouveauCellierDialogComponent } from './pages/cellier/components/nouveau-cellier-dialog/nouveau-cellier-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,7 +41,6 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { UneCellierBouteilleComponent } from './pages/cellier/components/une-cellier-bouteille/une-cellier-bouteille.component';
 import { ModifierBouteilleCellierDialogComponent } from './pages/cellier/components/modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
 import { ErreurComponent } from './components/erreur/erreur.component';
 import { ErreurDialogComponent } from './components/erreur-dialog/erreur-dialog.component';
@@ -50,6 +48,8 @@ import { ModifierBouteilleDialogComponent } from './pages/accueil/components/mod
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BouteilleComponent } from './pages/bouteille/bouteille.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
+import { UserService } from './services/user.service';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -63,18 +63,15 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
     PanierComponent,
     CellierComponent,
     UnCellierComponent,
-    CelliersEnteteComponent,
     NouveauCellierDialogComponent,
     AjouterBouteilleDialogComponent,
     ConfirmationDialogComponent,
-    UneCellierBouteilleComponent,
     ModifierBouteilleCellierDialogComponent,
     ModifierBouteilleDialogComponent,
     ErreurComponent,
     ErreurDialogComponent,
     BouteilleComponent,
     ConnexionComponent
-
   ],
   imports: [
     BrowserModule,
@@ -107,7 +104,7 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
     MatNativeDateModule,
 
   ],
-  providers: [PanierService, CellierService, CellierService],
+  providers: [PanierService, CellierService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

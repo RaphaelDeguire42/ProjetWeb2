@@ -6,8 +6,8 @@ import { Cellier, CellierBouteille } from 'src/app/models/models';
 import { CellierService } from 'src/app/services/cellier.service';
 import { Subscription } from 'rxjs';
 import { AjouterBouteilleDialogComponent } from 'src/app/pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
+import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
 
-const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
 
 @Component({
   selector: 'app-un-cellier',
@@ -15,30 +15,22 @@ const HAUTEUR_RANGEE: { [id:number]: number} = {1: 400, 3: 335, 4: 350 }
   styleUrls: ['./un-cellier.component.scss']
 })
 export class UnCellierComponent {
-  cols = 3;
-  hauteurRangee = HAUTEUR_RANGEE[this.cols];
-  @Input() modePleinEcran = false;
   @Input() cellier: Cellier | undefined;
   @Output() cellierSupprime: EventEmitter<number> = new EventEmitter<number>();
   cellierBouteilles: Array<CellierBouteille> | undefined;
   bouteillesSubscription: Subscription | undefined;
-  showCellierDetails = false;
-  cellierId: number | undefined; // Add cellierId property
+  cellierId: number | undefined;
+
+  columnsToDisplay = ['nom', 'millesime', 'garde', 'prix', 'id_pays', 'id_type', 'id_format', 'actions'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
 
   ngOnInit(): void {
     if (this.cellier) {
       this.cellierId = this.cellier.id;
-
+      this.cellierBouteilles = this.cellier.bouteillesDuCellier
     }
-  }
-
-  getBouteillesCellier(id_cellier:number): void {
-      this.bouteillesSubscription = this.cellierService.getBouteillesCellier(id_cellier)
-        .subscribe((_bouteilles)=>{
-          this.cellierBouteilles = _bouteilles;
-        });
   }
 
   supprimerCellier(id_cellier: number): void {
@@ -57,19 +49,46 @@ export class UnCellierComponent {
 
   supprimerBouteille(id_bouteille_cellier: number): void {
     console.log(id_bouteille_cellier);
-    this.cellierService.supprimerBouteilleCellier(id_bouteille_cellier).subscribe(() => {
-      this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== id_bouteille_cellier);
-      this.snackBar.open(`La bouteille a été supprimée du cellier.`, 'Fermer', {
-        duration: 5000,
-      });
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Êtes-vous certain de vouloir supprimer cette bouteille du cellier?',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'confirm') {
+        this.cellierService.supprimerBouteilleCellier(id_bouteille_cellier).subscribe(() => {
+          this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== id_bouteille_cellier);
+          this.snackBar.open(`La bouteille a été supprimée du cellier.`, 'Fermer', {
+            duration: 5000,
+          });
+        });
+      }
     });
   }
 
-  modifierBouteille(bouteilleModifiee: CellierBouteille): void {
-    const index = this.cellierBouteilles?.findIndex((bouteille) => bouteille.id === bouteilleModifiee.id);
-    if (index !== undefined && index !== -1) {
-      this.cellierBouteilles![index] = bouteilleModifiee;
-    }
+  modifierBouteille(bouteille: CellierBouteille): void {
+    const dialogRef = this.dialog.open(ModifierBouteilleCellierDialogComponent, {
+      width: '350px',
+      data: { ...bouteille},
+    });
+
+    dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
+      if(bouteilleModifiee){
+        const modifiedBouteille: any = {...bouteille,...bouteilleModifiee};
+
+        const index = this.cellierBouteilles?.findIndex((b) => b.id === modifiedBouteille.id);
+
+        if (index !== undefined && index !== -1) {
+          this.cellierBouteilles![index] = modifiedBouteille;
+          this.cellierBouteilles = this.cellierBouteilles!.slice();
+        }
+
+        this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
+          duration: 3000
+        });
+        this.cellierService.modifierBouteilleCellier(bouteilleModifiee).subscribe(response => {})
+      }
+    });
   }
 
   ajouterBouteilleNonListee(){
@@ -86,17 +105,8 @@ export class UnCellierComponent {
             duration: 3000
           });
         })
-        this.toggleCellierDetails(this.cellier!.id);
-        this.toggleCellierDetails(this.cellier!.id);
       }
     });
-  }
-
-  toggleCellierDetails(id_cellier:number): void {
-    this.showCellierDetails = !this.showCellierDetails;
-    if (this.showCellierDetails) {
-      this.getBouteillesCellier(id_cellier);
-    }
   }
 }
 

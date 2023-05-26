@@ -31,7 +31,7 @@ export class CellierComponent implements OnInit, OnDestroy {
   getCelliers(): void {
     this.cellierSubscription = this.cellierService.getCelliersUtilisateur()
       .subscribe((_celliers)=>{
-        this.celliers = _celliers;
+        this.celliers = _celliers.data;
         console.log(this.celliers)
       })
   }

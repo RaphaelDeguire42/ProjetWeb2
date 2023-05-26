@@ -58,4 +58,8 @@ export class UserService {
       })
     };
   }
+
+  getSanctum(){
+    return this.httpOption;
+  }
 }

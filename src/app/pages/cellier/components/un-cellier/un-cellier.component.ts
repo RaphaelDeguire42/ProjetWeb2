@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
@@ -16,12 +16,13 @@ import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-c
 })
 export class UnCellierComponent {
   @Input() cellier: Cellier | undefined;
+  @Input() numberOfCelliers: number | undefined;
   @Output() cellierSupprime: EventEmitter<number> = new EventEmitter<number>();
   cellierBouteilles: Array<CellierBouteille> | undefined;
   bouteillesSubscription: Subscription | undefined;
   cellierId: number | undefined;
 
-  columnsToDisplay = ['nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
+  columnsToDisplay = ['quantite', 'nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
@@ -107,6 +108,24 @@ export class UnCellierComponent {
         })
       }
     });
+  }
+
+  onSupprimerQuantite(bouteille:any){
+    bouteille.quantite -= 1;
+    if(bouteille.quantite === 0){
+      this.cellierService.supprimerBouteilleCellier(bouteille.id).subscribe((response)=>{
+        this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== bouteille.id);
+        this.snackBar.open('Votre bouteille a été supprimée du cellier.', 'Fermer', {
+          duration: 3000
+        });
+      });
+    } else {
+    this.cellierService.soustraireQteBouteille(bouteille);
+  }
+  }
+
+  onAjouterQuantite(bouteille:any){
+    this.cellierService.ajouterQteBouteille(bouteille);
   }
 }
 

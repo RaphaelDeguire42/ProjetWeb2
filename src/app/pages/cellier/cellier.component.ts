@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Cellier } from 'src/app/models/models';
 import { CellierService } from 'src/app/services/cellier.service';
@@ -32,7 +32,6 @@ export class CellierComponent implements OnInit, OnDestroy {
     this.cellierSubscription = this.cellierService.getCelliersUtilisateur()
       .subscribe((_celliers)=>{
         this.celliers = _celliers.data;
-        console.log(this.celliers)
       })
   }
 
@@ -58,10 +57,6 @@ export class CellierComponent implements OnInit, OnDestroy {
     */
   }
 
-  onItemsNombreChangement(nouveauNombre: number):void {
-    this.nombreItems = nouveauNombre.toString();
-    this.getCelliers();
-  }
 
   onTriChangement(nouveauTri: string):void {
     this.tri = nouveauTri;

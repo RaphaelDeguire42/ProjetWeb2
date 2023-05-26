@@ -21,7 +21,7 @@ export class UnCellierComponent {
   bouteillesSubscription: Subscription | undefined;
   cellierId: number | undefined;
 
-  columnsToDisplay = ['nom', 'millesime', 'garde', 'prix', 'id_pays', 'id_type', 'id_format', 'actions'];
+  columnsToDisplay = ['nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}

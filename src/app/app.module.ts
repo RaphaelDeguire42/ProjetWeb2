@@ -51,6 +51,7 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSortModule
 
   ],
   providers: [PanierService, CellierService, UserService, AuthGuard],

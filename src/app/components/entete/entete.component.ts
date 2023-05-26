@@ -5,6 +5,9 @@ import { PanierService } from 'src/app/services/panier.service';
 @Component({
   selector: 'app-entete',
   templateUrl: './entete.component.html',
+  styleUrls: [
+    './entete.component.scss'
+  ]
 })
 export class EnteteComponent {
   private _panier: Panier = { items: [] };

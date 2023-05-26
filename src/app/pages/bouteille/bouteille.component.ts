@@ -17,6 +17,17 @@ export class BouteilleComponent {
      this.bouteilleService.getUneBouteille(id_bouteille).subscribe((bouteille)=>{
       this.bouteille = bouteille;
       console.log(this.bouteille)
+      this.bouteille.noteCommentaire = [
+        {
+        note: 5,
+        commentaire: 'atomique',
+        id:8},
+        {
+        note: 2,
+        commentaire: 'sulfruique',
+        id:2
+        }
+      ]
      })
     })
   }

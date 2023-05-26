@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
@@ -7,6 +7,10 @@ import { CellierService } from 'src/app/services/cellier.service';
 import { Subscription } from 'rxjs';
 import { AjouterBouteilleDialogComponent } from 'src/app/pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
 import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { DataSource } from '@angular/cdk/collections';
+
 
 
 @Component({
@@ -15,6 +19,8 @@ import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-c
   styleUrls: ['./un-cellier.component.scss']
 })
 export class UnCellierComponent {
+  @ViewChild(MatSort) sort!: MatSort;
+
   @Input() cellier: Cellier | undefined;
   @Input() numberOfCelliers: number | undefined;
   @Output() cellierSupprime: EventEmitter<number> = new EventEmitter<number>();
@@ -26,9 +32,12 @@ export class UnCellierComponent {
 
 
   columnsToDisplay = ['quantite', 'nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
+
+  ngAfterViewInit() {
+
+  }
 
   ngOnInit(): void {
     if (this.cellier) {
@@ -140,6 +149,7 @@ export class UnCellierComponent {
         const name = bouteille.nom.toLowerCase();
         return name.includes(filterValue);
     });
+
   }
 
 

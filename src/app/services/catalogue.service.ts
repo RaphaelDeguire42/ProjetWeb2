@@ -42,7 +42,7 @@ export class CatalogueService {
   constructor(private httpClient: HttpClient) { }
 
 
-  getAllBouteilles(limit = '12', prix?:string, types?: number[], formats?: number[], pays?: number[]): Observable<Array<Bouteille>> {
+  getAllBouteilles(limit = '12', prix?:string, types?: number[], formats?: number[], pays?: number[]): Observable<any> {
     let premier = true,
       queryString = '',
       queries = [
@@ -97,7 +97,7 @@ export class CatalogueService {
       premier = false;
     }
 
-    return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/bouteilles?
+    return this.httpClient.get<any>(`${CATALOGUE_BASE_URL}/bouteilles?
     ${queryString}`);
 
   }

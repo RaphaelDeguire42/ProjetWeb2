@@ -34,6 +34,7 @@ export interface UneBouteille {
     format: string;
     pays: string;
     actif: boolean;
+    noteCommentaire:any;
 }
 
 export interface Cellier {
@@ -46,6 +47,9 @@ export interface Cellier {
 }
 
 export interface CellierBouteille extends Bouteille {
+    pays: string | number;
+    type: string | number;
+    format: string | number;
     id: number;
     id_bouteille: number;
     id_cellier: number;

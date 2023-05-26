@@ -1,12 +1,36 @@
 
-<p>{{bouteille.id}}</p>
-
-<p>{{bouteille.type}}</p>
-
-<p>{{bouteille.format}}</p>
-<a>{{bouteille.prix}} $</a>
-<br>
-<a href="{{bouteille.url_saq}}">Voir la bouteille</a>
 
 
-<img src="{{bouteille.url_img}}" alt="">
+<div class="wrapper">
+   <h1>{{bouteille.nom}}</h1>
+   <div class="details__container">
+      <picture class="details__image">
+         <img src="{{bouteille.url_img}}" alt="">
+      </picture>
+      <div class="details__content">
+         <p><strong>Type : </strong> {{bouteille.type}}</p>
+         <p><strong>Pays : </strong> {{bouteille.pays}}</p>
+         <p><strong>Format : </strong>{{bouteille.format}}</p>
+         <p><strong>Prix : </strong> {{bouteille.prix}} $</p>
+
+      </div>
+   </div>
+   <a href="{{bouteille.url_saq}}" target="_blank">Voir la bouteille</a>
+
+   <mat-form-field appearance="fill">
+      <mat-label>Commentaire :</mat-label>
+      <input matInput formControlName="commentaire" type="text" />
+    </mat-form-field>
+
+    <ng-container *ngFor="let nc of bouteille.noteCommentaire">
+      <div class="noteBox">
+         <p>Note:{{nc.note}}</p>
+         <p>Commentaire: {{nc.commentaire}}</p>
+      </div>
+   </ng-container>
+   
+</div>
+
+
+
+

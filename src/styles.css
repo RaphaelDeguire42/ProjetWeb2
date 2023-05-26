@@ -12,8 +12,11 @@ body {
     height: 100%;
 }
 
-body {
+body,html {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: Literata, "Helvetica Neue", sans-serif;
 }
 
+*{
+    font-family: Literata;
+}

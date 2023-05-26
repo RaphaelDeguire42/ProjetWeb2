@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-const USER_BASE_URL = 'http://localhost:8001/api';
+const USER_BASE_URL = 'http://localhost:8000/api';
 
 @Injectable({
   providedIn: 'root'

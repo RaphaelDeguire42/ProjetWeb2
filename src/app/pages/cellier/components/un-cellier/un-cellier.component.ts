@@ -21,6 +21,9 @@ export class UnCellierComponent {
   cellierBouteilles: Array<CellierBouteille> | undefined;
   bouteillesSubscription: Subscription | undefined;
   cellierId: number | undefined;
+  uneRecherche: string = "";
+  originalCellierBouteilles:any;
+
 
   columnsToDisplay = ['quantite', 'nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
@@ -30,7 +33,8 @@ export class UnCellierComponent {
   ngOnInit(): void {
     if (this.cellier) {
       this.cellierId = this.cellier.id;
-      this.cellierBouteilles = this.cellier.bouteillesDuCellier
+      this.cellierBouteilles = this.cellier.bouteillesDuCellier;
+      this.originalCellierBouteilles = this.cellier.bouteillesDuCellier;
     }
   }
 
@@ -127,5 +131,16 @@ export class UnCellierComponent {
   onAjouterQuantite(bouteille:any){
     this.cellierService.ajouterQteBouteille(bouteille);
   }
-}
 
+  recherche(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const filterValue = target.value.toLowerCase().trim();
+
+    this.cellierBouteilles = this.originalCellierBouteilles.filter((bouteille: CellierBouteille) => {
+        const name = bouteille.nom.toLowerCase();
+        return name.includes(filterValue);
+    });
+  }
+
+
+}

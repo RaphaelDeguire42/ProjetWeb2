@@ -9,6 +9,7 @@
       </button>
     </mat-panel-description>
   </mat-expansion-panel-header>
+  <input type="text" placeholder="Search" (keyup)="recherche($event)">
   <ng-container *ngIf="cellierBouteilles && cellierBouteilles.length > 0">
     <table mat-table class="mat-elevation-z8" [dataSource]="cellierBouteilles">
 
@@ -53,6 +54,8 @@
   <ng-container *ngIf="!(cellierBouteilles && cellierBouteilles.length > 0)">
     <p>Aucune bouteilles pour le moment</p>
   </ng-container>
+
+
   <button mat-button color="primary" class="btnAjouterBouteille" (click)="ajouterBouteilleNonListee()">Ajouter une
     bouteille</button>
 </mat-expansion-panel>

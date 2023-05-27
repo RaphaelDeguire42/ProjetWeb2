@@ -22,6 +22,7 @@ export class BouteilleComponent {
      const id_bouteille = param['id'];
      this.bouteilleService.getUneBouteille(id_bouteille).subscribe((bouteille)=>{
       this.bouteille = bouteille.data;
+      console.log(this.bouteille)
      })
     })
   }
@@ -31,6 +32,6 @@ export class BouteilleComponent {
   }
 
   envoyerCommentaire(){
-    
+
   }
 }

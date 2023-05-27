@@ -2,7 +2,7 @@ mat-toolbar {
    display: flex;
    justify-content: space-between;
 
-   nav > a+a {
+   nav > a+a,.logout {
       margin-left: min(30px, 5em);
    }
 
@@ -24,5 +24,10 @@ mat-toolbar {
 
     .nav-link:hover::after {
       transform: scaleX(1);
+    }
+
+    .actions{
+      display: flex;
+      align-items: center;
     }
 }

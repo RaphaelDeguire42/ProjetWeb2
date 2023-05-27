@@ -6,11 +6,16 @@
         <a routerLink="/accueil" class="nav-link">Catalogue</a>
         <a routerLink="/cellier" class="nav-link">Mes Celliers</a>
     </nav>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon [matBadge]="itemsQuantite" [matBadgeHidden]="!itemsQuantite"
-            matBadgeColor="warn">shopping_panier</mat-icon>
-    </button>
+    <div class="actions">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon
+                [matBadge]="itemsQuantite"
+                [matBadgeHidden]="!itemsQuantite"
+                matBadgeColor="warn">shopping_panier
+            </mat-icon>
+        </button>
+        <a routerLink="/connexion" mat-raised-button (click)="deconnexion()" class="logout">Déconnexion</a>
+    </div>
     <mat-menu #menu="matMenu">
         <div class="p-3 divide-y divide-solid">
             <div class="pb-3 flex justify-between">

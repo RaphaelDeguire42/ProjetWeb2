@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Panier, PanierItem } from 'src/app/models/models';
 import { PanierService } from 'src/app/services/panier.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-entete',
@@ -26,7 +27,7 @@ export class EnteteComponent {
       .reduce((prev, current) => prev + current, 0);
   }
 
-  constructor(private panierService: PanierService) {}
+  constructor(private panierService: PanierService, private userService: UserService) {}
 
   getTotal(items: Array<PanierItem>): number {
     return this.panierService.getTotal(items);
@@ -34,5 +35,9 @@ export class EnteteComponent {
 
   onViderPanier(): void {
     this.panierService.viderPanier();
+  }
+
+  deconnexion(){
+    this.userService.deconnexion();
   }
 }

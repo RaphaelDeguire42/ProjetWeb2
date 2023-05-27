@@ -25,7 +25,7 @@
       <button class="buttonSend" mat-raised-button color="primary" (click)="envoyerCommentaire()">Envoyer</button>
    </form>
 
-    <ng-container *ngFor="let nc of bouteille.noteCommentaire">
+    <ng-container *ngFor="let nc of bouteille.note_commentaires">
       <div class="noteBox">
          <p>Note:{{nc.note}}</p>
          <p>Commentaire: {{nc.commentaire}}</p>

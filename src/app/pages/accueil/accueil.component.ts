@@ -52,7 +52,8 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   getCelliersUtilisateur(): void {
-    this.cellierSubscription = this.cellierService.getCelliersUtilisateur()
+    const id_user = parseInt(localStorage.getItem('user_id')||''); 
+    this.cellierSubscription = this.cellierService.getCelliersUtilisateur(id_user)
       .subscribe((_celliers)=>{
         this.celliers = _celliers;
       })

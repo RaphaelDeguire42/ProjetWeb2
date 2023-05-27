@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 const USER_BASE_URL = 'http://localhost:8000/api';
-const TOKEN_KEY = 'auth_token'; // Key to store the authentication token
+const TOKEN_KEY = 'user_id'; // Key to store the authentication token
 
 @Injectable({
   providedIn: 'root'
@@ -76,8 +76,8 @@ export class UserService {
 
   private saveToken(): void {
     // Generate a random string as the stored token
-    const randomToken = Math.random().toString(36).substring(7);
-    localStorage.setItem(TOKEN_KEY, randomToken);
+    const id_user = this.utilisateur.id.toString();
+    localStorage.setItem(TOKEN_KEY, id_user);
   }
 
   private clearToken(): void {

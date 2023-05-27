@@ -1,7 +1,7 @@
 
 
 
-<div class="wrapper">
+<div class="wrapper" *ngIf="bouteille">
    <h1>{{bouteille.nom}}</h1>
    <div class="details__container">
       <picture class="details__image">
@@ -17,10 +17,13 @@
    </div>
    <a href="{{bouteille.url_saq}}" target="_blank">Voir la bouteille</a>
 
-   <mat-form-field appearance="fill">
-      <mat-label>Commentaire :</mat-label>
-      <input matInput formControlName="commentaire" type="text" />
-    </mat-form-field>
+   <form [formGroup]="formBouteille">
+      <mat-form-field appearance="fill">
+         <mat-label>Commentaire :</mat-label>
+         <input matInput formControlName="commentaire" type="text" />
+      </mat-form-field>
+      <button class="buttonSend" mat-raised-button color="primary" (click)="envoyerCommentaire()">Envoyer</button>
+   </form>
 
     <ng-container *ngFor="let nc of bouteille.noteCommentaire">
       <div class="noteBox">
@@ -28,7 +31,7 @@
          <p>Commentaire: {{nc.commentaire}}</p>
       </div>
    </ng-container>
-   
+
 </div>
 
 

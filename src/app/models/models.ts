@@ -28,13 +28,20 @@ export interface UneBouteille {
     code_saq: string;
     url_saq: string;
     url_img: string;
-    garde: number;
     prix: number;
+    actif: number;
     type: string;
-    format: string;
     pays: string;
-    actif: boolean;
-    noteCommentaire:any;
+    format: string;
+    noteCommentaire: NoteCommentaire[];
+}
+
+export interface NoteCommentaire {
+    note: number;
+    commentaire: string;
+    id: number;
+    id_user?: number;
+    id_bouteille?: number;
 }
 
 export interface Cellier {
@@ -58,14 +65,6 @@ export interface CellierBouteille extends Bouteille {
     millesime: number;
 }
 
-
-export interface NoteCommentaire {
-    id: number;
-    note: string;
-    commentaire: string;
-    id_user: number;
-    id_bouteille: number;
-}
 
 export interface TypeBouteille {
     id: number;

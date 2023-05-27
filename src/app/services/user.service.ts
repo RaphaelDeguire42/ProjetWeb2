@@ -48,6 +48,13 @@ export class UserService {
     });
   }
 
+  deconnexion(): void {
+    this.token = ''; // Clear the token
+    this.estConnecter = false;
+    this.clearToken(); // Remove the token from storage
+    this.router.navigate(['/connexion']);
+  }
+
   getRole(): number | undefined {
     return this.utilisateur.id_role;
   }
@@ -68,8 +75,14 @@ export class UserService {
   }
 
   private saveToken(): void {
-    // Save token to localStorage
-    localStorage.setItem(TOKEN_KEY, this.token);
+    // Generate a random string as the stored token
+    const randomToken = Math.random().toString(36).substring(7);
+    localStorage.setItem(TOKEN_KEY, randomToken);
+  }
+
+  private clearToken(): void {
+    // Remove the token from localStorage
+    localStorage.removeItem(TOKEN_KEY);
   }
 
   getSanctum() {

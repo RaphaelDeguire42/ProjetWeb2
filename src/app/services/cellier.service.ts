@@ -18,9 +18,8 @@ export class CellierService {
     return this.httpClient.get<Array<Couleur>>(`${CELLIER_BASE_URL}/couleurs`, this.userService.getSanctum())
   }
 
-  getCelliersUtilisateur(): Observable<any> {
-      const id_utilisateur = this.userService.getUtilisateur().id;
-      return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/celliers?id_user[eq]=${id_utilisateur}&incluBouteilles=true`)
+  getCelliersUtilisateur(id_user:number): Observable<any> {
+      return this.httpClient.get<Array<Cellier>>(`${CELLIER_BASE_URL}/celliers?id_user[eq]=${id_user}&incluBouteilles=true`)
    }
 
    getCelliersUtilisateurSeulement(): Observable<any> {

@@ -13,7 +13,7 @@ export class BouteilleService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUneBouteille(id_bouteille:number): Observable<UneBouteille> {
-    return this.httpClient.get<UneBouteille>(`${BOUTEILLE_BASE_URL}/${id_bouteille}`)
+  getUneBouteille(id_bouteille:number): Observable<any> {
+    return this.httpClient.get<any>(`${BOUTEILLE_BASE_URL}/${id_bouteille}`)
   }
 }

@@ -2,7 +2,7 @@
     <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
         <img class="mb-1 mt-3 mx-auto h-[200px]"
         [ngClass]="{'h-200': !modePleinEcran, 'h-[360px] ml-3 mb-3': modePleinEcran}" [src]="bouteille.url_img"
-        alt="">
+        alt="" (click)="navigateToBouteille(bouteille.id)">
         <div class="w-full" [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
 
             <mat-card-header class="">

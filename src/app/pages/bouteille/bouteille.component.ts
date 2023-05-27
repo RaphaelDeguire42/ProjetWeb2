@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bouteille, UneBouteille } from 'src/app/models/models';
 import { BouteilleService } from 'src/app/services/bouteille.service';
@@ -9,30 +10,27 @@ import { BouteilleService } from 'src/app/services/bouteille.service';
   styleUrls: ['./bouteille.component.scss']
 })
 export class BouteilleComponent {
-  bouteille:UneBouteille = {} as UneBouteille;
+  bouteille:any;
+  formBouteille: FormGroup;
 
-  constructor(private route:ActivatedRoute, private router: Router, private bouteilleService: BouteilleService ){
+
+  constructor(private route:ActivatedRoute, private router: Router, private bouteilleService: BouteilleService, private fb: FormBuilder ){
+    this.formBouteille = this.fb.group({
+      commentaire: ['']
+    });
     this.route.params.subscribe((param) => {
      const id_bouteille = param['id'];
      this.bouteilleService.getUneBouteille(id_bouteille).subscribe((bouteille)=>{
-      this.bouteille = bouteille;
-      console.log(this.bouteille)
-      this.bouteille.noteCommentaire = [
-        {
-        note: 5,
-        commentaire: 'atomique',
-        id:8},
-        {
-        note: 2,
-        commentaire: 'sulfruique',
-        id:2
-        }
-      ]
+      this.bouteille = bouteille.data;
      })
     })
   }
 
   ngOnInit(){
 
+  }
+
+  envoyerCommentaire(){
+    
   }
 }

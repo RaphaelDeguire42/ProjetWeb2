@@ -1,7 +1,12 @@
-
-<h1>Connexion</h1>
+<h1>Créer un compte</h1>
 <ng-container *ngIf="formConnexion">
   <form [formGroup]="formConnexion">
+    <mat-form-field appearance="fill">
+
+      <mat-label>Nom :</mat-label>
+      <input matInput formControlName="name" type="text" />
+    </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Courriel :</mat-label>
       <input matInput formControlName="email" type="email" />
@@ -14,9 +19,9 @@
 
     <div class="action">
       <div class="action__group">
-        <button mat-raised-button color="primary" (click)="connexion()" [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
+        <button mat-raised-button color="primary" (click)="creerUnCompte()" [disabled]="!formConnexion.dirty || !formConnexion.valid">Créer un compte</button>
       </div>
     </div>
   </form>
 </ng-container>
-<a mat-button routerLink="/creer-un-compte">Vous n'avez pas encore de compte? Cliquer ici.</a>
+<a mat-button routerLink="/connexion">Vous avez déjà un compte? Cliquer ici.</a>

@@ -15,25 +15,27 @@ function passwordValidator(control: AbstractControl): ValidationErrors | null {
 }
 
 @Component({
-  selector: 'app-connexion',
-  templateUrl: './connexion.component.html',
-  styleUrls: ['./connexion.component.scss']
+  selector: 'app-creer-un-compte',
+  templateUrl: './creer-un-compte.component.html',
+  styleUrls: ['../connexion/connexion.component.scss']
 })
-
-export class ConnexionComponent {
+export class CreerUnCompteComponent {
   formConnexion: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit() {
     this.formConnexion = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, passwordValidator]],
     });
   }
 
-  connexion() {
-    const formData = this.formConnexion.value;
-    const isConnexion = this.userService.nouvelleConnexion(formData)
+
+  creerUnCompte() {
+    let formData = this.formConnexion.value;
+    formData.id_role = 2;
+    this.userService.creerUnCompte(formData);
   }
 }

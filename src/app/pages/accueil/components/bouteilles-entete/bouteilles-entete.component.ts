@@ -2,7 +2,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-bouteilles-entete',
-  templateUrl: './bouteilles-entete.component.html'
+  templateUrl: './bouteilles-entete.component.html',
+  styleUrls: ['./bouteilles-entete.component.scss']
 })
 export class BouteillesEnteteComponent {
   @Output() colonneNombreChangement = new EventEmitter<number>();

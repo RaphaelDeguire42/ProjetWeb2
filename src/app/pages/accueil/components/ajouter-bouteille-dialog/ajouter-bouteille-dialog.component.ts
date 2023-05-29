@@ -41,9 +41,9 @@ export class AjouterBouteilleDialogComponent {
   ngOnInit(): void {
     this.id_bouteille = this.data.id_bouteille??null;
     this.id_cellier = this.data.id_cellier??null;
-
     this.celliersSubscription = this.cellierService.getCelliersUtilisateurSeulement().subscribe((celliersUser ) => {
       this.celliers = celliersUser.data;
+      console.log(celliersUser)
       if(!this.id_bouteille){
         this.id_cellier_placeholder = this.id_cellier;
       } else {

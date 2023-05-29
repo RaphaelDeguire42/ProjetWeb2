@@ -4,7 +4,8 @@ import { PanierService } from 'src/app/services/panier.service';
 
 @Component({
   selector: 'app-panier',
-  templateUrl: './panier.component.html'
+  templateUrl: './panier.component.html',
+  styleUrls: ['./panier.component.scss']
 })
 export class PanierComponent implements OnInit {
   panier: Panier = { items: [{
@@ -21,7 +22,6 @@ export class PanierComponent implements OnInit {
   }]};
   sourceDonnees: Array<PanierItem> = [];
   colonneAffiche: Array<string> = [
-    'bouteille',
     'nom',
     'prix',
     'quantite',

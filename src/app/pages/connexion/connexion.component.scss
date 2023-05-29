@@ -1,0 +1,17 @@
+:host{
+    margin: auto auto;
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    display: block;
+    width: fit-content;
+    text-align: center;
+    height: 100vh;
+    padding: 25vh 0;
+    h1{
+        font-family: Literata;
+    }
+}

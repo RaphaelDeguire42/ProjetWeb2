@@ -5,23 +5,19 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
 import { CellierService } from 'src/app/services/cellier.service';
 import { UserService } from 'src/app/services/user.service';
 
-const HAUTEUR_RANGEE: { [id:number]: number} = {1: 600, 3: 450, 4: 550 }
-
 @Component({
   selector: 'app-accueil',
-  templateUrl: './accueil.component.html'
+  templateUrl: './accueil.component.html',
+  styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit, OnDestroy {
-  cols = 3;
-  hauteurRangee = HAUTEUR_RANGEE[this.cols];
   types: number[] | undefined;
   formats: number[] | undefined;
   pays: number[] | undefined;
-  bouteilles: any;
+  bouteilles: any | null;
   bouteilleSubscription: Subscription | undefined;
   celliers: Array<Cellier> | undefined;
   tri = 'desc';
-  nombre = '12';
   cellierSubscription: Subscription | undefined;
   isChargement = false;
 
@@ -33,8 +29,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   getBouteilles(): void {
-    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.nombre, this.tri, this.types, this.formats, this.pays)
+    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.tri, this.types, this.formats, this.pays)
       .subscribe((_bouteilles)=>{
+        if(_bouteilles) this.bouteilles = null;
         this.bouteilles = _bouteilles.data;
       })
   }
@@ -43,27 +40,18 @@ export class AccueilComponent implements OnInit, OnDestroy {
     this.isChargement = true;
     this.catalogueService.getNouvelleBouteilles().subscribe(bouteilles =>{
       const aBouteille = bouteilles.nouvellesBouteilles;
-      console.log(this.bouteilles)
-      console.log(aBouteille)
       this.bouteilles!.push(...aBouteille);
-      console.log(this.bouteilles)
       this.isChargement = false;
     })
   }
 
   getCelliersUtilisateur(): void {
-    const id_user = parseInt(localStorage.getItem('user_id')||''); 
+    const id_user = parseInt(localStorage.getItem('user_id')||'');
     this.cellierSubscription = this.cellierService.getCelliersUtilisateur(id_user)
       .subscribe((_celliers)=>{
         this.celliers = _celliers;
       })
   }
-
-  onColonneNombreChangement(colsNum: number): void {
-    this.cols = colsNum;
-    this.hauteurRangee = HAUTEUR_RANGEE[this.cols];
-  }
-
 
   onVoirType(nouveauTypes:number[]):void {
     this.types = nouveauTypes;
@@ -90,11 +78,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
       id: product.id
     });
     */
-  }
-
-  onItemsNombreChangement(nouveauNombre: number):void {
-    this.nombre = nouveauNombre.toString();
-    this.getBouteilles();
   }
 
   onTriChangement(nouveauTri: string):void {

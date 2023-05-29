@@ -1,28 +1,21 @@
-<mat-card *ngIf="bouteille" [ngClass]="{'text-center': !modePleinEcran}" >
-    <div [ngClass]="{'flex': modePleinEcran}" class="px-3">
-        <img class="mb-1 mt-3 mx-auto h-[200px]"
-        [ngClass]="{'h-200': !modePleinEcran, 'h-[360px] ml-3 mb-3': modePleinEcran}" [src]="bouteille.url_img"
-        alt="" (click)="navigateToBouteille(bouteille.id)">
-        <div class="w-full" [ngClass]="{'px-8 py-3 flex flex-col justify-between': modePleinEcran}">
-
-            <mat-card-header class="">
-                <p class="truncate hover:whitespace-normal font-bold text-lg leading-tight link" (click)="navigateToBouteille(bouteille.id)">{{bouteille.nom }}</p>
+<mat-card *ngIf="bouteille">
+    <div >
+        <img class="bouteilleImg" [src]="bouteille.url_img" alt="" (click)="navigateToBouteille(bouteille.id)">
+        <div>
+            <mat-card-header>
+                <p class="link" (click)="navigateToBouteille(bouteille.id)">{{bouteille.nom }}</p>
                 <p *ngIf="modePleinEcran"></p>
             </mat-card-header>
-            <mat-card-content class="">
-                <span class="text-red-400">{{ bouteille.prix | currency }}</span>
-
+            <mat-card-content>
+                <span class="price">{{ bouteille.prix | currency }}</span>
                 <button (click)="onAjouterAuPanier()">
-                    <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+                    <mat-icon>shopping_cart</mat-icon>
                 </button>
             </mat-card-content>
-            <mat-card-actions class="items-center">
-                <button mat-raised-button color="primary" (click)="openAjouterBouteilleDialog(bouteille.id)"
-                class="tracking-tighter">
-                    Ajouter au cellier
-                </button>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="openAjouterBouteilleDialog(bouteille.id)">Ajouter au cellier</button>
             </mat-card-actions>
-            <mat-card-footer class="items-center p-3">
+            <mat-card-footer>
                 <button mat-mini-fab color="accent" class="btnEdit" (click)="openModifierBouteilleDialog(bouteille.id)">
                     <mat-icon>edit</mat-icon>
                 </button>

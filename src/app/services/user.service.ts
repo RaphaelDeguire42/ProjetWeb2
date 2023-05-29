@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Login, Role, Utilisateur } from '../models/models';
+import { Compte, Login, Role, Utilisateur } from '../models/models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class UserService {
   estConnecter: boolean = false;
 
   constructor(private httpClient: HttpClient, private router: Router) {
-    this.loadToken(); // Load token from storage on service initialization
+    this.loadToken();
     this.updateHttpOption();
   }
 
@@ -37,14 +37,21 @@ export class UserService {
     return this.httpClient.post<Login>(`${USER_BASE_URL}/login`, login);
   }
 
+  creerUnCompte(compte: Compte): Observable<any> {
+    return this.httpClient.post<Login>(`${USER_BASE_URL}/register`, compte);
+  }
+
   nouvelleConnexion(login: Login): void {
     this.connexion(login).subscribe((data) => {
-      this.token = data.token;
-      this.utilisateur = data.user;
-      this.estConnecter = true;
-      this.updateHttpOption();
-      this.saveToken(); // Save token to storage
-      this.router.navigate(['/accueil']);
+      if (data) {
+        console.log(data);
+        this.token = data.token;
+        this.utilisateur = data.user;
+        this.estConnecter = true;
+        this.saveUserData();
+        this.updateHttpOption();
+        this.router.navigate(['/accueil']);
+      }
     });
   }
 
@@ -63,25 +70,31 @@ export class UserService {
     this.httpOption = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.token
       })
     };
   }
 
+
   private loadToken(): void {
-    // Load token from localStorage
-    this.token = localStorage.getItem(TOKEN_KEY) || '';
+    const data = localStorage.getItem(TOKEN_KEY);
+    if (data) {
+      const parsedData = JSON.parse(data);
+      this.token = parsedData.token || '';
+      this.utilisateur.id = parseInt(parsedData.id, 10) || 0;
+    }
   }
 
-  private saveToken(): void {
-    // Generate a random string as the stored token
-    const id_user = this.utilisateur.id.toString();
-    localStorage.setItem(TOKEN_KEY, id_user);
+  private saveUserData(): void {
+    const data = {
+      id: this.utilisateur.id.toString(),
+      token: this.token
+    };
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(data));
   }
 
   private clearToken(): void {
-    // Remove the token from localStorage
     localStorage.removeItem(TOKEN_KEY);
   }
 

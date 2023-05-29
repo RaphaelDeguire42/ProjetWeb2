@@ -141,3 +141,10 @@ export interface Login {
     courriel: string;
     mot_de_passe: string;
 }
+
+export interface Compte {
+    nom: string;
+    courriel: string;
+    mot_de_passe: string;
+    id_role: number;
+}

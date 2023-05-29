@@ -1,11 +1,9 @@
 :host {
   position: relative;
   width: 100%;
-  &:hover {
-    .bouteilleImg {
-      transform: scale(1.1);
-    }
-  }
+}
+:host:hover .bouteilleImg {
+  transform: scale(1.1);
 }
 
 .btnEdit {
@@ -54,7 +52,7 @@ img {
   background-color: #ccc;
 }
 
-mat-card-content{
+mat-card-content {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -92,4 +90,4 @@ mat-card-footer {
   align-items: center;
   width: 3rem;
   height: 3rem;
-}
+}/*# sourceMappingURL=une-bouteille.component.css.map */

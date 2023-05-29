@@ -5,7 +5,8 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
   selector: 'app-filtres',
-  templateUrl: './filtres.component.html'
+  templateUrl: './filtres.component.html',
+  styleUrls: ['./filtres.component.scss'],
 })
 export class FiltresComponent implements OnInit, OnDestroy {
   @Output() showType = new EventEmitter<number[]>();

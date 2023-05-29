@@ -1,0 +1,12 @@
+:host {
+  background-color: #fdfcf2;
+}
+
+mat-expansion-panel {
+  background-color: #fbf8dd;
+  font-weight: bold;
+}
+
+.mat-expansion-panel + .mat-expansion-panel {
+  margin-top: 12px;
+}/*# sourceMappingURL=filtres.component.css.map */

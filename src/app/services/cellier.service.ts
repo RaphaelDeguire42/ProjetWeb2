@@ -14,7 +14,8 @@ export class CellierService {
 
   constructor(private httpClient: HttpClient, private userService: UserService, private snackBar: MatSnackBar) { }
 
-  getCouleurs(): Observable<Array<Couleur>> {
+  getCouleurs(): Observable<any> {
+    console.log(this.userService.getSanctum())
     return this.httpClient.get<Array<Couleur>>(`${CELLIER_BASE_URL}/couleurs`, this.userService.getSanctum())
   }
 

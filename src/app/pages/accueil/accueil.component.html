@@ -1,33 +1,29 @@
-<mat-drawer-container
-[autosize]="true"
-class="min-h-full"
->
-    <mat-drawer mode="side" opened class="p-6">
+<mat-drawer-container [autosize]="true">
+    <mat-drawer mode="side" opened >
         <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
     </mat-drawer>
-    <mat-drawer-content class="p-6">
+    <mat-drawer-content>
         <app-bouteilles-entete
-        (colonneNombreChangement)="onColonneNombreChangement($event)"
-        (itemsNombreChangement)="onItemsNombreChangement($event)"
         (ajouterAuPanier)="onAjouterAuPanier($event)"
         (triChangement)="onTriChangement($event)"
         ></app-bouteilles-entete>
-        <button mat-raised-button color="primary" class="my-3" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
-        <mat-grid-list
-        gutterSize="16"
-            [cols]="cols"
-            [rowHeight] = 'hauteurRangee'
-            >
-            <ng-container *ngFor="let bouteille of bouteilles">
-                <mat-grid-tile *ngIf="bouteille.actif">
-                    <app-une-bouteille
-                    [bouteille]="bouteille"
-                    (ajouterAuPanier)="onAjouterAuPanier($event)"
-                    (bouteilleSupprime)="supprimerBouteille($event)"
-                    (bouteilleModifiee)="modifierBouteille($event)"
-                    class="w-full"
-                    [modePleinEcran]="cols === 1"></app-une-bouteille>
-                </mat-grid-tile>
+        <button mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
+        <mat-grid-list gutterSize="16" [cols]="3" [rowHeight]="450">
+            <ng-container *ngIf="bouteilles">
+                <ng-container *ngFor="let bouteille of bouteilles">
+                    <mat-grid-tile *ngIf="bouteille.actif">
+                        <app-une-bouteille
+                            [bouteille]="bouteille"
+                            (ajouterAuPanier)="onAjouterAuPanier($event)"
+                            (bouteilleSupprime)="supprimerBouteille($event)"
+                            (bouteilleModifiee)="modifierBouteille($event)">
+                        </app-une-bouteille>
+                    </mat-grid-tile>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="bouteilles && bouteilles.length! == 0">
+                <p>Aucune bouteille pour le moment.</p>
             </ng-container>
 
             <div *ngIf="isChargement">

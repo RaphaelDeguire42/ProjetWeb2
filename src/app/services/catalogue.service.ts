@@ -42,7 +42,7 @@ export class CatalogueService {
   constructor(private httpClient: HttpClient) { }
 
 
-  getAllBouteilles(limit = '12', prix?:string, types?: number[], formats?: number[], pays?: number[]): Observable<any> {
+  getAllBouteilles(prix?:string, types?: number[], formats?: number[], pays?: number[]): Observable<any> {
     let premier = true,
       queryString = '',
       queries = [

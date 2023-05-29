@@ -72,9 +72,7 @@ export class UnCellierComponent {
       if (result === 'confirm') {
         this.cellierService.supprimerBouteilleCellier(id_bouteille_cellier).subscribe(() => {
           this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== id_bouteille_cellier);
-          this.snackBar.open(`La bouteille a été supprimée du cellier.`, 'Fermer', {
-            duration: 5000,
-          });
+          this.snackBar.open(`La bouteille a été supprimée du cellier.`, 'Fermer', {duration: 3000});
         });
       }
     });
@@ -97,10 +95,9 @@ export class UnCellierComponent {
           this.cellierBouteilles = this.cellierBouteilles!.slice();
         }
 
-        this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
-          duration: 3000
-        });
-        this.cellierService.modifierBouteilleCellier(bouteilleModifiee).subscribe(response => {})
+        this.cellierService.modifierBouteilleCellier(bouteilleModifiee).subscribe(response => {
+          if(response) this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {duration: 3000});
+        })
       }
     });
   }
@@ -113,13 +110,9 @@ export class UnCellierComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if(result){
         this.cellierService.ajouterBouteilleCellier(result).subscribe(response => {
-          this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {
-            duration: 3000
-          });
+          if(response) this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {duration: 3000});
         })
-      }
     });
   }
 
@@ -127,10 +120,10 @@ export class UnCellierComponent {
     bouteille.quantite -= 1;
     if(bouteille.quantite === 0){
       this.cellierService.supprimerBouteilleCellier(bouteille.id).subscribe((response)=>{
-        this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== bouteille.id);
-        this.snackBar.open('Votre bouteille a été supprimée du cellier.', 'Fermer', {
-          duration: 3000
-        });
+        if(response){
+          this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== bouteille.id);
+          this.snackBar.open('Votre bouteille a été supprimée du cellier.', 'Fermer', {duration: 3000});
+        }
       });
     } else {
     this.cellierService.soustraireQteBouteille(bouteille);
@@ -145,7 +138,7 @@ export class UnCellierComponent {
     const target = event.target as HTMLInputElement;
     const filterValue = target.value.toLowerCase().trim();
 
-    this.cellierBouteilles = this.originalCellierBouteilles.filter((bouteille: CellierBouteille) => {
+    this.cellierBouteilles = this.originalCellierBouteilles!.filter((bouteille: CellierBouteille) => {
         const name = bouteille.nom.toLowerCase();
         return name.includes(filterValue);
     });

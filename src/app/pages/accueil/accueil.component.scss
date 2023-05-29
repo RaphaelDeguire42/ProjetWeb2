@@ -30,3 +30,32 @@
 .un-cellier-margin-bottom {
   margin-bottom: 1.5rem;
 }
+
+
+.searchBar{
+  padding: 0.5em 0.75em;
+
+}
+
+.searchBar {
+  background-color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  width: 300px;
+  outline: none;
+  margin-bottom: 5px;
+}
+.searchBar:focus {
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+.actions{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

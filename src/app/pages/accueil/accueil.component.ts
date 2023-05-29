@@ -20,7 +20,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   tri = 'desc';
   cellierSubscription: Subscription | undefined;
   isChargement = false;
-
+  originalBouteilles: any[] = [];
 
   constructor(private catalogueService: CatalogueService, private cellierService: CellierService) {}
 
@@ -32,8 +32,11 @@ export class AccueilComponent implements OnInit, OnDestroy {
   getBouteilles(): void {
     this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.tri, this.types, this.formats, this.pays)
       .subscribe((_bouteilles)=>{
-        if(_bouteilles) this.bouteilles = null;
-        this.bouteilles = _bouteilles.data;
+        if (_bouteilles) {
+          this.bouteilles = null;
+          this.originalBouteilles = _bouteilles.data; 
+          this.bouteilles = this.originalBouteilles;
+        }
       })
   }
 
@@ -104,5 +107,16 @@ export class AccueilComponent implements OnInit, OnDestroy {
     if (index !== undefined && index !== -1) {
       this.bouteilles![index] = bouteilleModifiee;
     }
+  }
+
+  recherche(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const filterValue = target.value.toLowerCase().trim();
+    console.log(filterValue)
+
+    this.bouteilles = this.originalBouteilles!.filter((bouteille: Bouteille) => {
+        const name = bouteille.nom.toLowerCase();
+        return name.includes(filterValue);
+    });
   }
 }

@@ -15,20 +15,30 @@
 
       </div>
    </div>
-   <a href="{{bouteille.url_saq}}" target="_blank">Voir la bouteille</a>
+   <a href="{{bouteille.url_saq}}" target="_blank" class="link">Voir la bouteille sur le site de la SAQ</a>
 
    <form [formGroup]="formBouteille">
+      <mat-form-field appearance="fill" class="note">
+         <mat-label>Note :</mat-label>
+         <input matInput formControlName="note" type="number">
+         <mat-error *ngIf="formBouteille.get('note')!.invalid && formBouteille.get('note')!.touched">
+            Veuillez entrer une note entre 1 et 5.
+         </mat-error>
+      </mat-form-field>
+      <br>
       <mat-form-field appearance="fill">
          <mat-label>Commentaire :</mat-label>
          <input matInput formControlName="commentaire" type="text" />
       </mat-form-field>
-      <button class="buttonSend" mat-raised-button color="primary" (click)="envoyerCommentaire()">Envoyer</button>
+
+
+      <button class="buttonSend" mat-raised-button color="primary" (click)="envoyerCommentaire()" [disabled]="!formBouteille.dirty || !formBouteille.valid">Envoyer</button>
    </form>
 
-    <ng-container *ngFor="let nc of bouteille.note_commentaires">
+    <ng-container *ngFor="let nc of note_commentaires">
       <div class="noteBox">
-         <p>Note:{{nc.note}}</p>
-         <p>Commentaire: {{nc.commentaire}}</p>
+         <p *ngIf="nc.note">Note: {{nc.note}}</p>
+         <p *ngIf="nc.commentaire">Commentaire: {{nc.commentaire}}</p>
       </div>
    </ng-container>
 

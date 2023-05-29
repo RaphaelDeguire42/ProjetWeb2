@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EnteteComponent } from './components/entete/entete.component';
@@ -30,11 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { UnCellierComponent } from './pages/cellier/components/un-cellier/un-cellier.component';
 import { NouveauCellierDialogComponent } from './pages/cellier/components/nouveau-cellier-dialog/nouveau-cellier-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatOption, MatOptionModule } from '@angular/material/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 import { AjouterBouteilleDialogComponent } from './pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
@@ -104,6 +106,7 @@ import { PageAccueilComponent } from './pages/page-accueil/page-accueil.componen
     MatTableModule,
     MatBadgeModule,
     MatSnackBarModule,
+    MatSliderModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

@@ -37,9 +37,9 @@ export interface UneBouteille {
 }
 
 export interface NoteCommentaire {
-    note: number;
-    commentaire: string;
-    id: number;
+    note?: number;
+    commentaire?: string;
+    id?: number;
     id_user?: number;
     id_bouteille?: number;
 }

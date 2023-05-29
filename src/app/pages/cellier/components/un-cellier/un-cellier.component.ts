@@ -109,10 +109,13 @@ export class UnCellierComponent {
       data: { id_cellier: this.cellier!.id }
     });
 
+
     dialogRef.afterClosed().subscribe((result) => {
-        this.cellierService.ajouterBouteilleCellier(result).subscribe(response => {
-          if(response) this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {duration: 3000});
-        })
+      this.cellierService.ajouterBouteilleCellier(result).subscribe((response) => {
+        if (response) {
+          this.snackBar.open('Votre bouteille a été ajoutée au cellier.', 'Fermer', { duration: 3000 });
+        }
+      });
     });
   }
 

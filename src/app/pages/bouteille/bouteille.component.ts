@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Bouteille, UneBouteille } from 'src/app/models/models';
+import { Bouteille, NoteCommentaire, UneBouteille } from 'src/app/models/models';
 import { BouteilleService } from 'src/app/services/bouteille.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,7 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class BouteilleComponent {
   bouteille:any;
-  note_commentaires:any;
+  note_commentaires: NoteCommentaire[] = [];
+
   formBouteille: FormGroup;
 
 
@@ -35,17 +36,25 @@ export class BouteilleComponent {
 
   }
 
-  envoyerCommentaire(){
-    const formData = this.formBouteille.value
-    if(formData.commentaire == "") delete formData.commentaire
-    if(formData.note == "") delete formData.note
-    formData.id_bouteille = this.bouteille.id
-    formData.id_user = this.userService.getUtilisateur().id
-    this.bouteilleService.envoyerNoteCommentaire(formData).subscribe((response)=>{
-      if(response){
-        this.note_commentaires.push(response)
-        this.snackBar.open('Votre commentaire a été enregistré.', 'Fermer', {duration: 3000});
+  envoyerCommentaire() {
+    const formData = this.formBouteille.value;
+    if (formData.commentaire === "") delete formData.commentaire;
+    if (formData.note === "") delete formData.note;
+    formData.id_bouteille = this.bouteille.id;
+    formData.id_user = this.userService.getUtilisateur().id;
+
+    const existingNoteCommentaireIndex = this.note_commentaires.findIndex(
+      nc => nc.id_user === formData.id_user
+    );
+
+    this.bouteilleService.envoyerNoteCommentaire(formData).subscribe((response) => {
+      if (response) {
+        if (existingNoteCommentaireIndex !== -1)
+          this.note_commentaires[existingNoteCommentaireIndex] = response;
+        else
+          this.note_commentaires.push(response);
       }
-    })
+    });
   }
+
 }

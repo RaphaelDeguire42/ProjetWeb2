@@ -1,22 +1,25 @@
+<div class="connexion__container">
+  <h1>Connexion</h1>
+  <ng-container *ngIf="formConnexion">
+    <form [formGroup]="formConnexion">
+      <mat-form-field appearance="fill">
+        <mat-label>Courriel :</mat-label>
+        <input matInput formControlName="email" type="email" />
+      </mat-form-field>
 
-<h1>Connexion</h1>
-<ng-container *ngIf="formConnexion">
-  <form [formGroup]="formConnexion">
-    <mat-form-field appearance="fill">
-      <mat-label>Courriel :</mat-label>
-      <input matInput formControlName="email" type="email" />
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Mot de passe :</mat-label>
+        <input matInput formControlName="password" type="password" />
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Mot de passe :</mat-label>
-      <input matInput formControlName="password" type="password" />
-    </mat-form-field>
-
-    <div class="action">
-      <div class="action__group">
-        <button mat-raised-button color="primary" (click)="connexion()" [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
+      <div class="action">
+        <div class="action__group">
+          <button mat-raised-button color="primary" (click)="connexion()" [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
+        </div>
       </div>
-    </div>
-  </form>
-</ng-container>
-<a mat-button routerLink="/creer-un-compte">Vous n'avez pas encore de compte? Cliquer ici.</a>
+    </form>
+  </ng-container>
+  <p>Vous n'avez pas encore de compte?<a mat-button routerLink="/creer-un-compte">Cliquer ici.</a></p>
+</div>
+
+<div class="connexion__img"></div>

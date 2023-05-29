@@ -11,7 +11,8 @@ const HAUTEUR_RANGEE: { [id: number]: number } = { 1: 400, 3: 428, 4: 350 };
 
 @Component({
   selector: 'app-cellier',
-  templateUrl: './cellier.component.html'
+  templateUrl: './cellier.component.html',
+  styleUrls: ['./cellier.component.scss']
 })
 export class CellierComponent implements OnInit, OnDestroy {
   cols = 3;
@@ -26,7 +27,6 @@ export class CellierComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.getCelliers();
-
   }
 
   getCelliers(): void {
@@ -37,31 +37,8 @@ export class CellierComponent implements OnInit, OnDestroy {
       })
   }
 
-  onColonneNombreChangement(colsNum: number): void {
-    this.cols = colsNum;
-    this.hauteurRangee = HAUTEUR_RANGEE[this.cols];
-  }
-
   onVoirType(nouveauType:string):void {
     this.type = nouveauType;
-    this.getCelliers();
-  }
-
-  onAjouterAuPanier(product: any):void {
-    /*
-    this.cartService.ajouterAuPanier({
-      product: product.image,
-      name: product.title,
-      price: product.price,
-      quantity: 1,
-      id: product.id
-    });
-    */
-  }
-
-
-  onTriChangement(nouveauTri: string):void {
-    this.tri = nouveauTri;
     this.getCelliers();
   }
 
@@ -89,9 +66,7 @@ export class CellierComponent implements OnInit, OnDestroy {
     console.log(id_cellier)
     this.cellierService.supprimerCellier(id_cellier).subscribe(() => {
       this.celliers = this.celliers?.filter(cellier => cellier.id !== id_cellier);
-      this.snackBar.open(`Le cellier a été supprimé.`, 'Fermer', {
-        duration: 5000,
-      });
+      this.snackBar.open(`Le cellier a été supprimé.`, 'Fermer', {duration: 3000});
     });
   }
 
@@ -99,9 +74,7 @@ export class CellierComponent implements OnInit, OnDestroy {
     this.cellierService.nouveauCellier(cellier).subscribe((id_cellier)=>{
       cellier.id = id_cellier.id;
       this.celliers!.push(cellier);
-      this.snackBar.open(`Le cellier a été ajouté.`, 'Fermer', {
-        duration: 5000,
-      });
+      this.snackBar.open(`Le cellier a été ajouté.`, 'Fermer', {duration: 3000});
     })
   }
 }

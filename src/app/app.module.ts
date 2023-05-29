@@ -52,6 +52,7 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
+import { CreerUnCompteComponent } from './pages/creer-un-compte/creer-un-compte.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { MatSortModule } from '@angular/material/sort';
     ErreurComponent,
     ErreurDialogComponent,
     BouteilleComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    CreerUnCompteComponent
   ],
   imports: [
     BrowserModule,

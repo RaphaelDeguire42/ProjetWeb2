@@ -47,10 +47,8 @@ export class UneBouteilleComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.cellierService.ajouterBouteilleCellier(result).subscribe(response => {
-        this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {
-          duration: 3000
-        });
-      })
+          this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {duration: 3000});
+        })
       }
     });
   }
@@ -64,9 +62,7 @@ export class UneBouteilleComponent {
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
       this.catalogueService.modifierBouteille(bouteilleModifiee).subscribe(response => {
         if(response){
-          this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {
-            duration: 3000
-          });
+          this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {duration: 3000});
           this.bouteille = bouteilleModifiee;
           this.bouteilleModifiee.emit(bouteilleModifiee);
         }

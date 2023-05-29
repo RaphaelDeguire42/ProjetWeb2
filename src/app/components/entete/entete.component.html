@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="">
+<mat-toolbar color="primary">
     <div class="logo">
         <a routerLink="/accueil" class="nav-link">Vino</a>
     </div>
@@ -17,26 +17,26 @@
         <a routerLink="/connexion" mat-raised-button (click)="deconnexion()" class="logout">Déconnexion</a>
     </div>
     <mat-menu #menu="matMenu">
-        <div class="p-3 divide-y divide-solid">
-            <div class="pb-3 flex justify-between">
-                <span class="mr-16">{{ itemsQuantite }} Items</span>
+        <div class="menu">
+            <div class="menu__header">
+                <span>{{ itemsQuantite }} Items</span>
                 <a routerLink="panier">Voir Panier</a>
             </div>
-            <div *ngIf="panier.items.length" class="py-3">
-                <div *ngFor="let item of panier.items" class="flex justify-between font-light mb-2">
+            <div *ngIf="panier.items.length">
+                <div *ngFor="let item of panier.items" class="menu__item">
                     {{ item.nom }} x {{ item.quantite }}
-                    <span class="font-bold">{{ item.prix | currency }}</span>
+                    <span>{{ item.prix | currency }}</span>
                 </div>
             </div>
-            <div class="flex justify-between py-3 font-light">
+            <div class="menu__total">
                 Total:
-                <span class="font-bold">{{ getTotal(panier.items) | currency}}</span>
+                <span>{{ getTotal(panier.items) | currency}}</span>
             </div>
-            <div class="pt-3 flex justify-between">
-                <button (click)="onViderPanier()" class="bg-rose-600 text-white rounded-full w-9 h-9">
+            <div class="menu__actions">
+                <button mat-mini-fab (click)="onViderPanier()" color="warn">
                     <mat-icon>remove_shopping_panier</mat-icon>
                 </button>
-                <button routerLink="panier" class="bg-green-600 text-white rounded-full w-9 h-9">
+                <button mat-mini-fab routerLink="panier" color="primary">
                     <mat-icon>shopping_panier</mat-icon>
                 </button>
             </div>

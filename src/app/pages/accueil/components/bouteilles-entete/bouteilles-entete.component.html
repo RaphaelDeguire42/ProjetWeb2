@@ -1,14 +1,14 @@
-<mat-card class="mb-4">
-    <div class="flex justify-between">
-        <div>
-            <button mat-button [matMenuTriggerFor]="sortByMenu">
-                Trier par prix
-                <mat-icon>expand_more</mat-icon>
-            </button>
-            <mat-menu #sortByMenu="matMenu">
-                <button (click)="onModTri('desc')" mat-menu-item>Prix croissant</button>
-                <button (click)="onModTri('asc')" mat-menu-item>Prix décroissant</button>
-            </mat-menu>
-        </div>
+<mat-card class="card">
+    <div>
+      <div>
+        <button mat-button [matMenuTriggerFor]="sortByMenu">
+          Trier par prix
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #sortByMenu="matMenu">
+          <button (click)="onModTri('desc')" mat-menu-item>Prix croissant</button>
+          <button (click)="onModTri('asc')" mat-menu-item>Prix décroissant</button>
+        </mat-menu>
+      </div>
     </div>
-</mat-card>
+  </mat-card>

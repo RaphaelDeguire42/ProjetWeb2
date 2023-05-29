@@ -4,16 +4,15 @@
       <span class="pastille" [style.background-color]="cellier.hex_value"></span>{{cellier.nom}}
     </mat-panel-title>
     <mat-panel-description>
-      <button *ngIf="numberOfCelliers! > 1" (click)="supprimerCellier(cellier.id)" class="">
+      <button *ngIf="numberOfCelliers! > 1" (click)="supprimerCellier(cellier.id)">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <input type="text" placeholder="Search" (keyup)="recherche($event)">
+  <input type="text" placeholder="Recherche" (keyup)="recherche($event)" class="searchBar">
   <ng-container *ngIf="cellierBouteilles && cellierBouteilles.length > 0">
     <table mat-table class="mat-elevation-z8" [dataSource]="cellierBouteilles" matSort>
 
-      <!-- Define the table columns -->
       <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column | uppercase}} </th>
         <td mat-cell *matCellDef="let bouteille">
@@ -41,20 +40,14 @@
             </ng-container>
           </td>
       </ng-container>
-
-      <!-- Render the table header row -->
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-
-      <!-- Render the table rows -->
       <tr mat-row *matRowDef="let bouteille; columns: columnsToDisplay"></tr>
-
     </table>
   </ng-container>
 
   <ng-container *ngIf="!(cellierBouteilles && cellierBouteilles.length > 0)">
     <p>Aucune bouteilles pour le moment</p>
   </ng-container>
-
 
   <button mat-button color="primary" class="btnAjouterBouteille" (click)="ajouterBouteilleNonListee()">Ajouter une
     bouteille</button>

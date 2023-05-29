@@ -3,12 +3,12 @@
         <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
     </mat-drawer>
     <mat-drawer-content>
-        <app-bouteilles-entete
-        (ajouterAuPanier)="onAjouterAuPanier($event)"
-        (triChangement)="onTriChangement($event)"
-        ></app-bouteilles-entete>
+        <button mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
         <div class="actions">
-            <button mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
+            <app-bouteilles-entete
+            (ajouterAuPanier)="onAjouterAuPanier($event)"
+            (triChangement)="onTriChangement($event)"
+            ></app-bouteilles-entete>
             <input type="text" placeholder="Recherche" (keyup)="recherche($event)" class="searchBar">
         </div>
         <mat-grid-list gutterSize="16" [cols]="3" [rowHeight]="450">

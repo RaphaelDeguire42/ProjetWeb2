@@ -28,15 +28,16 @@ export class FiltresComponent implements OnInit, OnDestroy {
   ngOnInit():void {
     this.typesSubscription = this.catalogueService.getTypes()
     .subscribe((response) => {
-      this.types = response;
+      this.types = response.data;
+      console.log(this.types)
     });
     this.formatsSubscription = this.catalogueService.getFormats()
     .subscribe((response) => {
-      this.formats = response;
+      this.formats = response.data;
     });
     this.paysSubscription = this.catalogueService.getPays()
     .subscribe((response) => {
-      this.pays = response;
+      this.pays = response.data;
     });
   }
 
@@ -68,6 +69,7 @@ export class FiltresComponent implements OnInit, OnDestroy {
     }
     this.showFormat.emit(this.idFormatsSelectionner);
   }
+
   onVoirPays(pays: any):void {
     pays.selected = !pays.selected;
 

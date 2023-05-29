@@ -3,6 +3,7 @@ import { Injectable, Type } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Bouteille,TypeBouteille, Format, Pays } from '../models/models';
 import { Erreur } from '../models/models';
+import { UserService } from './user.service';
 
 const CATALOGUE_BASE_URL = 'http://localhost:8000/api';
 
@@ -39,7 +40,7 @@ const CATALOGUE_BASE_URL = 'http://localhost:8000/api';
 })
 export class CatalogueService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private userService: UserService) { }
 
 
   getAllBouteilles(prix?:string, types?: number[], formats?: number[], pays?: number[]): Observable<any> {
@@ -96,34 +97,33 @@ export class CatalogueService {
       queryString += `prix=${prix}`
       premier = false;
     }
-
     return this.httpClient.get<any>(`${CATALOGUE_BASE_URL}/bouteilles?
-    ${queryString}`);
+    ${queryString}`, this.userService.getSanctum());
 
   }
 
-  getTypes(): Observable<Array<TypeBouteille>> {
-    return this.httpClient.get<Array<TypeBouteille>>(`${CATALOGUE_BASE_URL}/types`)
+  getTypes(): Observable<any> {
+    return this.httpClient.get<any>(`${CATALOGUE_BASE_URL}/types`, this.userService.getSanctum())
   }
 
-  getFormats(): Observable<Array<Format>> {
-    return this.httpClient.get<Array<Format>>(`${CATALOGUE_BASE_URL}/formats`)
+  getFormats(): Observable<any> {
+    return this.httpClient.get<any>(`${CATALOGUE_BASE_URL}/formats`,this.userService.getSanctum())
   }
 
-  getPays(): Observable<Array<Pays>> {
-    return this.httpClient.get<Array<Pays>>(`${CATALOGUE_BASE_URL}/pays`)
+  getPays(): Observable<any> {
+    return this.httpClient.get<any>(`${CATALOGUE_BASE_URL}/pays`, this.userService.getSanctum())
   }
 
   getNouvelleBouteilles(): Observable<any>{
-    return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/crawl`);
+    return this.httpClient.get<Array<Bouteille>>(`${CATALOGUE_BASE_URL}/crawl`, this.userService.getSanctum());
   }
 
   ajouterNouvelleErreur(erreur:Erreur): Observable<any>{
-    return this.httpClient.post<Erreur>(`${CATALOGUE_BASE_URL}/erreur`, erreur);
+    return this.httpClient.post<Erreur>(`${CATALOGUE_BASE_URL}/erreur`, erreur, this.userService.getSanctum());
   }
 
   modifierBouteille(bouteille: Bouteille): Observable<any>{
     const id_bouteille = bouteille.id;
-    return this.httpClient.put<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles/${id_bouteille}`, bouteille)
+    return this.httpClient.put<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles/${id_bouteille}`, bouteille, this.userService.getSanctum())
   }
 }

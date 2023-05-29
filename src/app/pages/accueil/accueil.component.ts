@@ -26,6 +26,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.getBouteilles();
+
   }
 
   getBouteilles(): void {
@@ -55,6 +56,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   onVoirType(nouveauTypes:number[]):void {
     this.types = nouveauTypes;
+    console.log(this.types)
     this.getBouteilles();
   }
 
@@ -82,6 +84,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   onTriChangement(nouveauTri: string):void {
     this.tri = nouveauTri;
+
     this.getBouteilles();
   }
 

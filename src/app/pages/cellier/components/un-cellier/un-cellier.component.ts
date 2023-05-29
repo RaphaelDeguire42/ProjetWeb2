@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
@@ -7,6 +7,10 @@ import { CellierService } from 'src/app/services/cellier.service';
 import { Subscription } from 'rxjs';
 import { AjouterBouteilleDialogComponent } from 'src/app/pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
 import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-cellier-dialog/modifier-bouteille-cellier-dialog.component';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { DataSource } from '@angular/cdk/collections';
+
 
 
 @Component({
@@ -15,21 +19,31 @@ import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-c
   styleUrls: ['./un-cellier.component.scss']
 })
 export class UnCellierComponent {
+  @ViewChild(MatSort) sort!: MatSort;
+
   @Input() cellier: Cellier | undefined;
+  @Input() numberOfCelliers: number | undefined;
   @Output() cellierSupprime: EventEmitter<number> = new EventEmitter<number>();
   cellierBouteilles: Array<CellierBouteille> | undefined;
   bouteillesSubscription: Subscription | undefined;
   cellierId: number | undefined;
+  uneRecherche: string = "";
+  originalCellierBouteilles:any;
 
-  columnsToDisplay = ['nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+
+  columnsToDisplay = ['quantite', 'nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
+
+  ngAfterViewInit() {
+
+  }
 
   ngOnInit(): void {
     if (this.cellier) {
       this.cellierId = this.cellier.id;
-      this.cellierBouteilles = this.cellier.bouteillesDuCellier
+      this.cellierBouteilles = this.cellier.bouteillesDuCellier;
+      this.originalCellierBouteilles = this.cellier.bouteillesDuCellier;
     }
   }
 
@@ -108,5 +122,35 @@ export class UnCellierComponent {
       }
     });
   }
-}
 
+  onSupprimerQuantite(bouteille:any){
+    bouteille.quantite -= 1;
+    if(bouteille.quantite === 0){
+      this.cellierService.supprimerBouteilleCellier(bouteille.id).subscribe((response)=>{
+        this.cellierBouteilles = this.cellierBouteilles?.filter(cellierBouteille => cellierBouteille.id !== bouteille.id);
+        this.snackBar.open('Votre bouteille a été supprimée du cellier.', 'Fermer', {
+          duration: 3000
+        });
+      });
+    } else {
+    this.cellierService.soustraireQteBouteille(bouteille);
+  }
+  }
+
+  onAjouterQuantite(bouteille:any){
+    this.cellierService.ajouterQteBouteille(bouteille);
+  }
+
+  recherche(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const filterValue = target.value.toLowerCase().trim();
+
+    this.cellierBouteilles = this.originalCellierBouteilles.filter((bouteille: CellierBouteille) => {
+        const name = bouteille.nom.toLowerCase();
+        return name.includes(filterValue);
+    });
+
+  }
+
+
+}

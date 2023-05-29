@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 const USER_BASE_URL = 'http://localhost:8000/api';
+const TOKEN_KEY = 'user_id'; // Key to store the authentication token
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +14,18 @@ export class UserService {
   token: string = '';
 
   httpOption = {};
-  role:number|undefined = 0;
+  role: number | undefined = 0;
 
-  //utilisateur: Utilisateur = {} as Utilisateur;
-  utilisateur ={id:1,id_role:1};
-  estConnecter: boolean = true;
+  utilisateur: Utilisateur = {} as Utilisateur;
+
+  estConnecter: boolean = false;
 
   constructor(private httpClient: HttpClient, private router: Router) {
+    this.loadToken(); // Load token from storage on service initialization
     this.updateHttpOption();
   }
 
-  getUtilisateur(): Utilisateur|any {
+  getUtilisateur(): Utilisateur | any {
     return this.utilisateur;
   }
 
@@ -41,11 +43,19 @@ export class UserService {
       this.utilisateur = data.user;
       this.estConnecter = true;
       this.updateHttpOption();
+      this.saveToken(); // Save token to storage
       this.router.navigate(['/accueil']);
     });
   }
 
-  getRole():number|undefined{
+  deconnexion(): void {
+    this.token = ''; // Clear the token
+    this.estConnecter = false;
+    this.clearToken(); // Remove the token from storage
+    this.router.navigate(['/connexion']);
+  }
+
+  getRole(): number | undefined {
     return this.utilisateur.id_role;
   }
 
@@ -57,5 +67,25 @@ export class UserService {
         'Authorization': 'Bearer ' + this.token
       })
     };
+  }
+
+  private loadToken(): void {
+    // Load token from localStorage
+    this.token = localStorage.getItem(TOKEN_KEY) || '';
+  }
+
+  private saveToken(): void {
+    // Generate a random string as the stored token
+    const id_user = this.utilisateur.id.toString();
+    localStorage.setItem(TOKEN_KEY, id_user);
+  }
+
+  private clearToken(): void {
+    // Remove the token from localStorage
+    localStorage.removeItem(TOKEN_KEY);
+  }
+
+  getSanctum() {
+    return this.httpOption;
   }
 }

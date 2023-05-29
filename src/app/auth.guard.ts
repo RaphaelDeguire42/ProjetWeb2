@@ -10,9 +10,12 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     const isConnecter = this.userService.isConnecter();
-    if (!isConnecter) {
+    const tokenExists = localStorage.getItem('user_id') !== null;
+
+    if (!isConnecter && !tokenExists) {
       this.router.navigate(['/connexion']);
     }
-    return isConnecter;
+
+    return isConnecter || tokenExists;
   }
 }

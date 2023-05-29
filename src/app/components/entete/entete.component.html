@@ -1,15 +1,21 @@
-<mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
-    <a routerLink="/accueil">Vino</a>
-    <a routerLink="/accueil">Catalogue</a>
-    <a routerLink="/cellier">Mes Celliers</a>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon
-            [matBadge]="itemsQuantite"
-            [matBadgeHidden]="!itemsQuantite"
-            matBadgeColor="warn"
-        >shopping_panier</mat-icon>
-    </button>
+<mat-toolbar color="primary" class="">
+    <div class="logo">
+        <a routerLink="/accueil" class="nav-link">Vino</a>
+    </div>
+    <nav>
+        <a routerLink="/accueil" class="nav-link">Catalogue</a>
+        <a routerLink="/cellier" class="nav-link">Mes Celliers</a>
+    </nav>
+    <div class="actions">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon
+                [matBadge]="itemsQuantite"
+                [matBadgeHidden]="!itemsQuantite"
+                matBadgeColor="accent">shopping_cart
+            </mat-icon>
+        </button>
+        <a routerLink="/connexion" mat-raised-button (click)="deconnexion()" class="logout">Déconnexion</a>
+    </div>
     <mat-menu #menu="matMenu">
         <div class="p-3 divide-y divide-solid">
             <div class="pb-3 flex justify-between">
@@ -17,9 +23,7 @@
                 <a routerLink="panier">Voir Panier</a>
             </div>
             <div *ngIf="panier.items.length" class="py-3">
-                <div
-                *ngFor="let item of panier.items"
-                class="flex justify-between font-light mb-2">
+                <div *ngFor="let item of panier.items" class="flex justify-between font-light mb-2">
                     {{ item.nom }} x {{ item.quantite }}
                     <span class="font-bold">{{ item.prix | currency }}</span>
                 </div>
@@ -29,14 +33,10 @@
                 <span class="font-bold">{{ getTotal(panier.items) | currency}}</span>
             </div>
             <div class="pt-3 flex justify-between">
-                <button
-                (click)="onViderPanier()"
-                class="bg-rose-600 text-white rounded-full w-9 h-9">
+                <button (click)="onViderPanier()" class="bg-rose-600 text-white rounded-full w-9 h-9">
                     <mat-icon>remove_shopping_panier</mat-icon>
                 </button>
-                <button
-                    routerLink="panier"
-                    class="bg-green-600 text-white rounded-full w-9 h-9">
+                <button routerLink="panier" class="bg-green-600 text-white rounded-full w-9 h-9">
                     <mat-icon>shopping_panier</mat-icon>
                 </button>
             </div>

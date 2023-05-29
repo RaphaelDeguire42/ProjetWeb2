@@ -33,7 +33,7 @@ export interface UneBouteille {
     type: string;
     pays: string;
     format: string;
-    noteCommentaire: NoteCommentaire[];
+    noteCommentaire?: NoteCommentaire[];
 }
 
 export interface NoteCommentaire {

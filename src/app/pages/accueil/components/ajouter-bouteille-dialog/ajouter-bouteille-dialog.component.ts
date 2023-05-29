@@ -68,6 +68,7 @@ export class AjouterBouteilleDialogComponent {
   ajouterBouteilleCellier() {
     if (this.formAjout.valid || !this.id_bouteille) {
       let formData = this.formAjout.value;
+      formData.url_img = "assets/img/placeholder_bottle.webp";
       this.dialogRef.close(formData);
     }
   }

@@ -38,7 +38,8 @@ export class UserService {
   }
 
   creerUnCompte(compte: Compte): Observable<any> {
-    return this.httpClient.post<Login>(`${USER_BASE_URL}/register`, compte);
+    console.log('userSErvices')
+    return this.httpClient.post<Compte>(`${USER_BASE_URL}/register`, compte);
   }
 
   nouvelleConnexion(login: Login): void {

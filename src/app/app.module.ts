@@ -53,6 +53,7 @@ import { AuthGuard } from './auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
 import { CreerUnCompteComponent } from './pages/creer-un-compte/creer-un-compte.component';
+import { PageAccueilComponent } from './pages/page-accueil/page-accueil.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { CreerUnCompteComponent } from './pages/creer-un-compte/creer-un-compte.
     ErreurDialogComponent,
     BouteilleComponent,
     ConnexionComponent,
-    CreerUnCompteComponent
+    CreerUnCompteComponent,
+    PageAccueilComponent
   ],
   imports: [
     BrowserModule,

@@ -27,6 +27,6 @@ export class AppComponent implements OnInit {
 
   isConnexionRoute(): boolean {
     const url = this.router.url;
-    return url === '/connexion' || url === '/creer-un-compte';
+    return url === '/connexion' || url === '/creer-un-compte' || url === '/page-accueil';
   }
 }

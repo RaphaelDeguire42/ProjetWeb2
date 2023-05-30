@@ -14,7 +14,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   types: number[] | undefined;
   formats: number[] | undefined;
   pays: number[] | undefined;
-  bouteilles: any | null;
+  bouteilles: any | null ;
   bouteilleSubscription: Subscription | undefined;
   celliers: Array<Cellier> | undefined;
   tri = 'desc';
@@ -86,7 +86,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
       }
   }
 
-  supprimerBouteille(id_bouteille:number){}
+  supprimerBouteille(id_bouteille:number){
+    this.bouteilles = this.bouteilles.filter((bouteille:any) => bouteille.id !== id_bouteille);
+  }
 
   modifierBouteille(bouteilleModifiee: Bouteille) {
     const index = this.bouteilles?.findIndex((bouteille:any) => bouteille.id === bouteilleModifiee.id);

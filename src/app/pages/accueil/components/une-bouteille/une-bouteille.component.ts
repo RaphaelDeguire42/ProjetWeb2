@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ElementRef, OnInit, Renderer2  } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Bouteille } from 'src/app/models/models';
@@ -23,8 +23,26 @@ export class UneBouteilleComponent {
   @Output() ajouterAuPanier = new EventEmitter();
 
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private panierService: PanierService, private catalogueService: CatalogueService,private router: Router){}
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private panierService: PanierService, private catalogueService: CatalogueService,private router: Router, private renderer: Renderer2, private elementRef: ElementRef){}
 
+  async ngOnInit() {
+    await this.loadFacebookSdk();
+    this.createFacebookShareButton();
+  }
+
+  private createFacebookShareButton() {
+    const url = this.bouteille!.url_saq;
+    const div = this.renderer.createElement('div');
+    this.renderer.addClass(div, 'fb-share-button');
+    this.renderer.setAttribute(div, 'data-href', url);
+    this.renderer.setAttribute(div, 'data-layout', 'button_count');
+
+    const container = this.elementRef.nativeElement.querySelector('#facebook-share-button-container');
+    this.renderer.appendChild(container, div);
+
+    // Load Facebook SDK after adding the button to the DOM
+    this.loadFacebookSdk();
+  }
 
   onAjouterAuPanier(): void {
     this.ajouterAuPanier.emit(this.bouteille);
@@ -91,9 +109,33 @@ export class UneBouteilleComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'confirm') {
         this.catalogueService.supprimerBouteille(id_bouteille_cellier).subscribe(() => {
+          this.bouteilleSupprime.emit(id_bouteille_cellier);
           this.snackBar.open(`La bouteille a été supprimée.`, 'Fermer', {duration: 3000});
         });
       }
     });
   }
+
+  private loadFacebookSdk(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const d = document;
+      const s = 'script';
+      const id = 'facebook-jssdk';
+
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        resolve();
+        return;
+      }
+
+      const js: HTMLScriptElement = d.createElement(s) as HTMLScriptElement;
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=229764299767822&autoLogAppEvents=1';
+      js.onload = () => resolve();
+      js.onerror = () => reject();
+      fjs.parentNode!.insertBefore(js, fjs);
+    });
+  }
+
+
 }

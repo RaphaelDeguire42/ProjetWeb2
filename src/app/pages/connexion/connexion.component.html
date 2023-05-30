@@ -5,12 +5,25 @@
       <mat-form-field appearance="fill">
         <mat-label>Courriel :</mat-label>
         <input matInput formControlName="email" type="email" />
+        <mat-error *ngIf="formConnexion.controls['email'].hasError('required')">
+          L'adresse e-mail est requise.
+        </mat-error>
+        <mat-error *ngIf="formConnexion.controls['email'].hasError('email')">
+          L'adresse e-mail n'est pas valide.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Mot de passe :</mat-label>
         <input matInput formControlName="password" type="password" />
+        <mat-error *ngIf="formConnexion.controls['password'].hasError('required')">
+          Le mot de passe est requis.
+        </mat-error>
+        <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')">
+          Le mot de passe doit contenir au moins une lettre minuscule et un chiffre.
+        </mat-error>
       </mat-form-field>
+
 
       <div class="action">
         <div class="action__group">

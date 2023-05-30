@@ -8,9 +8,12 @@
             </mat-card-header>
             <mat-card-content>
                 <span class="price">{{ bouteille.prix | currency }}</span>
-                <button (click)="onAjouterAuPanier()">
-                    <mat-icon>shopping_cart</mat-icon>
-                </button>
+                <div class="share">
+                    <div id="facebook-share-button-container"></div>
+                    <button (click)="onAjouterAuPanier()">
+                        <mat-icon>shopping_cart</mat-icon>
+                    </button>
+                </div>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-raised-button color="primary" (click)="openAjouterBouteilleDialog(bouteille.id)">Ajouter au cellier</button>

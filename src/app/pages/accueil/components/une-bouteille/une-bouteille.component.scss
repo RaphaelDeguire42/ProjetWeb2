@@ -94,6 +94,14 @@ mat-card-footer {
   height: 3rem;
 }
 
+
 button+button {
   margin-left: 24px;
+}
+
+.share{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
 }

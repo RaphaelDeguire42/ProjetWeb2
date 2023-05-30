@@ -18,7 +18,6 @@ export class PanierService {
     const items = [...this.panier.value.items];
 
     const itemPanier = items.find((_item) => _item.id == item.id);
-    console.log(items)
     if (itemPanier) {
       itemPanier.quantite += 1;
     } else {

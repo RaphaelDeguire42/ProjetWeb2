@@ -43,8 +43,6 @@ export class AjouterBouteilleDialogComponent {
     this.id_cellier = this.data.id_cellier??null;
     this.celliersSubscription = this.cellierService.getCelliersUtilisateurSeulement().subscribe((celliersUser ) => {
       this.celliers = celliersUser.data;
-      console.log(celliersUser)
-      console.log(celliersUser)
       if(!this.id_bouteille){
         this.id_cellier_placeholder = this.id_cellier;
       } else {

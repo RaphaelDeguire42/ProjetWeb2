@@ -17,8 +17,11 @@ export interface Bouteille {
     garde: number;
     prix: number;
     id_type: number;
+    type?:string;
     id_format: number;
+    format?:string;
     id_pays: number;
+    pays?:string;
     actif: boolean;
 }
 
@@ -54,9 +57,6 @@ export interface Cellier {
 }
 
 export interface CellierBouteille extends Bouteille {
-    pays: string | number;
-    type: string | number;
-    format: string | number;
     id: number;
     id_bouteille: number;
     id_cellier: number;

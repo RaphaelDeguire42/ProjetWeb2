@@ -1,0 +1,25 @@
+<p>Qu'avez vous pensé de cette bouteille?</p>
+<ng-container *ngIf="formBoire">
+  <form [formGroup]="formBoire">
+    <mat-form-field appearance="fill" class="note">
+      <mat-label>Note :</mat-label>
+      <input matInput formControlName="note" type="number">
+      <mat-error *ngIf="formBoire.get('note')!.invalid && formBoire.get('note')!.touched">
+        Veuillez entrer une note entre 1 et 5.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Commentaire :</mat-label>
+      <input matInput formControlName="commentaire" type="text" />
+    </mat-form-field>
+
+    <div class="action">
+      <div class="action__group">
+        <button mat-raised-button color="primary" (click)="envoyerNote()"
+          [disabled]="!formBoire.valid">Envoyer</button>
+        <button mat-raised-button (click)="annuler()">Je ne veux pas noter cette bouteille</button>
+      </div>
+    </div>
+  </form>
+</ng-container>

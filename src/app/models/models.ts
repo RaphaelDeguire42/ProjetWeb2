@@ -87,8 +87,11 @@ export interface PastilleCouleur {
 }
 
 export interface Erreur {
+    id: number;
     erreur: string;
     id_user: number;
+    created_at: string;
+    nom_user: string;
 }
 
 export interface Panier {

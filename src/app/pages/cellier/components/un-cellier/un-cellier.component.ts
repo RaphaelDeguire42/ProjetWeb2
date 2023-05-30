@@ -82,10 +82,7 @@ export class UnCellierComponent {
   }
 
   modifierBouteille(bouteille: CellierBouteille): void {
-    const dialogRef = this.dialog.open(ModifierBouteilleCellierDialogComponent, {
-      width: '350px',
-      data: { ...bouteille},
-    });
+    const dialogRef = this.dialog.open(ModifierBouteilleCellierDialogComponent, {width: '350px', data: { ...bouteille}, });
 
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
       if(bouteilleModifiee){
@@ -105,13 +102,7 @@ export class UnCellierComponent {
   }
 
   ajouterBouteilleNonListee(){
-    const dialogRef = this.dialog.open(AjouterBouteilleDialogComponent, {
-      width: '450px',
-      height: '600px',
-      data: { id_cellier: this.cellier!.id }
-    });
-
-
+    const dialogRef = this.dialog.open(AjouterBouteilleDialogComponent, {width: '450px', height: '600px', data: { id_cellier: this.cellier!.id }});
     dialogRef.afterClosed().subscribe((result) => {
       this.cellierService.ajouterBouteilleCellier(result).subscribe((response) => {
         if (response) {
@@ -150,23 +141,19 @@ export class UnCellierComponent {
   }
 
   boireBouteille(bouteille:Bouteille){
-    console.log(bouteille)
-    const dialogRef = this.dialog.open(BoireBouteilleComponent, {
-      width: '450px',
-      height: '600px',
-      data: { }
-    });
+    const dialogRef = this.dialog.open(BoireBouteilleComponent, {width: '450px', height: '600px', data: { } });
     dialogRef.afterClosed().subscribe((result) => {
-      result.id_user = this.userService.getUtilisateur().id;
-      result.id_bouteille = bouteille.id;
-      this.bouteilleService.envoyerNoteCommentaire(result).subscribe((response) => {
-        if (response) {
-          this.snackBar.open("Merci d'avoir commenté cette bouteille", 'Fermer', { duration: 3000 });
-          this.onSupprimerQuantite(bouteille)
-        }
-      });
+      if(result){
+        result.id_user = this.userService.getUtilisateur().id;
+        result.id_bouteille = bouteille.id;
+        this.bouteilleService.envoyerNoteCommentaire(result).subscribe((response) => {
+          if (response) {
+            this.snackBar.open("Merci d'avoir commenté cette bouteille", 'Fermer', { duration: 3000 });
+            this.onSupprimerQuantite(bouteille)
+          }
+        });
+      }
     });
   }
-
 
 }

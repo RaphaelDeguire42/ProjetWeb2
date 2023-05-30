@@ -1,0 +1,30 @@
+.wrapper{
+  margin: 1em 12vw;
+  h2{
+    font-family: Literata;
+  }
+}
+
+mat-expansion-panel{
+  width: 80ch;
+  background-color: #fffacd;
+  margin: 1em 0;
+}
+
+.erreur__header{
+  width: 100%;
+  background-color: #fff6a3;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  p{
+    margin: 0;
+  }
+  p:last-child{
+    display: inline-block;
+    font-size: 0.8em;
+    color: #639630;
+  }
+
+}
+

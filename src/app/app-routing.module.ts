@@ -8,10 +8,12 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { AuthGuard } from './auth.guard';
 import { CreerUnCompteComponent } from './pages/creer-un-compte/creer-un-compte.component';
 import { PageAccueilComponent } from './pages/page-accueil/page-accueil.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 const routes: Routes = [
   { path: 'page-accueil', component: PageAccueilComponent, },
   { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'cellier', component: CellierComponent, canActivate: [AuthGuard] },
   { path: 'panier', component: PanierComponent, canActivate: [AuthGuard] },
   { path: 'connexion', component: ConnexionComponent },

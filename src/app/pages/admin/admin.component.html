@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <h2>Liste des erreurs signalées par les utilisateurs</h2>
+  <ng-container *ngIf="erreurs.length > 0">
+    <ng-container *ngFor="let erreur of erreurs">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Écrit par : <strong>{{erreur.nom_user}}</strong>
+          </mat-panel-title>
+          <mat-panel-description>
+            {{erreur.created_at}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{erreur.erreur}}</p>
+        <button mat-button color="warn" (click)="removeErreur(erreur)">
+          Erreur corrigé
+        </button>
+      </mat-expansion-panel>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="erreurs.length === 0">
+    <p>Aucune erreur signalée</p>
+  </ng-container>
+
+</div>

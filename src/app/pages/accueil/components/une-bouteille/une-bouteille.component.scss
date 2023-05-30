@@ -81,7 +81,7 @@ mat-card-content{
 
 mat-card-footer {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   padding: 1rem;
 }
@@ -94,6 +94,10 @@ mat-card-footer {
   height: 3rem;
 }
 
+
+button+button {
+  margin-left: 24px;
+}
 
 .share{
   display: flex;

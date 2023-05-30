@@ -1,16 +1,23 @@
 <mat-drawer-container [autosize]="true">
-    <mat-drawer mode="side" opened >
+    
+    <mat-drawer #drawer [mode]="isMinWidth1000px() ? 'side' : 'over' " [opened]="isMinWidth1000px()" [ngClass]="{ 'opened': isMinWidth1000px() }">
         <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
+        <button class="btnCloseFilters" color="warn" *ngIf="!isMinWidth1000px()" (click)="closeDrawer()" mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
     </mat-drawer>
     <mat-drawer-content>
-        <button mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
+        <div class="options">
+            <button color="primary" mat-raised-button *ngIf="!isMinWidth1000px()" (click)="drawer.toggle()">Filtres</button>
+            <button mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
+        </div>
         <div class="actions">
             <app-bouteilles-entete
             (triChangement)="onTriChangement($event)"
             ></app-bouteilles-entete>
             <input type="text" placeholder="Recherche" (keyup)="recherche($event)" class="searchBar">
         </div>
-        <mat-grid-list gutterSize="16" [cols]="3" [rowHeight]="450">
+        <mat-grid-list gutterSize="16" [cols]="getColumnCount()" [rowHeight]="450">
             <ng-container *ngIf="bouteilles">
                 <ng-container *ngFor="let bouteille of bouteilles">
                     <mat-grid-tile *ngIf="bouteille.actif">

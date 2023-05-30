@@ -57,6 +57,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { CreerUnCompteComponent } from './pages/creer-un-compte/creer-un-compte.component';
 import { PageAccueilComponent } from './pages/page-accueil/page-accueil.component';
 import { BoireBouteilleComponent } from './pages/cellier/components/boire-bouteille-dialog/boire-bouteille-dialog.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { BoireBouteilleComponent } from './pages/cellier/components/boire-boutei
     ConnexionComponent,
     CreerUnCompteComponent,
     PageAccueilComponent,
-    BoireBouteilleComponent
+    BoireBouteilleComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

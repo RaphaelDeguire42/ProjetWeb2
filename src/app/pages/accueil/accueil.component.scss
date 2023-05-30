@@ -7,13 +7,19 @@
 }
 
 .mat-drawer {
-  padding: 1.5rem;
+  padding: 5rem 1.5rem;
   background-color: #f1f7ea;
 }
 
 .mat-drawer-content {
   padding: 1.5rem;
   background-color: #fdfcf2;
+
+  .options {
+    display: flex;
+    justify-content: space-between;
+  }
+  
 }
 
 .addCellier {
@@ -33,7 +39,11 @@
   margin-bottom: 1.5rem;
 }
 
-
+.btnCloseFilters {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 .searchBar {
   background-color: #fff;

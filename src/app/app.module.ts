@@ -56,6 +56,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
 import { CreerUnCompteComponent } from './pages/creer-un-compte/creer-un-compte.component';
 import { PageAccueilComponent } from './pages/page-accueil/page-accueil.component';
+import { BoireBouteilleComponent } from './pages/cellier/components/boire-bouteille-dialog/boire-bouteille-dialog.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { PageAccueilComponent } from './pages/page-accueil/page-accueil.componen
     BouteilleComponent,
     ConnexionComponent,
     CreerUnCompteComponent,
-    PageAccueilComponent
+    PageAccueilComponent,
+    BoireBouteilleComponent
   ],
   imports: [
     BrowserModule,

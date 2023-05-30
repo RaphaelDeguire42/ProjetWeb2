@@ -32,6 +32,7 @@ export class CellierService {
    }
 
    ajouterBouteilleCellier(data:AjoutBouteilleCellierData):Observable<any>{
+    console.log(data)
     return this.httpClient.post(`${CELLIER_BASE_URL}/cellier-bouteilles`, data, this.userService.getSanctum());
    }
 

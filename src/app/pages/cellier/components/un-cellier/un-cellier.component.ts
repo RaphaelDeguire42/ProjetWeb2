@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit, TemplateRef, ViewChild 
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
-import { Cellier, CellierBouteille } from 'src/app/models/models';
+import { Bouteille, Cellier, CellierBouteille } from 'src/app/models/models';
 import { CellierService } from 'src/app/services/cellier.service';
 import { Subscription } from 'rxjs';
 import { AjouterBouteilleDialogComponent } from 'src/app/pages/accueil/components/ajouter-bouteille-dialog/ajouter-bouteille-dialog.component';
@@ -10,6 +10,9 @@ import { ModifierBouteilleCellierDialogComponent } from '../modifier-bouteille-c
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataSource } from '@angular/cdk/collections';
+import { BoireBouteilleComponent } from '../boire-bouteille-dialog/boire-bouteille-dialog.component';
+import { UserService } from 'src/app/services/user.service';
+import { BouteilleService } from 'src/app/services/bouteille.service';
 
 
 
@@ -33,7 +36,7 @@ export class UnCellierComponent {
 
   columnsToDisplay = ['quantite', 'nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService){}
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private userService: UserService, private bouteilleService: BouteilleService){}
 
   ngAfterViewInit() {
 
@@ -87,7 +90,6 @@ export class UnCellierComponent {
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
       if(bouteilleModifiee){
         const modifiedBouteille: any = {...bouteille,...bouteilleModifiee};
-
         const index = this.cellierBouteilles?.findIndex((b) => b.id === modifiedBouteille.id);
 
         if (index !== undefined && index !== -1) {
@@ -145,7 +147,25 @@ export class UnCellierComponent {
         const name = bouteille.nom.toLowerCase();
         return name.includes(filterValue);
     });
+  }
 
+  boireBouteille(bouteille:Bouteille){
+    console.log(bouteille)
+    const dialogRef = this.dialog.open(BoireBouteilleComponent, {
+      width: '450px',
+      height: '600px',
+      data: { }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      result.id_user = this.userService.getUtilisateur().id;
+      result.id_bouteille = bouteille.id;
+      this.bouteilleService.envoyerNoteCommentaire(result).subscribe((response) => {
+        if (response) {
+          this.snackBar.open("Merci d'avoir commenté cette bouteille", 'Fermer', { duration: 3000 });
+          this.onSupprimerQuantite(bouteille)
+        }
+      });
+    });
   }
 
 

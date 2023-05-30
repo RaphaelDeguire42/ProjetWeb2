@@ -30,7 +30,6 @@ export class FiltresComponent implements OnInit, OnDestroy {
     this.typesSubscription = this.catalogueService.getTypes()
     .subscribe((response) => {
       this.types = response.data;
-      console.log(this.types)
     });
     this.formatsSubscription = this.catalogueService.getFormats()
     .subscribe((response) => {

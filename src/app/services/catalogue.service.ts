@@ -124,6 +124,10 @@ export class CatalogueService {
 
   modifierBouteille(bouteille: Bouteille): Observable<any>{
     const id_bouteille = bouteille.id;
-    return this.httpClient.put<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles/${id_bouteille}`, bouteille, this.userService.getSanctum())
+    return this.httpClient.patch<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles/${id_bouteille}`, bouteille, this.userService.getSanctum())
+  }
+
+  supprimerBouteille(id_bouteille: number): Observable<any>{
+    return this.httpClient.delete<Bouteille>(`${CATALOGUE_BASE_URL}/bouteilles/${id_bouteille}`, this.userService.getSanctum())
   }
 }

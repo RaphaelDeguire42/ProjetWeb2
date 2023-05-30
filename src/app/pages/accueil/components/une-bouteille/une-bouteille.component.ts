@@ -8,6 +8,7 @@ import { ModifierBouteilleDialogComponent } from '../modifier-bouteille-dialog/m
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { Router } from '@angular/router';
 import { PanierService } from 'src/app/services/panier.service';
+import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-une-bouteille',
@@ -38,6 +39,7 @@ export class UneBouteilleComponent {
   }
 
   openAjouterBouteilleDialog(id_bouteille:number){
+    console.log(this.bouteille)
     const dialogRef = this.dialog.open(AjouterBouteilleDialogComponent, {
       width: '450px',
       height: '600px',
@@ -46,6 +48,9 @@ export class UneBouteilleComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
+        result.type = this.bouteille!.type
+        result.format = this.bouteille!.format
+        result.pays = this.bouteille!.pays
         this.cellierService.ajouterBouteilleCellier(result).subscribe(response => {
           this.snackBar.open('Votre bouteille a été ajouté au cellier.', 'Fermer', {duration: 3000});
         })
@@ -60,13 +65,15 @@ export class UneBouteilleComponent {
     });
 
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
-      this.catalogueService.modifierBouteille(bouteilleModifiee).subscribe(response => {
-        if(response){
-          this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {duration: 3000});
-          this.bouteille = bouteilleModifiee;
-          this.bouteilleModifiee.emit(bouteilleModifiee);
-        }
-      })
+      if(bouteilleModifiee){
+        this.catalogueService.modifierBouteille(bouteilleModifiee).subscribe(response => {
+          if(response){
+            this.snackBar.open('Votre bouteille a été modifiée.', 'Fermer', {duration: 3000});
+            this.bouteille = bouteilleModifiee;
+            this.bouteilleModifiee.emit(bouteilleModifiee);
+          }
+        })
+      }
     });
   }
 
@@ -74,4 +81,19 @@ export class UneBouteilleComponent {
     this.router.navigate(['/bouteille', bouteilleId]);
   }
 
+  supprimerBouteille(id_bouteille_cellier: number): void {
+    console.log(id_bouteille_cellier);
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Êtes-vous certain de vouloir supprimer cette bouteille?',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'confirm') {
+        this.catalogueService.supprimerBouteille(id_bouteille_cellier).subscribe(() => {
+          this.snackBar.open(`La bouteille a été supprimée.`, 'Fermer', {duration: 3000});
+        });
+      }
+    });
+  }
 }

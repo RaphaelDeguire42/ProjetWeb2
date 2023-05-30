@@ -25,7 +25,6 @@ export class ModifierBouteilleDialogComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.data)
     this.formModif = this.fb.group({
       nom: [this.data.nom, [Validators.required, Validators.minLength(3)]],
       prix: [this.data.prix, Validators.required],

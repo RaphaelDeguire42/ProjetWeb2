@@ -64,8 +64,9 @@ export class UserService {
     this.router.navigate(['/connexion']);
   }
 
-  getRole(): number | undefined {
-    return this.utilisateur.id_role;
+  getRole(): Observable<any> {
+    const id_user = this.getUtilisateur().id;
+    return this.httpClient.get<any>(`${USER_BASE_URL}/users?id[eq]=${id_user}`, this.getSanctum())
   }
 
   private updateHttpOption(): void {

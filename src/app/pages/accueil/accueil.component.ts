@@ -22,11 +22,10 @@ export class AccueilComponent implements OnInit, OnDestroy {
   isChargement = false;
   originalBouteilles: any[] = [];
 
-  constructor(private catalogueService: CatalogueService, private cellierService: CellierService) {}
+  constructor(private catalogueService: CatalogueService, private cellierService: CellierService, private userService: UserService) {}
 
   ngOnInit(): void {
       this.getBouteilles();
-
   }
 
   getBouteilles(): void {
@@ -34,7 +33,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
       .subscribe((_bouteilles)=>{
         if (_bouteilles) {
           this.bouteilles = null;
-          this.originalBouteilles = _bouteilles.data; 
+          this.originalBouteilles = _bouteilles.data;
           this.bouteilles = this.originalBouteilles;
         }
       })
@@ -59,7 +58,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   onVoirType(nouveauTypes:number[]):void {
     this.types = nouveauTypes;
-    console.log(this.types)
     this.getBouteilles();
   }
 
@@ -71,18 +69,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
   onVoirPays(nouveauPays: number[]): void {
     this.pays = nouveauPays;
     this.getBouteilles();
-  }
-
-  onAjouterAuPanier(product: any):void {
-    /*
-    this.cartService.ajouterAuPanier({
-      product: product.image,
-      name: product.title,
-      price: product.price,
-      quantity: 1,
-      id: product.id
-    });
-    */
   }
 
   onTriChangement(nouveauTri: string):void {

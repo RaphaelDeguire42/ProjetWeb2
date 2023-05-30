@@ -47,7 +47,6 @@ export class CreerUnCompteComponent {
     let formData = this.formConnexion.value;
     this.userService.creerUnCompte(formData).subscribe((response) => {
       this.router.navigate(['/connexion']);
-
     });
   }
 }

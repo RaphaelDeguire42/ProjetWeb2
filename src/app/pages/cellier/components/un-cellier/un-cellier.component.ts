@@ -14,8 +14,6 @@ import { BoireBouteilleComponent } from '../boire-bouteille-dialog/boire-bouteil
 import { UserService } from 'src/app/services/user.service';
 import { BouteilleService } from 'src/app/services/bouteille.service';
 
-
-
 @Component({
   selector: 'app-un-cellier',
   templateUrl: './un-cellier.component.html',

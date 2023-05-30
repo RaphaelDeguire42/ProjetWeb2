@@ -23,14 +23,14 @@ export class AjouterBouteilleDialogComponent {
   formAjout: FormGroup = new FormGroup({
     id_cellier: new FormControl('', [Validators.required]),
     id_bouteille: new FormControl(''),
-    garde: new FormControl(''),
-    nom: new FormControl(''),
-    millesime: new FormControl(''),
-    date_achat: new FormControl(''),
-    quantite: new FormControl(''),
-    type: new FormControl(''),
-    format: new FormControl(''),
-    pays: new FormControl('')
+    garde: new FormControl('', Validators.required),
+    nom: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    millesime: new FormControl('', Validators.required),
+    date_achat: new FormControl('', Validators.required),
+    quantite: new FormControl('', Validators.required),
+    type: new FormControl('', ),
+    format: new FormControl('',),
+    pays: new FormControl('', ),
   });
 
 

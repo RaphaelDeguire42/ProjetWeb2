@@ -60,6 +60,8 @@ import { BoireBouteilleComponent } from './pages/cellier/components/boire-boutei
 import { AdminComponent } from './pages/admin/admin.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,8 +118,7 @@ import { AdminComponent } from './pages/admin/admin.component';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSortModule
-
+    MatSortModule,
   ],
   providers: [PanierService, CellierService, UserService, AuthGuard],
   bootstrap: [AppComponent]

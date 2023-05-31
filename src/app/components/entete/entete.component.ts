@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   ]
 })
 export class EnteteComponent {
+  role :boolean = false;
   private _panier: Panier = { items: [] };
   itemsQuantite = 0;
 
@@ -28,6 +29,10 @@ export class EnteteComponent {
   }
 
   constructor(private panierService: PanierService, private userService: UserService) {}
+
+  ngOnInit(){
+    this.role = this.userService.getRole();
+  }
 
   getTotal(items: Array<PanierItem>): number {
     return this.panierService.getTotal(items);

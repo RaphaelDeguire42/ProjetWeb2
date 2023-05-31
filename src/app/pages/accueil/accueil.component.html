@@ -3,7 +3,7 @@
         <app-filtres (showType)="onVoirType($event)" (showFormat)="onVoirFormat($event)" (showPays)="onVoirPays($event)"></app-filtres>
     </mat-drawer>
     <mat-drawer-content>
-        <button mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
+        <button *ngIf="role" mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
         <div class="actions">
             <app-bouteilles-entete
             (triChangement)="onTriChangement($event)"

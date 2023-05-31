@@ -9,6 +9,7 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
 import { Router } from '@angular/router';
 import { PanierService } from 'src/app/services/panier.service';
 import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-une-bouteille',
@@ -21,13 +22,15 @@ export class UneBouteilleComponent {
   @Output() bouteilleSupprime: EventEmitter<number> = new EventEmitter<number>();
   @Output() bouteilleModifiee: EventEmitter<Bouteille> = new EventEmitter<Bouteille>();
   @Output() ajouterAuPanier = new EventEmitter();
+  role: boolean = false;
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private panierService: PanierService, private catalogueService: CatalogueService,private router: Router, private renderer: Renderer2, private elementRef: ElementRef){}
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private panierService: PanierService, private catalogueService: CatalogueService,private router: Router, private renderer: Renderer2, private elementRef: ElementRef,private userService: UserService){}
 
   // Prépapre le boutton facebook pour partager
   async ngOnInit() {
     await this.loadFacebookSdk();
     this.createFacebookShareButton();
+    this.role = this.userService.getRole();
   }
 
   onAjouterAuPanier(): void {

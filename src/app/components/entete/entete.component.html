@@ -5,6 +5,7 @@
     <nav>
         <a routerLink="/accueil" class="nav-link">Catalogue</a>
         <a routerLink="/cellier" class="nav-link">Mes Celliers</a>
+        <a *ngIf="role" routerLink="/admin" class="nav-link">Admin</a>
     </nav>
     <div class="actions">
         <button mat-icon-button [matMenuTriggerFor]="menu">

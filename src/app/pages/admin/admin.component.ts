@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Erreur } from 'src/app/models/models';
 import { AdminService } from 'src/app/services/admin.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
    selector: "app-admin",

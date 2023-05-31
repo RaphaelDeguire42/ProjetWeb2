@@ -22,11 +22,13 @@ export class AccueilComponent implements OnInit, OnDestroy {
   cellierSubscription: Subscription | undefined;
   isChargement = false;
   originalBouteilles: any[] = [];
+  role:boolean = false;
 
   constructor(private catalogueService: CatalogueService, private cellierService: CellierService, private userService: UserService) {}
 
   ngOnInit(): void {
       this.getBouteilles();
+      this.role = this.userService.getRole();
   }
 
   getBouteilles(): void {

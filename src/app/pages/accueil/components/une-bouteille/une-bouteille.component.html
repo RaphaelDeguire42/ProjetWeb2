@@ -17,7 +17,7 @@
             <mat-card-actions>
                 <button mat-raised-button color="primary" (click)="openAjouterBouteilleDialog(bouteille.id)">Ajouter au cellier</button>
             </mat-card-actions>
-            <mat-card-footer>
+            <mat-card-footer *ngIf="role">
                 <button mat-mini-fab color="accent" class="btnEdit" (click)="openModifierBouteilleDialog(bouteille.id)">
                     <mat-icon>edit</mat-icon>
                 </button>
@@ -27,4 +27,4 @@
             </mat-card-footer>
         </div>
     </div>
-</mat-card> 
+</mat-card>

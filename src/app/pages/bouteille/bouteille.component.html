@@ -5,18 +5,21 @@
          <img src="{{bouteille.url_img}}" alt="">
       </picture>
       <div class="details__content">
-         <p><strong>Type : </strong> {{bouteille.type}}</p>
-         <p><strong>Pays : </strong> {{bouteille.pays}}</p>
-         <p><strong>Format : </strong>{{bouteille.format}}</p>
-         <p><strong>Prix : </strong> {{bouteille.prix}} $</p>
-
+         <div class="details__content-liste">
+            <dl>
+               <dt>Type : </dt><dd><strong>{{bouteille.type}}</strong></dd>
+               <dt>Pays : </dt><dd><strong>{{bouteille.pays}}</strong></dd>
+               <dt>Format : </dt><dd><strong>{{bouteille.format}}</strong></dd>
+            </dl>
+         </div>
+         <div class="details__content-prix">{{bouteille.prix}} $</div>
       </div>
    </div>
    <a href="{{bouteille.url_saq}}" target="_blank" class="link">Voir la bouteille sur le site de la SAQ</a>
 
    <form [formGroup]="formBouteille">
       <mat-form-field appearance="fill" class="note">
-         <mat-label>Note :</mat-label>
+         <mat-label>Note sur :</mat-label>
          <input matInput formControlName="note" type="number">
          <mat-error *ngIf="formBouteille.get('note')!.invalid && formBouteille.get('note')!.touched">
             Veuillez entrer une note entre 1 et 5.

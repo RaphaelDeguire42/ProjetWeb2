@@ -1,47 +1,46 @@
-mat-expansion-panel{
-  background-color: #fffacd;
+mat-expansion-panel {
+   background-color: #fffacd;
 }
 .pastille {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    margin-right: 8px;
-    border:1px gray solid;
-  }
+   display: inline-block;
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   margin-right: 8px;
+   border: 1px gray solid;
+}
 
-  .btnAjouterBouteille{
-    padding:0.3em 0.7em;
-    margin-top: 7px
-  }
+.btnAjouterBouteille {
+   padding: 0.3em 0.7em;
+   margin-top: 7px;
+}
 
-  .searchBar{
-    padding: 0.5em 0.75em;
+.searchBar {
+   padding: 0.5em 0.75em;
+}
 
-  }
+.searchBar {
+   background-color: #fff;
+   border: none;
+   border-radius: 4px;
+   padding: 8px 12px;
+   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+   transition: box-shadow 0.3s ease;
+   width: 300px;
+   outline: none;
+   margin-bottom: 5px;
+}
+.searchBar:focus {
+   box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.1);
+}
 
-  .searchBar {
-    background-color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    width: 300px;
-    outline: none;
-    margin-bottom: 5px;
-  }
-  .searchBar:focus {
-    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.1);
-  }
+.actions {
+   display: flex;
+   align-items: center;
+   gap: 3px;
+}
 
-  .actions {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-
-  .link:hover{
-    color: rgb(5, 116, 73);
-    cursor: pointer;
-  }
+.link:hover {
+   color: rgb(5, 116, 73);
+   cursor: pointer;
+}

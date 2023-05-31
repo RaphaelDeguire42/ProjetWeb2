@@ -5,25 +5,13 @@ import { Component, Output, EventEmitter } from '@angular/core';
   templateUrl: './bouteilles-entete.component.html',
   styleUrls: ['./bouteilles-entete.component.scss']
 })
-export class BouteillesEnteteComponent {
-  @Output() colonneNombreChangement = new EventEmitter<number>();
-  @Output() itemsNombreChangement = new EventEmitter<number>();
-  @Output() triChangement = new EventEmitter<string>();
 
+export class BouteillesEnteteComponent {
+  @Output() triChangement = new EventEmitter<string>();
   tri = 'desc';
-  voirNombreItems = 12;
 
   onModTri(nouveauTri: string):void {
     this.tri = nouveauTri;
     this.triChangement.emit(nouveauTri)
-  }
-
-  onModItems(count:number):void {
-    this.voirNombreItems = count;
-    this.itemsNombreChangement.emit(count);
-  }
-
-  onModColonne(colsNum:number):void {
-    this.colonneNombreChangement.emit(colsNum);
   }
 }

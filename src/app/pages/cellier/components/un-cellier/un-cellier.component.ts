@@ -30,15 +30,9 @@ export class UnCellierComponent {
   cellierId: number | undefined;
   uneRecherche: string = "";
   originalCellierBouteilles:any;
-
-
   columnsToDisplay = ['quantite', 'nom', 'millesime', 'garde', 'prix', 'pays', 'type', 'format', 'actions'];
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private cellierService: CellierService, private userService: UserService, private bouteilleService: BouteilleService){}
-
-  ngAfterViewInit() {
-
-  }
 
   ngOnInit(): void {
     if (this.cellier) {
@@ -49,12 +43,7 @@ export class UnCellierComponent {
   }
 
   supprimerCellier(id_cellier: number): void {
-    console.log(id_cellier)
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '350px',
-      data: 'Êtes-vous certain de vouloir supprimer ce cellier?',
-    });
-
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { width: '350px', data: 'Êtes-vous certain de vouloir supprimer ce cellier?'});
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'confirm') {
         this.cellierSupprime.emit(id_cellier);
@@ -63,12 +52,7 @@ export class UnCellierComponent {
   }
 
   supprimerBouteille(id_bouteille_cellier: number): void {
-    console.log(id_bouteille_cellier);
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '350px',
-      data: 'Êtes-vous certain de vouloir supprimer cette bouteille du cellier?',
-    });
-
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { width: '350px', data: 'Êtes-vous certain de vouloir supprimer cette bouteille du cellier?' });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'confirm') {
         this.cellierService.supprimerBouteilleCellier(id_bouteille_cellier).subscribe(() => {
@@ -81,7 +65,6 @@ export class UnCellierComponent {
 
   modifierBouteille(bouteille: CellierBouteille): void {
     const dialogRef = this.dialog.open(ModifierBouteilleCellierDialogComponent, {width: '350px', data: { ...bouteille}, });
-
     dialogRef.afterClosed().subscribe((bouteilleModifiee) => {
       if(bouteilleModifiee){
         const modifiedBouteille: any = {...bouteille,...bouteilleModifiee};
@@ -120,8 +103,8 @@ export class UnCellierComponent {
         }
       });
     } else {
-    this.cellierService.soustraireQteBouteille(bouteille);
-  }
+      this.cellierService.soustraireQteBouteille(bouteille);
+    }
   }
 
   onAjouterQuantite(bouteille:any){

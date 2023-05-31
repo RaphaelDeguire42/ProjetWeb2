@@ -12,17 +12,11 @@ import { CellierService } from 'src/app/services/cellier.service';
   styleUrls: ['./modifier-bouteille-cellier-dialog.component.scss']
 
 })
+
 export class ModifierBouteilleCellierDialogComponent {
   formModif: FormGroup = new FormGroup({});
 
-  constructor(
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<CellierBouteille>,
-    private snackBar: MatSnackBar,
-    private cellierService: CellierService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-
-  ) {}
+  constructor( private fb: FormBuilder, public dialogRef: MatDialogRef<CellierBouteille>, private snackBar: MatSnackBar, private cellierService: CellierService, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit() {
     this.formModif = this.fb.group({

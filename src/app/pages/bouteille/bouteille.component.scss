@@ -1,45 +1,44 @@
 .noteBox {
-  border: black solid 1px;
-  padding: 1em;
-  background-color: rgb(75, 75, 75);
-  color: white;
-  width: fit-content;
-  margin: 10px;
+   border: black solid 1px;
+   padding: 1em;
+   background-color: rgb(75, 75, 75);
+   color: white;
+   width: fit-content;
+   margin: 10px;
 }
 
 .details__container {
-  max-width: 80rem;
-  display: grid;
-  margin: 1rem 0;
-  align-items: center;
+   max-width: 80rem;
+   display: grid;
+   margin: 1rem 0;
+   align-items: center;
 }
 @media screen and (min-width: 600px) {
-  .details__container {
-    grid-template-columns: 2fr 3fr;
-  }
+   .details__container {
+      grid-template-columns: 2fr 3fr;
+   }
 }
 .details__container > * {
-  padding: 1rem;
+   padding: 1rem;
 }
 .details__image {
-  display: flex;
-  justify-content: center;
-  background-color: rgba($color: #191818, $alpha: 0.1);
+   display: flex;
+   justify-content: center;
+   background-color: rgba($color: #191818, $alpha: 0.1);
 }
 .details__image > img {
-  height: 400px;
-  object-fit: cover;
+   height: 400px;
+   object-fit: cover;
 }
 h1 {
-  font-size: 2rem;
+   font-size: 2rem;
 }
 .actions__container {
-  display: flex;
-  justify-content: center;
+   display: flex;
+   justify-content: center;
 }
 
-.wrapper{
-
+.wrapper {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -49,21 +48,21 @@ h1 {
    gap: 3rem;
 }
 
-h1{
+h1 {
    font-family: Literata;
 }
 
-.buttonSend{
-  margin-left: 1em;
+.buttonSend {
+   margin-left: 1em;
 }
-.link:hover{
-  color: rgb(5, 155, 97);
-  cursor: pointer;
+.link:hover {
+   color: rgb(5, 155, 97);
+   cursor: pointer;
 }
-.note{
-  width: 100px;
+.note {
+   width: 100px;
 }
-mat-error{
-  width: 50ch;
-  margin-left: -18px;
+mat-error {
+   width: 50ch;
+   margin-left: -18px;
 }

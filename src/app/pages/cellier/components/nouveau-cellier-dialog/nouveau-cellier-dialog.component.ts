@@ -11,17 +11,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './nouveau-cellier-dialog.component.html',
   styleUrls: ['./nouveau-cellier-dialog.component.scss']
 })
+
 export class NouveauCellierDialogComponent {
   formAjout: FormGroup = new FormGroup({});
   couleurs: Array<Couleur> = [];
   couleursSubscription: Subscription | undefined;
 
-  constructor(
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<NouveauCellierDialogComponent>,
-    private snackBar: MatSnackBar,
-    private cellierService: CellierService
-  ) {
+  constructor( private fb: FormBuilder, public dialogRef: MatDialogRef<NouveauCellierDialogComponent>, private snackBar: MatSnackBar, private cellierService: CellierService) {
     this.formAjout = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(3)]],
       id_couleur: [null, Validators.required]
@@ -42,9 +38,7 @@ export class NouveauCellierDialogComponent {
       const formData = this.formAjout.value;
       formData.id_couleur = parseInt(formData.id_couleur, 10);
       const selectedCouleur = this.couleurs.find(couleur => couleur.id === formData.id_couleur);
-      if (selectedCouleur) {
-        formData.hex_value = selectedCouleur.hex_value;
-      }
+      if (selectedCouleur) formData.hex_value = selectedCouleur.hex_value;
       this.dialogRef.close(formData);
     }
   }

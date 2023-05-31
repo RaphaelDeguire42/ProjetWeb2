@@ -12,6 +12,7 @@ import { CellierService } from 'src/app/services/cellier.service';
   templateUrl: './ajouter-bouteille-dialog.component.html',
   styleUrls: ['./ajouter-bouteille-dialog.component.scss']
 })
+
 export class AjouterBouteilleDialogComponent {
   id_bouteille:number|string|null = '';
   id_cellier:number|string|null = '';
@@ -79,5 +80,4 @@ export class AjouterBouteilleDialogComponent {
   annuler(): void {
     this.dialogRef.close();
   }
-
 }

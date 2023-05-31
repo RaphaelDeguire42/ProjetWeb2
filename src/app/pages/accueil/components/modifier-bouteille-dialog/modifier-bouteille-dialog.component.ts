@@ -15,14 +15,7 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
 export class ModifierBouteilleDialogComponent {
   formModif: FormGroup = new FormGroup({});
 
-  constructor(
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<CellierBouteille>,
-    private snackBar: MatSnackBar,
-    private catalogueService: CatalogueService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-
-  ) {}
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CellierBouteille>, private snackBar: MatSnackBar, private catalogueService: CatalogueService, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit() {
     this.formModif = this.fb.group({

@@ -11,12 +11,11 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './bouteille.component.html',
   styleUrls: ['./bouteille.component.scss']
 })
+
 export class BouteilleComponent {
   bouteille:any;
   note_commentaires: NoteCommentaire[] = [];
-
   formBouteille: FormGroup;
-
 
   constructor(private route:ActivatedRoute, private router: Router, private bouteilleService: BouteilleService,private userService: UserService, private fb: FormBuilder, private snackBar: MatSnackBar ){
     this.formBouteille = this.fb.group({
@@ -32,10 +31,6 @@ export class BouteilleComponent {
     })
   }
 
-  ngOnInit(){
-
-  }
-
   envoyerCommentaire() {
     const formData = this.formBouteille.value;
     if (formData.commentaire === "") delete formData.commentaire;
@@ -43,9 +38,7 @@ export class BouteilleComponent {
     formData.id_bouteille = this.bouteille.id;
     formData.id_user = this.userService.getUtilisateur().id;
 
-    const existingNoteCommentaireIndex = this.note_commentaires.findIndex(
-      nc => nc.id_user === formData.id_user
-    );
+    const existingNoteCommentaireIndex = this.note_commentaires.findIndex(nc => nc.id_user === formData.id_user);
 
     this.bouteilleService.envoyerNoteCommentaire(formData).subscribe((response) => {
       if (response) {

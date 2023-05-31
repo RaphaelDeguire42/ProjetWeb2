@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 const USER_BASE_URL = 'http://localhost:8000/api';
-const TOKEN_KEY = 'user_id'; // Key to store the authentication token
+const TOKEN_KEY = 'user_id';
 
 
 @Injectable({
@@ -39,7 +39,6 @@ export class UserService {
   }
 
   creerUnCompte(compte: Compte): Observable<any> {
-    console.log('userSErvices')
     return this.httpClient.post<Compte>(`${USER_BASE_URL}/register`, compte);
   }
 
@@ -64,9 +63,14 @@ export class UserService {
     this.router.navigate(['/connexion']);
   }
 
-  getRole(): Observable<any> {
-    const id_user = this.getUtilisateur().id;
-    return this.httpClient.get<any>(`${USER_BASE_URL}/users?id[eq]=${id_user}`, this.getSanctum())
+  getRole(): boolean {
+    const data = localStorage.getItem(TOKEN_KEY);
+    let isAdmin = false;
+    if(data){
+      const parsedData = JSON.parse(data);
+      isAdmin = parsedData.id.includes(' ');
+    }
+    return isAdmin;
   }
 
   private updateHttpOption(): void {
@@ -90,9 +94,11 @@ export class UserService {
   }
 
   private saveUserData(): void {
+    let role = this.utilisateur.id_role == 1? ' a': '';
+    const id = this.utilisateur.id.toString()+role;
     const data = {
-      id: this.utilisateur.id.toString(),
-      token: this.token
+      id: id,
+      token: this.token,
     };
     localStorage.setItem(TOKEN_KEY, JSON.stringify(data));
   }

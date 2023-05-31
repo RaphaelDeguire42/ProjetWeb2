@@ -23,12 +23,16 @@ export class AccueilComponent implements OnInit, OnDestroy {
   cellierSubscription: Subscription | undefined;
   isChargement = false;
   originalBouteilles: any[] = [];
+  role:boolean = false;
+
   @ViewChild('drawer') drawer!: MatDrawer;
+
 
   constructor(private catalogueService: CatalogueService, private cellierService: CellierService, private userService: UserService, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
       this.getBouteilles();
+      this.role = this.userService.getRole();
   }
 
   isMinWidth1000px(): boolean {

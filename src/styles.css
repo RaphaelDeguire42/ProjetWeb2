@@ -3,7 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Literata:wght@400;500&family=Poppins:wght@400;500;600&display=swap');
 
 :root{
-    --mdc-typography-button-font-family: Poppins
+    --mdc-typography-button-font-family: Poppins;
+    --mdc-protected-button-container-color: #f1e78f;
 }
 html {
     height: 100%;
@@ -21,3 +22,4 @@ body,html {
 *{
     font-family: Literata;
 }
+

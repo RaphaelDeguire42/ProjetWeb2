@@ -94,7 +94,7 @@ export class UserService {
   }
 
   private saveUserData(): void {
-    let role = this.utilisateur.id_role == 1? ' a': '';
+    let role = this.utilisateur.id_role == 1? ' ': '';
     const id = this.utilisateur.id.toString()+role;
     const data = {
       id: id,

@@ -21,6 +21,7 @@ function passwordValidator(control: AbstractControl): ValidationErrors | null {
 })
 
 export class ConnexionComponent {
+  passwordVisible = false;
   formConnexion: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder, private userService: UserService) {}

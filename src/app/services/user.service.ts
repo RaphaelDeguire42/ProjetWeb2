@@ -57,9 +57,9 @@ export class UserService {
   }
 
   deconnexion(): void {
-    this.token = ''; // Clear the token
+    this.token = '';
     this.estConnecter = false;
-    this.clearToken(); // Remove the token from storage
+    this.clearToken(); 
     this.router.navigate(['/connexion']);
   }
 

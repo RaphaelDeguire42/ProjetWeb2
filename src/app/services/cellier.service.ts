@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Bouteille, AjoutBouteilleCellierData, Cellier, CellierBouteille, Couleur, NouveauCellierData } from '../models/models';
 import { UserService } from './user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 const CELLIER_BASE_URL = 'http://localhost:8000/api';
 
@@ -12,7 +11,7 @@ const CELLIER_BASE_URL = 'http://localhost:8000/api';
 })
 export class CellierService {
 
-  constructor(private httpClient: HttpClient, private userService: UserService, private snackBar: MatSnackBar) { }
+  constructor(private httpClient: HttpClient, private userService: UserService) { }
 
   getCouleurs(): Observable<any> {
     return this.httpClient.get<Array<Couleur>>(`${CELLIER_BASE_URL}/couleurs`, this.userService.getSanctum())
@@ -32,7 +31,6 @@ export class CellierService {
    }
 
    ajouterBouteilleCellier(data:AjoutBouteilleCellierData):Observable<any>{
-    console.log(data)
     return this.httpClient.post(`${CELLIER_BASE_URL}/cellier-bouteilles`, data, this.userService.getSanctum());
    }
 

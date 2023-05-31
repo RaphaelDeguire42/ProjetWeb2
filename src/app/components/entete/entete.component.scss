@@ -3,6 +3,7 @@ mat-toolbar {
    justify-content: space-between;
    font-size: 24px;
    padding-inline: 1.5rem;
+   height:100px;
 
    nav > a+a,.logout {
       margin-left: min(30px, 5em);

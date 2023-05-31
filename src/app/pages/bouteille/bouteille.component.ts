@@ -38,9 +38,9 @@ export class BouteilleComponent {
     formData.id_bouteille = this.bouteille.id;
     formData.id_user = this.userService.getUtilisateur().id;
 
-    const existingNoteCommentaireIndex = this.note_commentaires.findIndex(nc => nc.id_user === formData.id_user);
-
     this.bouteilleService.envoyerNoteCommentaire(formData).subscribe((response) => {
+      const existingNoteCommentaireIndex = this.note_commentaires.findIndex(nc => nc.id === response.id);
+      console.log(existingNoteCommentaireIndex)
       if (response) {
         if (existingNoteCommentaireIndex !== -1)
           this.note_commentaires[existingNoteCommentaireIndex] = response;

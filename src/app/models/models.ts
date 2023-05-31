@@ -45,6 +45,7 @@ export interface NoteCommentaire {
     id?: number;
     id_user?: number;
     id_bouteille?: number;
+    user_nom?: string;
 }
 
 export interface Cellier {

@@ -6,13 +6,15 @@
       <mat-label>Nom :</mat-label>
       <input matInput formControlName="name" type="text" />
       <mat-error *ngIf="formConnexion.controls['name'].hasError('required')">Le nom est requis.</mat-error>
-      <mat-error *ngIf="formConnexion.controls['name'].hasError('minlength')">Le nom doit contenir au moins 3 caractères.</mat-error>
+      <mat-error *ngIf="formConnexion.controls['name'].hasError('minlength')">Le nom doit contenir au moins 3
+        caractères.</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Courriel :</mat-label>
       <input matInput formControlName="email" type="email" />
-      <mat-error *ngIf="formConnexion.controls['email'].hasError('required')">L'adresse courriel est requise.</mat-error>
+      <mat-error *ngIf="formConnexion.controls['email'].hasError('required')">L'adresse courriel est
+        requise.</mat-error>
       <mat-error *ngIf="formConnexion.controls['email'].hasError('email')">L'adresse courriel est invalide.</mat-error>
     </mat-form-field>
 
@@ -20,7 +22,9 @@
       <mat-label>Mot de passe :</mat-label>
       <input matInput formControlName="password" type="password" />
       <mat-error *ngIf="formConnexion.controls['password'].hasError('required')">Le mot de passe est requis.</mat-error>
-      <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')">Le mot de passe doit contenir au moins une minuscule et un chiffre.</mat-error>
+      <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')"> Le mot de passe doit contenir
+        au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (!@#$%^&*).
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -32,7 +36,8 @@
 
     <div class="action">
       <div class="action__group">
-        <button mat-raised-button color="primary" (click)="creerUnCompte()" [disabled]="!formConnexion.dirty || !formConnexion.valid">Créer un compte</button>
+        <button mat-raised-button color="primary" (click)="creerUnCompte()"
+          [disabled]="!formConnexion.dirty || !formConnexion.valid">Créer un compte</button>
       </div>
     </div>
   </form>

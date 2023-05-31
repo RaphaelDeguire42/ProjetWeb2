@@ -7,11 +7,11 @@ function passwordValidator(control: AbstractControl): ValidationErrors | null {
   const value: string = control.value;
   if (!value) return null;
 
-  //const hasUppercase = /[A-Z]/.test(value);
+  const hasUppercase = /[A-Z]/.test(value);
   const hasLowercase = /[a-z]/.test(value);
   const hasNumber = /[0-9]/.test(value);
-  //const hasSpecialChar = /[!@#$%^&*]/.test(value);
-  const isValid = /*hasUppercase && */hasLowercase && hasNumber /*&& hasSpecialChar*/;
+  const hasSpecialChar = /[!@#$%^&*]/.test(value);
+  const isValid = hasUppercase && hasLowercase && hasNumber && hasSpecialChar;
   return isValid ? null : { invalidPassword: true };
 }
 
@@ -41,7 +41,6 @@ export class CreerUnCompteComponent {
       password_confirmation: ['', Validators.required]
     }, { validators: passwordConfirmationValidator });
   }
-
 
   creerUnCompte() {
     let formData = this.formConnexion.value;

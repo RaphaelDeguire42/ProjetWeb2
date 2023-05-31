@@ -1,32 +1,32 @@
-:host{
-    padding: 0 10px;
+:host {
+   padding: 0 10px;
 }
-form{
-    display: flex;
-    flex-direction: column;
-    padding: 0 1.5em;
-    margin: 0 auto;
-    margin-top: 30px;
+form {
+   display: flex;
+   flex-direction: column;
+   padding: 0 1.5em;
+   margin: 0 auto;
+   margin-top: 30px;
 }
-p{
-    font-size: 2em;
-    text-align: center;
-    font-weight: bold;
-    line-height: 1.2em;
+p {
+   font-size: 2em;
+   text-align: center;
+   font-weight: bold;
+   line-height: 1.2em;
 }
-mat-label{
-    display: block;
-    color: black;
+mat-label {
+   display: block;
+   color: black;
 }
 
-  .mat-focused .mat-form-field-outline {
-    outline: none;
-  }
+.mat-focused .mat-form-field-outline {
+   outline: none;
+}
 
-  .action__group{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    justify-content: center;
-    align-items: center;
-  }
+.action__group {
+   display: flex;
+   flex-direction: column;
+   gap: 1em;
+   justify-content: center;
+   align-items: center;
+}

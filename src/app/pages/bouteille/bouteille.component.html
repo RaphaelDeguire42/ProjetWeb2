@@ -1,6 +1,3 @@
-
-
-
 <div class="wrapper" *ngIf="bouteille">
    <h1>{{bouteille.nom}}</h1>
    <div class="details__container">
@@ -32,10 +29,11 @@
       </mat-form-field>
 
 
-      <button class="buttonSend" mat-raised-button color="primary" (click)="envoyerCommentaire()" [disabled]="!formBouteille.dirty || !formBouteille.valid">Envoyer</button>
+      <button class="buttonSend" mat-raised-button color="primary" (click)="envoyerCommentaire()"
+         [disabled]="!formBouteille.dirty || !formBouteille.valid">Envoyer</button>
    </form>
 
-    <ng-container *ngFor="let nc of note_commentaires">
+   <ng-container *ngFor="let nc of note_commentaires">
       <div class="noteBox">
          <p *ngIf="nc.note">Note: {{nc.note}}</p>
          <p *ngIf="nc.commentaire">Commentaire: {{nc.commentaire}}</p>
@@ -43,7 +41,3 @@
    </ng-container>
 
 </div>
-
-
-
-

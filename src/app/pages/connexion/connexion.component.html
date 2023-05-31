@@ -20,14 +20,15 @@
           Le mot de passe est requis.
         </mat-error>
         <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')">
-          Le mot de passe doit contenir au moins une lettre minuscule et un chiffre.
+          Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (!@#$%^&*).
         </mat-error>
       </mat-form-field>
 
 
       <div class="action">
         <div class="action__group">
-          <button mat-raised-button color="primary" (click)="connexion()" [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
+          <button mat-raised-button color="primary" (click)="connexion()"
+            [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
         </div>
       </div>
     </form>

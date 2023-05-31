@@ -8,26 +8,9 @@ import { PanierService } from 'src/app/services/panier.service';
   styleUrls: ['./panier.component.scss']
 })
 export class PanierComponent implements OnInit {
-  panier: Panier = { items: [{
-    nom: 'snickers',
-    prix: 150,
-    quantite: 1,
-    id: 1
-  },
-  {
-    nom: 'snickers',
-    prix: 150,
-    quantite: 3,
-    id: 2
-  }]};
+  panier: any = { items: [{}]};
   sourceDonnees: Array<PanierItem> = [];
-  colonneAffiche: Array<string> = [
-    'nom',
-    'prix',
-    'quantite',
-    'total',
-    'action'
-  ];
+  colonneAffiche: Array<string> = ['nom','prix','quantite','total','action'];
 
   constructor(private panierService: PanierService) {}
 

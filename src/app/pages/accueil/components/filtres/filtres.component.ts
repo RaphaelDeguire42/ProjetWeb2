@@ -8,6 +8,7 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   templateUrl: './filtres.component.html',
   styleUrls: ['./filtres.component.scss'],
 })
+
 export class FiltresComponent implements OnInit, OnDestroy {
   @Output() showType = new EventEmitter<number[]>();
   @Output() showFormat = new EventEmitter<number[]>();
@@ -24,8 +25,6 @@ export class FiltresComponent implements OnInit, OnDestroy {
 
   constructor(private catalogueService: CatalogueService) { }
 
-
-
   ngOnInit():void {
     this.typesSubscription = this.catalogueService.getTypes()
     .subscribe((response) => {
@@ -41,16 +40,14 @@ export class FiltresComponent implements OnInit, OnDestroy {
     });
   }
 
-
   onVoirType(type: any): void {
     type.selected = !type.selected;
-
     if (type.selected) {
-      this.idTypesSelectionner.push(type.id); // Add the selected type ID to the array
+      this.idTypesSelectionner.push(type.id);
     } else {
       const index = this.idTypesSelectionner.indexOf(type.id);
       if (index > -1) {
-        this.idTypesSelectionner.splice(index, 1); // Remove the deselected type ID from the array
+        this.idTypesSelectionner.splice(index, 1);
       }
     }
     this.showType.emit(this.idTypesSelectionner);
@@ -60,11 +57,11 @@ export class FiltresComponent implements OnInit, OnDestroy {
     format.selected = !format.selected;
 
     if (format.selected) {
-      this.idFormatsSelectionner.push(format.id); // Add the selected format ID to the array
+      this.idFormatsSelectionner.push(format.id);
     } else {
       const index = this.idFormatsSelectionner.indexOf(format.id);
       if (index > -1) {
-        this.idFormatsSelectionner.splice(index, 1); // Remove the deselected format ID from the array
+        this.idFormatsSelectionner.splice(index, 1);
       }
     }
     this.showFormat.emit(this.idFormatsSelectionner);

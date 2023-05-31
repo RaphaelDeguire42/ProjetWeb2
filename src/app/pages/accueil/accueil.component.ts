@@ -11,6 +11,7 @@ import { MatDrawer } from '@angular/material/sidenav';
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.scss']
 })
+
 export class AccueilComponent implements OnInit, OnDestroy {
   types: number[] | undefined;
   formats: number[] | undefined;
@@ -56,14 +57,13 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   getBouteilles(): void {
-    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.tri, this.types, this.formats, this.pays)
-      .subscribe((_bouteilles)=>{
-        if (_bouteilles) {
-          this.bouteilles = null;
-          this.originalBouteilles = _bouteilles.data;
-          this.bouteilles = this.originalBouteilles;
-        }
-      })
+    this.bouteilleSubscription = this.catalogueService.getAllBouteilles(this.tri, this.types, this.formats, this.pays).subscribe((_bouteilles)=>{
+      if (_bouteilles) {
+        this.bouteilles = null;
+        this.originalBouteilles = _bouteilles.data;
+        this.bouteilles = this.originalBouteilles;
+      }
+    })
   }
 
   getNouvelleBouteilles(): void{
@@ -77,10 +77,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   getCelliersUtilisateur(): void {
     const id_user = parseInt(localStorage.getItem('user_id')||'');
-    this.cellierSubscription = this.cellierService.getCelliersUtilisateur(id_user)
-      .subscribe((_celliers)=>{
-        this.celliers = _celliers;
-      })
+    this.cellierSubscription = this.cellierService.getCelliersUtilisateur(id_user).subscribe((_celliers)=>{
+      this.celliers = _celliers
+    })
   }
 
   onVoirType(nouveauTypes:number[]):void {
@@ -100,17 +99,14 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   onTriChangement(nouveauTri: string):void {
     this.tri = nouveauTri;
-
     this.getBouteilles();
   }
 
   ngOnDestroy(): void {
-      if(this.bouteilleSubscription) {
+      if(this.bouteilleSubscription)
         this.bouteilleSubscription.unsubscribe();
-      }
-      if(this.cellierSubscription) {
+      if(this.cellierSubscription)
         this.cellierSubscription.unsubscribe();
-      }
   }
 
   supprimerBouteille(id_bouteille:number){
@@ -127,7 +123,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
   recherche(event: Event) {
     const target = event.target as HTMLInputElement;
     const filterValue = target.value.toLowerCase().trim();
-    console.log(filterValue)
 
     this.bouteilles = this.originalBouteilles!.filter((bouteille: Bouteille) => {
         const name = bouteille.nom.toLowerCase();

@@ -14,6 +14,7 @@ const HAUTEUR_RANGEE: { [id: number]: number } = { 1: 400, 3: 428, 4: 350 };
   templateUrl: './cellier.component.html',
   styleUrls: ['./cellier.component.scss']
 })
+
 export class CellierComponent implements OnInit, OnDestroy {
   cols = 3;
   hauteurRangee = HAUTEUR_RANGEE[this.cols];
@@ -30,11 +31,10 @@ export class CellierComponent implements OnInit, OnDestroy {
   }
 
   getCelliers(): void {
-    const id_user = (localStorage.getItem('user_id')||'');
-    this.cellierSubscription = this.cellierService.getCelliersUtilisateur(1)
-      .subscribe((_celliers)=>{
-        this.celliers = _celliers.data;
-      })
+    const id_user = this.userService.getUtilisateur().id;
+    this.cellierSubscription = this.cellierService.getCelliersUtilisateur(id_user).subscribe((_celliers)=>{
+      this.celliers = _celliers.data
+    })
   }
 
   onVoirType(nouveauType:string):void {
@@ -43,24 +43,19 @@ export class CellierComponent implements OnInit, OnDestroy {
   }
 
   openNouveauCellierDialog(): void {
-    const dialogRef = this.dialog.open(NouveauCellierDialogComponent, {
-      width: '450px',
-      height: '600px'
-    });
-
+    const dialogRef = this.dialog.open(NouveauCellierDialogComponent, { width: '450px', height: '600px' });
     dialogRef.afterClosed().subscribe((cellier: Cellier | undefined) => {
       if (cellier) {
-        this.ajouterCellier(cellier);
+        cellier.id_user = this.userService.getUtilisateur().id;
+        this.cellierService.nouveauCellier(cellier).subscribe((id_cellier)=>{
+          cellier.id = id_cellier.id;
+          this.celliers!.push(cellier);
+          this.snackBar.open(`Le cellier a été ajouté.`, 'Fermer', {duration: 3000});
+        })
       }
     });
   }
 
-
-  ngOnDestroy(): void {
-      if(this.cellierSubscription) {
-        this.cellierSubscription.unsubscribe();
-      }
-  }
 
   supprimerCellier(id_cellier: number): void {
     console.log(id_cellier)
@@ -70,11 +65,9 @@ export class CellierComponent implements OnInit, OnDestroy {
     });
   }
 
-  ajouterCellier(cellier: Cellier): void {
-    this.cellierService.nouveauCellier(cellier).subscribe((id_cellier)=>{
-      cellier.id = id_cellier.id;
-      this.celliers!.push(cellier);
-      this.snackBar.open(`Le cellier a été ajouté.`, 'Fermer', {duration: 3000});
-    })
+  ngOnDestroy(): void {
+      if(this.cellierSubscription) {
+        this.cellierSubscription.unsubscribe();
+      }
   }
 }

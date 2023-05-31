@@ -6,6 +6,9 @@ mat-expansion-panel {
   background-color: #fbf8dd;
   font-weight: bold;
 }
+mat-expansion-panel mat-expansion-panel-header {
+  font-size: 20px;
+}
 
 .mat-expansion-panel + .mat-expansion-panel {
   margin-top: 12px;

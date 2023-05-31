@@ -1,9 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit,Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, HostListener, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Bouteille, Cellier } from 'src/app/models/models';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { CellierService } from 'src/app/services/cellier.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-accueil',
@@ -24,11 +25,39 @@ export class AccueilComponent implements OnInit, OnDestroy {
   originalBouteilles: any[] = [];
   role:boolean = false;
 
-  constructor(private catalogueService: CatalogueService, private cellierService: CellierService, private userService: UserService) {}
+  @ViewChild('drawer') drawer!: MatDrawer;
+
+
+  constructor(private catalogueService: CatalogueService, private cellierService: CellierService, private userService: UserService, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
       this.getBouteilles();
       this.role = this.userService.getRole();
+  }
+
+  isMinWidth1000px(): boolean {
+    return window.innerWidth >= 1000;
+  }
+
+  /**
+   * Ferme le drawer quand la fenêtre a moins de 1000px
+   */
+  @HostListener('window:resize')
+  onWindowResize() {
+    this.cdRef.detectChanges();
+  };
+
+  /**
+   * Toggle le drawer lorsqu'on appuie sur le bouton 'Filtres'
+   */
+  toggleDrawer():void {
+    if(this.drawer) {
+      this.drawer.toggle();
+    }
+  }
+
+  closeDrawer():void {
+    this.drawer.close();
   }
 
   getBouteilles(): void {
@@ -103,5 +132,19 @@ export class AccueilComponent implements OnInit, OnDestroy {
         const name = bouteille.nom.toLowerCase();
         return name.includes(filterValue);
     });
+  }
+
+  getColumnCount(): number {
+    if (window.innerWidth >= 1800) {
+      return 5; // Set the number of columns for window width >= 1800px
+    } else if (window.innerWidth >= 1400) {
+      return 4; // Set the number of columns for window width >= 1400px
+    } else if (window.innerWidth >= 1200) {
+      return 3; // Set the number of columns for window width >= 1200px
+    } else if (window.innerWidth >= 600) {
+      return 2; // Set the number of columns for window width >= 600px
+    } else {
+      return 1; // Set the number of columns for window width < 600px
+    }
   }
 }

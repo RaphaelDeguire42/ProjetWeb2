@@ -1,0 +1,93 @@
+:host {
+  position: relative;
+  width: 100%;
+}
+:host:hover .bouteilleImg {
+  transform: scale(1.1);
+}
+
+.btnEdit {
+  height: 40px;
+  width: 40px;
+  box-shadow: none;
+}
+
+.link:hover,
+img {
+  color: rgb(5, 155, 97);
+  cursor: pointer;
+  white-space: normal;
+}
+
+.price {
+  color: rgb(177, 34, 34);
+}
+
+.mat-card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+}
+
+.mat-card-footer button {
+  color: #888;
+  background-color: accent;
+}
+
+.mat-card-footer button mat-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mat-card-footer button.mat-mini-fab {
+  padding: 0;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+}
+
+.mat-card-footer button.mat-mini-fab:hover {
+  background-color: #ccc;
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bouteilleImg {
+  margin-bottom: 0.25rem;
+  margin-top: 0.75rem;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.link {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.125rem;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+mat-card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.btnEdit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+}/*# sourceMappingURL=une-bouteille.component.css.map */

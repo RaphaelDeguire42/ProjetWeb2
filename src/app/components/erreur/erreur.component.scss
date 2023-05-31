@@ -4,12 +4,13 @@
     bottom:30px;
     right:30px;
     color:White;
-    padding: 0.7em;
+    padding: 0.3em 0.7em;
     border-radius: 30px;
     border-bottom-right-radius: 0;
   transition: padding 0.3s;
   z-index: 2;
   color: black;
+  font-family: Literata;
 }
 .signalerErreur:hover{
     padding: 1em;

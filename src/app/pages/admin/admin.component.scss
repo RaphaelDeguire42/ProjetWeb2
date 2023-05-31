@@ -26,3 +26,52 @@ mat-expansion-panel {
       color: #639630;
    }
 }
+
+.ligne{
+   small{
+      margin-left: 10px;
+   }
+}
+
+.stats{
+   margin-top: 2em;
+   font-family: Literata;
+}
+
+h2{
+   font-family: Literata;
+   text-decoration: underline;
+}
+
+h3{
+   font-weight: bold;
+   font-family: Literata;
+}
+
+.subInfo{
+   margin-left: 10px;
+}
+
+.unUser{
+   background: #fffacd;
+   border-radius: 4px;
+   font-family: Literata;
+   width: 30ch;
+   margin-bottom: 1em;
+   outline: gray 1px solid;
+}
+
+.unUser__header{
+   background-color: #fff6a3;
+   padding: 0.4em 0.75em;
+   p{
+      font-size: 1.3em;
+      font-weight: bold;
+   }
+
+}
+
+.unUser__content{
+   padding: 0.4em 0.75em;
+
+}

@@ -29,6 +29,7 @@ function passwordConfirmationValidator(control: AbstractControl): ValidationErro
 })
 
 export class CreerUnCompteComponent {
+  passwordVisible = false;
   formConnexion: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder, private userService: UserService,  private router: Router) {}

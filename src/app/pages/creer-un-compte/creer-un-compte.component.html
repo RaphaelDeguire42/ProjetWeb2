@@ -20,7 +20,10 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Mot de passe :</mat-label>
-      <input matInput formControlName="password" type="password" />
+      <input [type]="passwordVisible ? 'text' : 'password'" matInput formControlName="password" type="password" />
+      <button mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible" [attr.aria-label]="passwordVisible ? 'Hide password' : 'Show password'">
+        <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
       <mat-error *ngIf="formConnexion.controls['password'].hasError('required')">Le mot de passe est requis.</mat-error>
       <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')"> Le mot de passe doit contenir
         au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (!@#$%^&*).

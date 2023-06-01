@@ -1,7 +1,7 @@
 <ng-container>
     <form [formGroup]="formErreur" >
       <mat-form-field appearance="fill">
-        <mat-label>Écrivez votre erreur : </mat-label>
+        <mat-label [ngStyle]="{'color': labelColor}">Écrivez votre erreur : </mat-label>
         <textarea matInput formControlName="erreur" id="" cols="40" rows="5"></textarea>
       </mat-form-field>
       <div class="action">

@@ -24,4 +24,8 @@ export class AdminService {
   getStats(): Observable<any>{
     return this.httpClient.get<any>(`${ADMIN_BASE_URL}/stats`, this.userService.getSanctum())
   }
+
+  supprimerUtilisateur(id_user:number): Observable<any>{
+    return this.httpClient.delete<any>(`${ADMIN_BASE_URL}/users/${id_user}`, this.userService.getSanctum())
+  }
 }

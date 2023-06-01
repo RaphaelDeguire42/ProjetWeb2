@@ -18,11 +18,11 @@
       </div>
    </div>
    <div class="btnPanier">
-      <button mat-raised-button color="accent">Ajouter au panier</button>
+      <button mat-raised-button color="accent" (click)="onAjouterAuPanier()">Ajouter au panier</button>
    </div>
-   
+
    <a href="{{bouteille.url_saq}}" target="_blank" class="link">Voir la bouteille sur le site de la SAQ</a>
-   
+
    <section class="notes-commentaires">
       <h2>Notes et Commentaires</h2>
       <form [formGroup]="formBouteille">

@@ -9,9 +9,7 @@
     <mat-drawer-content>
         <div class="options">
             <button color="primary" mat-raised-button *ngIf="!isMinWidth1000px()" (click)="drawer.toggle()">Filtres</button>
-            <button *ngIf="role"  mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
         </div>
-
         <div class="actions">
             <app-bouteilles-entete
             (triChangement)="onTriChangement($event)"
@@ -41,6 +39,7 @@
             <div *ngIf="!isChargement">
             </div>
         </mat-grid-list>
+        <button *ngIf="role" class="btnAjoutBouteille"  mat-raised-button color="primary" (click)="getNouvelleBouteilles()">Ajouter des bouteilles</button>
         <app-erreur></app-erreur>
     </mat-drawer-content>
 </mat-drawer-container>

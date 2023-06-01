@@ -5,7 +5,7 @@
       grid-template-columns: 1fr 1fr;
    }
 }
-.connexion__container {
+.connexion__container, .enregistrement__container {
    display: flex;
    flex-direction: column;
    text-align: center;
@@ -29,20 +29,36 @@
    }
 }
 
-.connexion__img {
+.image__container {
    display: none;
    @media screen and (min-width: 600px) {
       display: block;
-      background-image: url(./../../../assets/img/wine_splash.jpg);
       background-color: #888;
       background-blend-mode: multiply;
       background-attachment: fixed;
       background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
+      
+      
       color: white;
       text-align: center;
       padding: 10vh 3em;
+   }
+}
+
+.connexion__img {
+   @media screen and (min-width: 600px) {
+      background-image: url(./../../../assets/img/wine_splash.jpg);
+      background-position: center center;
+      background-size: cover;
+   }
+}
+
+.enregistrement__img {
+   @media screen and (min-width: 600px) {
+      background-image: url(./../../../assets/img/wine_pour.jpg);
+      background-position: center center;
+      background-size: cover;
+
    }
 }
 .mat-form-field-appearance-fill .mat-form-field-label {

@@ -1,46 +1,56 @@
 <mat-toolbar color="primary">
     <div class="logo">
-        <a routerLink="/accueil" class="nav-link">Vino</a>
+        <a routerLink="/accueil"><img src="../../../assets/img/logo-no-background.svg" alt=""></a>
     </div>
-    <nav>
-        <a routerLink="/accueil" class="nav-link">Catalogue</a>
-        <a routerLink="/cellier" class="nav-link">Mes Celliers</a>
-        <a *ngIf="role" routerLink="/admin" class="nav-link">Admin</a>
-    </nav>
-    <div class="actions">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon
-                [matBadge]="itemsQuantite"
-                [matBadgeHidden]="!itemsQuantite"
-                matBadgeColor="accent">shopping_cart
-            </mat-icon>
+    <button aria-controls="navigation" *ngIf="!isMinWidth1000px()" mat-icon-button class="menu-button" (click)="ouvrirNavigation()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div  class="navigation__container" [ngClass]="{ 'open': navigationOuverte }">
+        <button aria-controls="navigation" *ngIf="!isMinWidth1000px()" color="warn" mat-icon-button class="close-button" (click)="fermerNavigation()">
+            <mat-icon>close</mat-icon>
         </button>
-        <a routerLink="/connexion" mat-raised-button (click)="deconnexion()" class="logout" color="accent">Déconnexion</a>
-    </div>
-    <mat-menu #menu="matMenu">
-        <div class="menu">
-            <div class="menu__header">
-                <span>{{ itemsQuantite }} Items</span>
-                <a routerLink="panier">Voir Panier</a>
-            </div>
-            <div *ngIf="panier.items.length">
-                <div *ngFor="let item of panier.items" class="menu__item">
-                    {{ item.nom }} x {{ item.quantite }}
-                    <span>{{ item.prix | currency }}</span>
+        <nav id="navigation"  class="menu-links" >
+            <a routerLink="/accueil" class="nav-link">Catalogue</a>
+            <a routerLink="/cellier" class="nav-link">Mes Celliers</a>
+            <a *ngIf="role" routerLink="/admin" class="nav-link">Admin</a>
+            <a *ngIf="!isMinWidth1000px()" routerLink="/panier" class="nav-link">Panier</a>
+            <a *ngIf="!isMinWidth1000px()" (click)="deconnexion()" routerLink="/connexion" class="nav-link">Déconnexion</a>
+        </nav>
+        <div *ngIf="isMinWidth1000px()" class="actions">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon
+                    [matBadge]="itemsQuantite"
+                    [matBadgeHidden]="!itemsQuantite"
+                    matBadgeColor="accent">shopping_cart
+                </mat-icon>
+            </button>
+            <a routerLink="/connexion" mat-raised-button (click)="deconnexion()" class="logout" color="accent">Déconnexion</a>
+        </div>
+        <mat-menu #menu="matMenu">
+            <div class="menu">
+                <div class="menu__header">
+                    <span>{{ itemsQuantite }} Items</span>
+                    <a routerLink="panier">Voir Panier</a>
+                </div>
+                <div *ngIf="panier.items.length">
+                    <div *ngFor="let item of panier.items" class="menu__item">
+                        {{ item.nom }} x {{ item.quantite }}
+                        <span>{{ item.prix | currency }}</span>
+                    </div>
+                </div>
+                <div class="menu__total">
+                    Total:
+                    <span>{{ getTotal(panier.items) | currency}}</span>
+                </div>
+                <div class="menu__actions">
+                    <button mat-mini-fab (click)="onViderPanier()" color="warn">
+                        <mat-icon>remove_shopping_cart</mat-icon>
+                    </button>
+                    <button mat-mini-fab routerLink="panier" color="primary">
+                        <mat-icon>shopping_cart</mat-icon>
+                    </button>
                 </div>
             </div>
-            <div class="menu__total">
-                Total:
-                <span>{{ getTotal(panier.items) | currency}}</span>
-            </div>
-            <div class="menu__actions">
-                <button mat-mini-fab (click)="onViderPanier()" color="warn">
-                    <mat-icon>remove_shopping_panier</mat-icon>
-                </button>
-                <button mat-mini-fab routerLink="panier" color="primary">
-                    <mat-icon>shopping_panier</mat-icon>
-                </button>
-            </div>
-        </div>
-    </mat-menu>
+        </mat-menu>
+    </div>
 </mat-toolbar>

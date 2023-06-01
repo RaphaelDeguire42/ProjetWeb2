@@ -1,7 +1,9 @@
-<h1>Créer un compte</h1>
-<ng-container *ngIf="formConnexion">
-  <form [formGroup]="formConnexion">
-    <mat-form-field appearance="fill">
+<div class="enregistrement__container">
+  <h1>Créer un compte</h1>
+  <ng-container *ngIf="formConnexion">
+    <form [formGroup]="formConnexion">
+      <mat-form-field appearance="fill">
+
 
       <mat-label [ngStyle]="{'color': labelColor}">Nom :</mat-label>
       <input matInput formControlName="name" type="text" />
@@ -34,15 +36,18 @@
       <mat-label [ngStyle]="{'color': labelColor}">Confirmer le mot de passe :</mat-label>
       <input matInput formControlName="password_confirmation" type="password" />
 
-      <mat-error *ngIf="formConnexion.hasError('passwordMismatch')">Les mots de passe ne correspondent pas.</mat-error>
-    </mat-form-field>
+        <mat-error *ngIf="formConnexion.hasError('passwordMismatch')">Les mots de passe ne correspondent pas.</mat-error>
+      </mat-form-field>
 
-    <div class="action">
-      <div class="action__group">
-        <button mat-raised-button color="primary" (click)="creerUnCompte()"
-          [disabled]="!formConnexion.dirty || !formConnexion.valid">Créer un compte</button>
+      <div class="action">
+        <div class="action__group">
+          <button mat-raised-button color="primary" (click)="creerUnCompte()"
+            [disabled]="!formConnexion.dirty || !formConnexion.valid">Créer un compte</button>
+        </div>
       </div>
-    </div>
-  </form>
-</ng-container>
-<a mat-button routerLink="/connexion">Vous avez déjà un compte? Cliquer ici.</a>
+    </form>
+    <a mat-button routerLink="/connexion">Vous avez déjà un compte? Cliquer ici.</a>
+  </ng-container>
+</div> 
+
+<div class="enregistrement__img image__container"></div>

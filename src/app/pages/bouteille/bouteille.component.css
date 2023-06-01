@@ -45,21 +45,31 @@
   .details__container > * + * {
     margin-top: 0;
   }
+  .details__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .details__content-liste {
+    border-right: 10px double black;
+  }
+  .details__content-prix {
+    border: none;
+  }
 }
 .details__container > * {
   font-size: 20px;
+  padding: 20px;
 }
 
-.details__content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: center;
+:where(.details__content-prix) {
+  padding-top: 24px;
+  border-top: 10px double black;
 }
 
 .details__content-liste {
-  padding: 20px;
-  border-right: 10px double black;
+  padding-bottom: 24px;
 }
 
 .details__content-liste dt + dd {
@@ -74,7 +84,7 @@
   padding-left: 12px;
 }
 
-.details__content-prix {
+.details__content-prix > p {
   font-size: 60px;
   font-weight: bold;
   color: #8abe53;

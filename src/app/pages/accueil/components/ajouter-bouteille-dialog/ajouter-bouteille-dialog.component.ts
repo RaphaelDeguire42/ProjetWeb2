@@ -18,6 +18,7 @@ export class AjouterBouteilleDialogComponent {
   id_cellier:number|string|null = '';
   celliers: any | undefined;
   celliersSubscription: Subscription | undefined;
+  labelColor: string = "rgba(0,0,0,0.6)";
 
   id_cellier_placeholder:number|string|null = null;
 
@@ -38,6 +39,13 @@ export class AjouterBouteilleDialogComponent {
   constructor(private fb: FormBuilder, private http:HttpClient, public dialogRef: MatDialogRef<AjouterBouteilleDialogComponent>,private snackBar:MatSnackBar, private cellierService: CellierService, @Inject(MAT_DIALOG_DATA) public data: { id_bouteille?: number, id_cellier?: number }
   ) {}
 
+  changeLabelColor() {
+    this.labelColor = 'black';
+  }
+
+  resetLabelColor() {
+    this.labelColor = '';
+  }
 
   ngOnInit(): void {
     this.id_bouteille = this.data.id_bouteille??null;

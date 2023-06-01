@@ -22,3 +22,11 @@ p {
    margin-right: 8px;
    border: 1px gray solid;
 }
+
+.mat-form-field-appearance-fill .mat-form-field-label {
+   color: rgba(0, 0, 0, 0.54); 
+ }
+
+ .mat-form-field-appearance-fill.mat-focused .mat-form-field-label {
+   color: black;
+ }

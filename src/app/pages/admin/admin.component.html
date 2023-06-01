@@ -22,36 +22,52 @@
   <ng-container *ngIf="erreurs.length === 0">
     <p>Aucune erreur signalée</p>
   </ng-container>
-  <!--
 
-    "décompte_des_types": [ { "type": "Vin Blanc", "décompte": 1 }, { "type": "Vin Rouge", "décompte": 3 } ], "décompte_des_pays": [ { "pays": "Afrique du Sud", "décompte": 1 }, { "pays": "Australie", "décompte": 1 }, { "pays": "États-Unis", "décompte": 1 }, { "pays": "France", "décompte": 1 } ] }
-  -->
     <ng-container  *ngIf="stats">
-      <h2 class="stats">Décompte des pays</h2>
-    <ng-container *ngFor="let pays of decompte_pays">
-      <p class="ligne">{{pays.pays}}  <small>Nombre: {{pays.decompte}}</small></p>
-    </ng-container>
-    <h2>Décompte des types</h2>
-    <ng-container *ngFor="let type of decompte_types">
-      <p class="ligne">{{type.type}}  <small>Nombre: {{type.decompte}}</small></p>
-    </ng-container>
+      <h2>Type et Pays</h2>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Pays
+          </mat-panel-title>
+          <mat-panel-description>
+            Nombre de pays : {{decompte_pays.length}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let pays of decompte_pays">
+          <p class="ligne">{{pays.pays}}  <small>Nombre: {{pays.decompte}}</small></p>
+        </ng-container>
+      </mat-expansion-panel><mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Type
+          </mat-panel-title>
+          <mat-panel-description>
+            Nombre de type : {{decompte_types.length}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let type of decompte_types">
+          <p class="ligne">{{type.type}}  <small>Nombre: {{type.decompte}}</small></p>
+        </ng-container>
+      </mat-expansion-panel>
     <h2>Utilisateurs</h2>
     <p><strong>Nombre d'utilisateurs : </strong>{{users.length}}</p>
     <ng-container *ngFor="let user of users">
-        <div class="unUser">
-          <div class="unUser__header">
-            <p>{{user.utilisateur}}</p>
-          </div>
-          <div class="unUser__content">
-            <p><strong>Celliers :</strong>  </p>
-            <div class="subInfo">
-              <ng-container *ngFor="let cellier of user.celliers">
-                <p><strong>{{cellier.nom}}</strong> : {{cellier.nombre_bouteilles}} bouteilles</p>
-              </ng-container>
-            </div>
-          </div>
-        </div>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{user.utilisateur}}
+          </mat-panel-title>
+          <mat-panel-description>
+            Nombre de cellier : {{user.celliers.length}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let cellier of user.celliers">
+          <p><strong>{{cellier.nom}}</strong> : {{cellier.nombre_bouteilles}} bouteilles</p>
+        </ng-container>
+        <button mat-raised-button color="warn" (click)="supprimeUser(user.id)">Supprimmer l'utilisateur</button>
+      </mat-expansion-panel>
       </ng-container>
   </ng-container>
-
 </div>
+

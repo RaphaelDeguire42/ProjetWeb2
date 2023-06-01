@@ -3,7 +3,7 @@
   <form [formGroup]="formConnexion">
     <mat-form-field appearance="fill">
 
-      <mat-label>Nom :</mat-label>
+      <mat-label [ngStyle]="{'color': labelColor}">Nom :</mat-label>
       <input matInput formControlName="name" type="text" />
       <mat-error *ngIf="formConnexion.controls['name'].hasError('required')">Le nom est requis.</mat-error>
       <mat-error *ngIf="formConnexion.controls['name'].hasError('minlength')">Le nom doit contenir au moins 3
@@ -11,7 +11,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Courriel :</mat-label>
+      <mat-label [ngStyle]="{'color': labelColor}">Courriel :</mat-label>
       <input matInput formControlName="email" type="email" />
       <mat-error *ngIf="formConnexion.controls['email'].hasError('required')">L'adresse courriel est
         requise.</mat-error>
@@ -19,7 +19,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Mot de passe :</mat-label>
+      <mat-label [ngStyle]="{'color': labelColor}">Mot de passe :</mat-label>
       <input [type]="passwordVisible ? 'text' : 'password'" matInput formControlName="password" type="password" />
       <button mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible" [attr.aria-label]="passwordVisible ? 'Hide password' : 'Show password'">
         <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -31,7 +31,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Confirmer le mot de passe :</mat-label>
+      <mat-label [ngStyle]="{'color': labelColor}">Confirmer le mot de passe :</mat-label>
       <input matInput formControlName="password_confirmation" type="password" />
 
       <mat-error *ngIf="formConnexion.hasError('passwordMismatch')">Les mots de passe ne correspondent pas.</mat-error>

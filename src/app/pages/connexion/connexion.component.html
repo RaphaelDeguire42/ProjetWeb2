@@ -22,7 +22,7 @@
         <mat-error *ngIf="formConnexion.controls['password'].hasError('required')">
           Le mot de passe est requis.
         </mat-error>
-        <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')">
+        <mat-error class="bizz" *ngIf="formConnexion.controls['password'].hasError('invalidPassword')">
           Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (!@#$%^&*).
         </mat-error>
       </mat-form-field>
@@ -31,12 +31,15 @@
       <div class="action">
         <div class="action__group">
           <button mat-raised-button color="primary" (click)="connexion()"
-            [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
+            [disabled]="!formConnexion.dirty || !formConnexion.valid" class="btnSubmit">Me connecter</button>
         </div>
       </div>
     </form>
   </ng-container>
-  <p>Vous n'avez pas encore de compte?<a mat-button routerLink="/creer-un-compte">Cliquer ici.</a></p>
+  <div class="linky">
+    <p>Vous n'avez pas encore de compte?</p><a class="link" mat-button routerLink="/creer-un-compte">Cliquer ici.</a>
+
+  </div>
 </div>
 
 <div class="connexion__img image__container"></div>

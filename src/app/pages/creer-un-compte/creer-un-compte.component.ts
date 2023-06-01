@@ -30,6 +30,7 @@ function passwordConfirmationValidator(control: AbstractControl): ValidationErro
 
 export class CreerUnCompteComponent {
   passwordVisible = false;
+  passwordVisible1 = false;
   formConnexion: FormGroup = new FormGroup({});
   labelColor: string = "rgba(0,0,0,0.6)";
 

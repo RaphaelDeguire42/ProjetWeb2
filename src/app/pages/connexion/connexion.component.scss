@@ -37,8 +37,8 @@
       background-blend-mode: multiply;
       background-attachment: fixed;
       background-repeat: no-repeat;
-      
-      
+
+
       color: white;
       text-align: center;
       padding: 10vh 3em;
@@ -67,4 +67,32 @@
 
  .mat-form-field-appearance-fill.mat-focused .mat-form-field-label {
    color: black;
+ }
+
+
+ .link{
+   max-width: fit-content;
+ }
+ .linky{
+   display: flex;
+   align-items: baseline;
+   justify-content: center;
+ }
+
+ mat-error{
+   width: 50ch;
+   margin-left: -15px;
+}
+
+mat-error.bizz{
+   margin-left: -40px;
+ }
+
+ .btnSubmit{
+   margin-top: 15px;
+ }
+
+ mat-error.buzz{
+   width: 70ch;
+   margin-left: -100px;
  }

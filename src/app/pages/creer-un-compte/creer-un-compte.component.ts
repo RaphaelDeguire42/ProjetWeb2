@@ -29,7 +29,17 @@ function passwordConfirmationValidator(control: AbstractControl): ValidationErro
 })
 
 export class CreerUnCompteComponent {
+  passwordVisible = false;
   formConnexion: FormGroup = new FormGroup({});
+  labelColor: string = "rgba(0,0,0,0.6)";
+
+  changeLabelColor() {
+    this.labelColor = 'black';
+  }
+
+  resetLabelColor() {
+    this.labelColor = '';
+  }
 
   constructor(private fb: FormBuilder, private userService: UserService,  private router: Router) {}
 

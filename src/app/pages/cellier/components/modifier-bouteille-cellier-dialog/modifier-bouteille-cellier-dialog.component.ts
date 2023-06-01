@@ -15,6 +15,15 @@ import { CellierService } from 'src/app/services/cellier.service';
 
 export class ModifierBouteilleCellierDialogComponent {
   formModif: FormGroup = new FormGroup({});
+  labelColor: string = "rgba(0,0,0,0.6)";
+
+  changeLabelColor() {
+    this.labelColor = 'black';
+  }
+
+  resetLabelColor() {
+    this.labelColor = '';
+  }
 
   constructor( private fb: FormBuilder, public dialogRef: MatDialogRef<CellierBouteille>, private snackBar: MatSnackBar, private cellierService: CellierService, @Inject(MAT_DIALOG_DATA) public data: any) {}
 

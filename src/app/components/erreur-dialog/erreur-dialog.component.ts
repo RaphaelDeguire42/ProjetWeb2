@@ -12,13 +12,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ErreurDialogComponent {
   id_utilisateur:number = this.userService.getUtilisateur().id;
+  labelColor: string= "rgba(0, 0, 0, 0.54)";
 
   formErreur: FormGroup = new FormGroup({
     erreur: new FormControl('', [Validators.minLength(3),Validators.required]),
   });
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ErreurDialogComponent>, private userService: UserService
-  ) {}
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ErreurDialogComponent>, private userService: UserService) {}
+
+  changeLabelColor() {
+    this.labelColor = 'black';
+  }
+
+  resetLabelColor() {
+    this.labelColor = '';
+  }
 
   ngOnInit(){
     this.formErreur = this.fb.group({

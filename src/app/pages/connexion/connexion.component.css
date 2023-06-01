@@ -1,0 +1,63 @@
+:host {
+  color: #5a9929;
+}
+@media screen and (min-width: 600px) {
+  :host {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.connexion__container, .enregistrement__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  padding: 25vh 0;
+  background-color: #fdfcf2;
+}
+.connexion__container h1, .enregistrement__container h1 {
+  font-size: 3.5em;
+  font-family: Literata;
+  margin-bottom: 60px;
+}
+.connexion__container form, .enregistrement__container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.image__container {
+  display: none;
+}
+@media screen and (min-width: 600px) {
+  .image__container {
+    display: block;
+    background-color: #888;
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    padding: 10vh 3em;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .connexion__img {
+    background-image: url(./../../../assets/img/wine_splash.jpg);
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .enregistrement__img {
+    background-image: url(./../../../assets/img/wine_pour.jpg);
+    background-position: center center;
+    background-size: cover;
+  }
+}/*# sourceMappingURL=connexion.component.css.map */

@@ -62,8 +62,14 @@
 
 .actions {
   width: 100%;
+  gap: 12px 32px;
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  margin-top: 1em;
+  margin-top: 1.5rem;
   justify-content: space-between;
+}
+
+.btnAjoutBouteille {
+  margin-top: 32px;
 }/*# sourceMappingURL=accueil.component.css.map */

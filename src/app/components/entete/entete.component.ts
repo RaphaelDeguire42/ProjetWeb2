@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, HostListener } from '@angular/core';
 import { Panier, PanierItem } from 'src/app/models/models';
 import { PanierService } from 'src/app/services/panier.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-entete',
@@ -11,9 +12,16 @@ import { UserService } from 'src/app/services/user.service';
   ]
 })
 export class EnteteComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
   role :boolean = false;
   private _panier: Panier = { items: [] };
   itemsQuantite = 0;
+  navigationOuverte = false;
+  animationDuration = '0.3s';
+  animationTimingFunction = 'ease-in-out';
+
+  @HostListener('window:resize')
+  onWindowResize() {};
 
   @Input()
   get panier(): Panier {
@@ -44,5 +52,17 @@ export class EnteteComponent {
 
   deconnexion(){
     this.userService.deconnexion();
+  }
+
+  ouvrirNavigation(): void {
+    this.navigationOuverte = !this.navigationOuverte;
+  }
+
+  fermerNavigation(): void {
+    this.navigationOuverte = false;
+  }
+
+  isMinWidth1000px(): boolean {
+    return window.innerWidth >= 1000;
   }
 }

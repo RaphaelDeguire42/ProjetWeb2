@@ -12,8 +12,8 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
   height: 100vh;
-  padding: 25vh 0;
   background-color: #fdfcf2;
 }
 .connexion__container h1, .enregistrement__container h1 {
@@ -36,7 +36,6 @@
 @media screen and (min-width: 600px) {
   .image__container {
     display: block;
-    background-color: #888;
     background-blend-mode: multiply;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -56,8 +55,45 @@
 
 @media screen and (min-width: 600px) {
   .enregistrement__img {
-    background-image: url(./../../../assets/img/wine_pour.jpg);
+    background-image: url(./../../../assets/img/cellier.jpg);
     background-position: center center;
     background-size: cover;
   }
+}
+
+.mat-form-field-appearance-fill .mat-form-field-label {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.mat-form-field-appearance-fill.mat-focused .mat-form-field-label {
+  color: black;
+}
+
+.link {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+.linky {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+mat-error {
+  width: 50ch;
+  margin-left: -15px;
+}
+
+mat-error.bizz {
+  margin-left: -40px;
+}
+
+.btnSubmit {
+  margin-top: 15px;
+}
+
+mat-error.buzz {
+  width: 70ch;
+  margin-left: -100px;
 }/*# sourceMappingURL=connexion.component.css.map */

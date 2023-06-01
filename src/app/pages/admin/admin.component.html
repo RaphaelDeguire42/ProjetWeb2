@@ -65,7 +65,7 @@
         <ng-container *ngFor="let cellier of user.celliers">
           <p><strong>{{cellier.nom}}</strong> : {{cellier.nombre_bouteilles}} bouteilles</p>
         </ng-container>
-        <button mat-raised-button color="warn" (click)="supprimeUser(user.id)">Supprimmer l'utilisateur</button>
+        <button *ngIf="users.length !== 1" mat-raised-button color="warn" (click)="supprimeUser(user.id)">Supprimmer l'utilisateur</button>
       </mat-expansion-panel>
       </ng-container>
   </ng-container>

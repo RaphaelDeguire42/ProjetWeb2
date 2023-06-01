@@ -3,7 +3,7 @@
   <ng-container *ngIf="formConnexion">
     <form [formGroup]="formConnexion">
       <mat-form-field appearance="fill">
-        <mat-label>Courriel :</mat-label>
+        <mat-label [ngStyle]="{'color': labelColor}">Courriel :</mat-label>
         <input matInput formControlName="email" type="email" />
         <mat-error *ngIf="formConnexion.controls['email'].hasError('required')">
           L'adresse e-mail est requise.
@@ -14,12 +14,15 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Mot de passe :</mat-label>
-        <input matInput formControlName="password" type="password" />
+        <mat-label [ngStyle]="{'color': labelColor}">Mot de passe :</mat-label>
+        <input matInput [type]="passwordVisible ? 'text' : 'password'" formControlName="password" type="password" />
+        <button mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible" [attr.aria-label]="passwordVisible ? 'Hide password' : 'Show password'">
+          <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
         <mat-error *ngIf="formConnexion.controls['password'].hasError('required')">
           Le mot de passe est requis.
         </mat-error>
-        <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')">
+        <mat-error class="bizz" *ngIf="formConnexion.controls['password'].hasError('invalidPassword')">
           Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (!@#$%^&*).
         </mat-error>
       </mat-form-field>
@@ -28,12 +31,15 @@
       <div class="action">
         <div class="action__group">
           <button mat-raised-button color="primary" (click)="connexion()"
-            [disabled]="!formConnexion.dirty || !formConnexion.valid">Me connecter</button>
+            [disabled]="!formConnexion.dirty || !formConnexion.valid" class="btnSubmit">Me connecter</button>
         </div>
       </div>
     </form>
   </ng-container>
-  <p>Vous n'avez pas encore de compte?<a mat-button routerLink="/creer-un-compte">Cliquer ici.</a></p>
+  <div class="linky">
+    <p>Vous n'avez pas encore de compte?</p><a class="link" mat-button routerLink="/creer-un-compte">Cliquer ici.</a>
+
+  </div>
 </div>
 
 <div class="connexion__img image__container"></div>

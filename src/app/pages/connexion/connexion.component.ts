@@ -21,7 +21,18 @@ function passwordValidator(control: AbstractControl): ValidationErrors | null {
 })
 
 export class ConnexionComponent {
+  passwordVisible = false;
   formConnexion: FormGroup = new FormGroup({});
+  
+  labelColor: string = "rgba(0,0,0,0.6)";
+
+  changeLabelColor() {
+    this.labelColor = 'black';
+  }
+
+  resetLabelColor() {
+    this.labelColor = '';
+  }
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
 

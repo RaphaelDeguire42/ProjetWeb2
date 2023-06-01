@@ -27,15 +27,17 @@
         <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
       <mat-error *ngIf="formConnexion.controls['password'].hasError('required')">Le mot de passe est requis.</mat-error>
-      <mat-error *ngIf="formConnexion.controls['password'].hasError('invalidPassword')"> Le mot de passe doit contenir
+      <mat-error class="buzz" *ngIf="formConnexion.controls['password'].hasError('invalidPassword')"> Le mot de passe doit contenir
         au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (!@#$%^&*).
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label [ngStyle]="{'color': labelColor}">Confirmer le mot de passe :</mat-label>
-      <input matInput formControlName="password_confirmation" type="password" />
-
+      <input [type]="passwordVisible1 ? 'text' : 'password'" matInput formControlName="password_confirmation" type="password" />
+      <button mat-icon-button matSuffix (click)="passwordVisible1 = !passwordVisible1" [attr.aria-label]="passwordVisible1 ? 'Hide password' : 'Show password'">
+        <mat-icon>{{ passwordVisible1 ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
         <mat-error *ngIf="formConnexion.hasError('passwordMismatch')">Les mots de passe ne correspondent pas.</mat-error>
       </mat-form-field>
 
@@ -46,8 +48,10 @@
         </div>
       </div>
     </form>
-    <a mat-button routerLink="/connexion">Vous avez déjà un compte? Cliquer ici.</a>
+    <div class="linky">
+      <p> Vous avez déjà un compte?</p> <a class="link" mat-button routerLink="/connexion">Cliquer ici.</a>
+    </div>
   </ng-container>
-</div> 
+</div>
 
 <div class="enregistrement__img image__container"></div>

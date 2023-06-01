@@ -35,7 +35,9 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-container *ngFor="let pays of decompte_pays">
-          <p class="ligne">{{pays.pays}}  <small>Nombre: {{pays.decompte}}</small></p>
+          <div class="flex">
+            <p class="ligne">{{pays.pays}}: </p><p>{{pays.decompte}} bouteilles</p>
+          </div>
         </ng-container>
       </mat-expansion-panel><mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -47,7 +49,9 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-container *ngFor="let type of decompte_types">
-          <p class="ligne">{{type.type}}  <small>Nombre: {{type.decompte}}</small></p>
+          <div class="flex">
+            <p class="ligne">{{type.type}} : </p> <p>{{type.decompte}} bouteilles</p>
+          </div>
         </ng-container>
       </mat-expansion-panel>
     <h2>Utilisateurs</h2>
@@ -63,7 +67,9 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-container *ngFor="let cellier of user.celliers">
-          <p><strong>{{cellier.nom}}</strong> : {{cellier.nombre_bouteilles}} bouteilles</p>
+          <div class="flex">
+            <p><strong>{{cellier.nom}}</strong> : </p><p>{{cellier.nombre_bouteilles}} bouteilles</p>
+          </div>
         </ng-container>
         <button *ngIf="users.length !== 1" mat-raised-button color="warn" (click)="supprimeUser(user.id)">Supprimmer l'utilisateur</button>
       </mat-expansion-panel>

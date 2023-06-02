@@ -50,4 +50,10 @@ export class ConnexionComponent {
       this.error = error;
     });
   }
+  
+  onFormSubmit() {
+  if (this.formConnexion.valid) {
+    this.connexion();
+  }
+}
 }

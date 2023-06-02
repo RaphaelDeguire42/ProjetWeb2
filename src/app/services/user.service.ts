@@ -42,24 +42,31 @@ export class UserService {
     return this.httpClient.post<Compte>(`${USER_BASE_URL}/register`, compte);
   }
 
-  nouvelleConnexion(login: Login): void {
-    this.connexion(login).subscribe((data) => {
-      if (data) {
-        console.log(data);
+  nouvelleConnexion(login: Login, errorCallback: (error: string) => void): any {
+    this.connexion(login).subscribe(
+      (data) => {
         this.token = data.token;
         this.utilisateur = data.user;
         this.estConnecter = true;
         this.saveUserData();
         this.updateHttpOption();
         this.router.navigate(['/accueil']);
+      },
+      (error) => {
+        if (error.error.message === 'Credentials do not match') {
+          errorCallback('Le courriel ou le mot de passe est incorrect.');
+        } else {
+          errorCallback('An error occurred');
+        }
       }
-    });
+    );
   }
+
 
   deconnexion(): void {
     this.token = '';
     this.estConnecter = false;
-    this.clearToken(); 
+    this.clearToken();
     this.router.navigate(['/connexion']);
   }
 

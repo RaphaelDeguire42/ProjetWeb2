@@ -23,7 +23,8 @@ function passwordValidator(control: AbstractControl): ValidationErrors | null {
 export class ConnexionComponent {
   passwordVisible = false;
   formConnexion: FormGroup = new FormGroup({});
-  
+  error:string = "";
+
   labelColor: string = "rgba(0,0,0,0.6)";
 
   changeLabelColor() {
@@ -45,6 +46,8 @@ export class ConnexionComponent {
 
   connexion() {
     const formData = this.formConnexion.value;
-    const isConnexion = this.userService.nouvelleConnexion(formData)
+    this.userService.nouvelleConnexion(formData, (error) => {
+      this.error = error;
+    });
   }
 }
